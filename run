@@ -1,0 +1,9 @@
+#!/bin/bash
+
+cd /home/asses/public_html/asses/
+
+(python website.py local 1>/tmp/assess.log 2>&1)&
+
+echo $?
+
+echo $! > /var/run/assess.pid

@@ -1,0 +1,8 @@
+numpy
+scipy
+bottle
+matplotlib
+XlsxWriter
+openpyxl
+sympy
+Pillow
