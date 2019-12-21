@@ -71,16 +71,19 @@ def generate_fichier(data):
         # on va maintenant les remplir
         lignePoint = 0
 
-        for monPoint in monAttribut['questionnaire']['points']:
-            feuille.write(lignePoint + 2, 2, monPoint[0])
-            feuille.write(lignePoint + 2, 3, monPoint[1])
+        for monPoint_X,monPoint_Y in monAttribut['questionnaire']['points'].items():
+            feuille.write(lignePoint + 2, 2, monPoint_Y)
+            feuille.write(lignePoint + 2, 3, monPoint_X)
             lignePoint = lignePoint + 1
 
         # Ensuite on s'occupe de la fonction d'utilité
         # on fait une regression à l'aide des points que l'on a dans le
         # questionnaire et on envoit tout ça dans la fonction regressions du
         # fichier fit.py
-        points = monAttribut['questionnaire']['points'][:]
+        pointsY = monAttribut['questionnaire']['points'].values()
+        pointsX = monAttribut['questionnaire']['points'].keys()
+        pointsX = map(float,pointsX)
+        points = np.stack((pointsX,pointsY), axis = 1).tolist()
 
         if len(points) > 0:
             if monAttribut['mode'] == "normal":

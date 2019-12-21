@@ -987,7 +987,7 @@
 						};
 					};
 				}
-				console.log(data);
+				console.log(JSON.stringify(json_2_send));
 				
 				$('#charts').append('<table id="curves_choice" class="table"><thead><tr><th></th><th>Points used</th><th>Available regressions: r2</th></tr></thead></table>');
 				for (var i = 0; i < data['data'].length; i++) {
