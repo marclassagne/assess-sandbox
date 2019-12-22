@@ -1004,8 +1004,10 @@ $(function(){
 			var mesK=assess_session.k_calculus[get_Active_Method()].k.slice();
 			mesK.push({value:assess_session.k_calculus[get_Active_Method()].GK});
 			var requete={"type": "utility_calculus_multiplicative", "k":mesK, "utility":k_utility_multiplicative};
+			console.log(requete);
 
 			$.post('ajax', JSON.stringify(requete), function (data) {
+				console.log(data);
 
 				addTextForm($('#utility_function'), data.U, data.Uexcel, data.Ulatex);
 				//alert(JSON.stringify(data));
@@ -1038,7 +1040,9 @@ $(function(){
 
 			var requete={"type": "utility_calculus_multilinear", "k":assess_session.k_calculus[get_Active_Method()].k, "utility":k_utility_multilinear};
 			$.post('ajax', JSON.stringify(requete), function (data) {
-				$("#utility_function").html('<div ><pre>'+data.U+'</pre></div>')
+				console.log(data);
+				
+				addTextForm($('#utility_function'), data.U, data.Uexcel, data.Ulatex);
 				//alert(JSON.stringify(data));
 				assess_session.k_calculus[get_Active_Method()].GU=data;
 				localStorage.setItem("assess_session", JSON.stringify(assess_session));

@@ -25,11 +25,30 @@ def calculUtilityMultilinear(myK, myU):
     for monK in myK:
         U += str(monK['value'])
         for dk in monK['ID'].split(','):
-            U += "*" + convert_to_text(myU[int(dk) - 1], "x" + dk)
+            U += "*" + convert_to_text(myU[int(dk) - 1], "k" + dk)
         U += "+"
     # In order to delete the last + character
     U = U[:-1]
-    return {'U': U, 'k': myK, 'utilities': myU}
+
+    Ulatex = ""
+    for monK in myK:
+        Ulatex += str(monK['value'])
+        for dk in monK['ID'].split(','):
+            Ulatex += "*" + convert_to_text_latex(myU[int(dk) - 1], "k" + dk)
+        Ulatex += "+"
+    # In order to delete the last + character
+    Ulatex = Ulatex[:-1]
+
+    Uexcel = ""
+    for monK in myK:
+        Uexcel += str(monK['value'])
+        for dk in monK['ID'].split(','):
+            Uexcel += "*" + convert_to_text_excel(myU[int(dk) - 1], "k" + dk)
+        Uexcel += "+"
+    # In order to delete the last + character
+    Uexcel = Uexcel[:-1]
+	
+    return {'U': U, 'Ulatex': Ulatex, 'Uexcel': Uexcel, 'k': myK, 'utilities': myU}
 
 
 # ---- 2 -----

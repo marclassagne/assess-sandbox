@@ -395,6 +395,7 @@
 						min_interval = data.interval[0];
 						max_interval = data.interval[1];
 						gain = data.gain;
+						
 
 						if (max_interval - min_interval <= 0.05 * parseFloat(arbre_ce.questions_val_max) - parseFloat(arbre_ce.questions_val_min) || max_interval - min_interval < 2) {
 							$('.choice').hide();
@@ -424,7 +425,7 @@
 							console.log(arbre_ce.questions_proba_haut);
 							console.log(utility_finder(parseFloat(arbre_ce.questions_val_max)));
 							console.log(utility_finder(parseFloat(arbre_ce.questions_val_min)));
-							if (final_gain <= max_interval && final_gain >= min_interval) {
+							if (final_gain <= parseFloat(arbre_ce.questions_val_max) && final_gain >= parseFloat(arbre_ce.questions_val_min)) {
 								// we save it
 								assess_session.attributes[indice].questionnaire.points[String(final_gain)]=parseFloat(final_utility);
 								assess_session.attributes[indice].questionnaire.number += 1;
