@@ -2,6 +2,13 @@
 
 <h2>Former students:</h2>
 <ul>
+    <li>Housni Mariem</li>
+    <li>Heger Pierre</li>
+    <li>Nasroune Moussa</li>
+    <li>Liu Yuli</li>
+    <li>Fekhi Nawres</li>
+    <li>Khelifa Mohammed Ahmeur</li>
+    <li>Bouattour Amine</li>
     <li>Jean Auclair</li>
     <li>Julien Blanchard</li>
     <li>Melek Ben Kedher</li>
