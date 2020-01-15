@@ -55,7 +55,6 @@
 				<option value="CE_Constant_Prob">Certainty Equivalence - Constant Probability</option>
 				<option value="CE_Variable_Prob" disabled>Certainty Equivalence - Variable Probability</option>
 				<option value="LE">Lottery Equivalence</option>
-				<option value="GM">Gambling Method</option>
 			</select>
 		</div>
 		<div class="checkbox">
