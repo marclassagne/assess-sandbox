@@ -26,6 +26,8 @@ def regressions(liste_cord, dictionnaire={}):
     # creation des valeurs en abscisses et en ordonnee avec les listes lx et ly
     x = np.array(lx)
     y = np.array(ly)
+    x=map(float,x)
+    y=map(float,y)
     x_test = np.linspace(x[-1], x[-2])
 
     if y[-1] == 1:
