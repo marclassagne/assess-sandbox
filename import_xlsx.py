@@ -21,12 +21,13 @@ def importation(file):
                 continue
 
             myAttribut['name']=ws['B2'].value
-            myAttribut['unit']=ws['B3'].value
-            myAttribut['val_min']=ws['B4'].value
-            myAttribut['val_max']=ws['B5'].value
-            myAttribut['method']=ws['B6'].value
-            myAttribut['mode']=ws['B7'].value
-            myAttribut['checked']=ws['B8'].value
+            myAttribut['type']=ws['B3'].value
+            myAttribut['unit']=ws['B4'].value
+            myAttribut['val_min']=ws['B5'].value
+            myAttribut['val_max']=ws['B6'].value
+            myAttribut['method']=ws['B7'].value
+            myAttribut['mode']=ws['B8'].value
+            myAttribut['checked']=ws['B9'].value
 
             myAttribut['questionnaire']={};
 
