@@ -102,7 +102,8 @@
 %include('js.tpl')
 
 <script>
-//First we hide the attributes creation forms, and we highlight the "Manage" tab
+//Random comment
+//First we hide the attributes creation forms, and we highlight the "Manage" tab.
 $("#form_quanti").hide();
 $("#form_quali").hide();
 $('li.manage').addClass("active");
