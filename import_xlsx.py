@@ -32,7 +32,7 @@ def importation(file):
             myAttribut['val_med'] = []
             
             i = 2
-            while len(ws['J' + str(i)].value) > 0 :
+            while ws['J' + str(i)].value != None :
                 myAttribut['val_med'].append(ws['J' + str(i)].value)
 
             myAttribut['questionnaire']={};
