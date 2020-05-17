@@ -67,8 +67,9 @@ def generate_fichier(data):
 
         feuille.write(0,9, 'Intermediary values', formatTitre)
 
-        for i in range(len(monAttribut['val_med'])):
-            feuille.write(i+1,9,monAttribut['val_med'][i])
+        if monAttribut['type'] == 'Qualitative':
+            for i in range(len(monAttribut['val_med'])):
+                feuille.write(i+1,9,monAttribut['val_med'][i])
 
         # ensuite on va mettre les points obtenus:
         feuille.write(0, 2, 'Points', formatTitre)
@@ -400,6 +401,12 @@ def generate_fichier_with_specification(data):
         feuille.write(12, 1, " ")
         feuille.write(13, 1, " ")
         feuille.write(14, 1, " ")
+
+        feuille.write(0,9, 'Intermediary values', formatTitre)
+
+        if monAttribut['type'] == 'Qualitative':
+            for i in range(len(monAttribut['val_med'])):
+                feuille.write(i+1,9,monAttribut['val_med'][i])
 
         # ensuite on va mettre les points obtenus:
         # feuille.merge_range('C1:D1','Points')
