@@ -102,7 +102,6 @@
 %include('js.tpl')
 
 <script>
-//Random comment
 //First we hide the attributes creation forms, and we highlight the "Manage" tab.
 $("#form_quanti").hide();
 $("#form_quali").hide();
@@ -337,7 +336,7 @@ $(function() {
 							$("#form_quali").fadeOut(500);
 							$("#form_quanti").fadeIn(500);
 							
-							// Rewrites the existing values inside the textboxes
+							// Rewrites the existing values inside the textboxs
 							$('#att_name_quanti').val(attribute_edit.name);
 							$('#att_unit_quanti').val(attribute_edit.unit);
 							$('#att_value_min_quanti').val(attribute_edit.val_min);
