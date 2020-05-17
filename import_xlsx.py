@@ -36,7 +36,7 @@ def importation(file):
                 myAttribut['val_med'].append(ws['J' + str(i)].value)
                 i += 1
 
-            myAttribut['questionnaire']={};
+            myAttribut['questionnaire']={}
 
 
 
@@ -49,8 +49,8 @@ def importation(file):
                 ligne=ligne+1
                 number=number+1
 
-            myAttribut['questionnaire']['points']=mesPoints;
-            myAttribut['questionnaire']['number']=number;
+            myAttribut['questionnaire']['points']=mesPoints
+            myAttribut['questionnaire']['number']=number
 
             mySession['attributes'].append(myAttribut)
 
@@ -88,18 +88,18 @@ def importation(file):
                     if utilityType==None: #we brake all
                         ligne=2
                         break
-                    ID_attribute=ws['D'+str(ligne)].value.replace("[","").replace("]","");
+                    ID_attribute=ws['D'+str(ligne)].value.replace("[","").replace("]","")
                     monAttribut=mySession['attributes'][int(ID_attribute)]
 
                     points=monAttribut['questionnaire']['points'][:]
                     if monAttribut['mode']=="normal":
-                        points.append([monAttribut['val_max'], 1]);
-                        points.append([monAttribut['val_min'], 0]);
+                        points.append([monAttribut['val_max'], 1])
+                        points.append([monAttribut['val_min'], 0])
                     else:
-                        points.append([monAttribut['val_max'], 0]);
-                        points.append([monAttribut['val_min'], 1]);
+                        points.append([monAttribut['val_max'], 0])
+                        points.append([monAttribut['val_min'], 1])
 
-                    allUtilities=fit.regressions(points,True);
+                    allUtilities=fit.regressions(points,True)
                     for myUtility in allUtilities:
                         if myUtility['type']==utilityType:
                             GU['utilities'].append(myUtility)

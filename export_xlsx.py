@@ -94,7 +94,7 @@ def generate_fichier(data):
         points = np.stack((pointsX,pointsY), axis = 1).tolist()
 
         if len(points) > 0:
-            if monAttribut['mode'] == "normal":
+            if monAttribut['mode'] == "Normal":
                 points.append([monAttribut['val_max'], 1])
                 points.append([monAttribut['val_min'], 0])
             else:
