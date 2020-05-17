@@ -67,9 +67,9 @@ def generate_fichier(data):
 
         feuille.write(0,9, 'Intermediary values', formatTitre)
 
-        if monAttribut['type'] == 'Qualitative':
-            for i in range(len(monAttribut['val_med'])):
-                feuille.write(i+1,9,monAttribut['val_med'][i])
+        
+        for i in range(len(monAttribut['val_med'])):
+            feuille.write(i+1,9,monAttribut['val_med'][i])
 
         # ensuite on va mettre les points obtenus:
         feuille.write(0, 2, 'Points', formatTitre)
