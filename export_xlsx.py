@@ -65,6 +65,11 @@ def generate_fichier(data):
         feuille.write(13, 1, " ")
         feuille.write(14, 1, " ")
 
+        feuille.write(0,9, 'Intermediary values', formatTitre)
+
+        for i in range(len(monAttribut['val_med'])):
+            feuille.write(i+1,9,monAttribut['val_med'][i])
+
         # ensuite on va mettre les points obtenus:
         feuille.write(0, 2, 'Points', formatTitre)
         feuille.write(0, 3, '', formatTitre)

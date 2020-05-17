@@ -18,7 +18,7 @@ def importation(file):
             myAttribut={}
             ws = wb[sheet.title] # ws is now an IterableWorksheet
             if sheet.title=="Multi attribute multilinear" or sheet.title=="Multi attribute multiplicative":
-                continue
+                continue 
 
             myAttribut['name']=ws['B2'].value
             myAttribut['type']=ws['B3'].value
@@ -29,6 +29,8 @@ def importation(file):
             myAttribut['mode']=ws['B8'].value
             myAttribut['checked']=ws['B9'].value
 
+            myAttribut['val_med'] = []
+            
             myAttribut['questionnaire']={};
 
 
