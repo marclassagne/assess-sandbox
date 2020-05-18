@@ -20,7 +20,14 @@ def importation(file):
         wb = load_workbook(filename=file, read_only=True)
 
 
-        mySession={'attributes':[], 'k_calculus':[{'method':'multiplicative', 'active':True, 'k':[], 'GK':None, 'GU':None},{'method':'multilinear','active':False, 'k':[], 'GK':None, 'GU':None}]}
+        mySession={'attributes':[], 'k_calculus':[{'method':'multiplicative', 'active':True, 'k':[], 'GK':None, 'GU':None},{'method':'multilinear','active':False, 'k':[], 'GK':None, 'GU':None}], "settings": {
+				"decimals_equations": 3,
+				"decimals_dpl": 8,
+				"proba_ce": 0.3,
+				"proba_le": 0.3,
+				"language": "english",
+				"display": "trees"
+			}}
 
 
         for sheet in wb:
