@@ -107,105 +107,110 @@ def generate_fichier(data):
         else:
             # no need of fit regression because we don't have point
             utilities = {}
-        ligne = 0
+        
+        
 
-        for utility in utilities.keys():
+        if monAttribut['type'] == 'Quantitative' :
+            
+            ligne = 0
+            
+            for utility in utilities.keys():
 
-            feuille.write(ligne, 4, 'Utility Function', formatTitre)
-            feuille.write(ligne, 5, '', formatTitre)
-            feuille.write(ligne + 1, 4, "type", formatNom)
-            feuille.write(ligne + 2, 4, "a", formatNom)
-            feuille.write(ligne + 3, 4, "b", formatNom)
-            feuille.write(ligne + 4, 4, "c", formatNom)
-            feuille.write(ligne + 5, 4, "d", formatNom)
-            feuille.write(ligne + 6, 4, "r2", formatNom)
-            feuille.write(ligne + 7, 4, "DPL", formatNom)
+                feuille.write(ligne, 4, 'Utility Function', formatTitre)
+                feuille.write(ligne, 5, '', formatTitre)
+                feuille.write(ligne + 1, 4, "type", formatNom)
+                feuille.write(ligne + 2, 4, "a", formatNom)
+                feuille.write(ligne + 3, 4, "b", formatNom)
+                feuille.write(ligne + 4, 4, "c", formatNom)
+                feuille.write(ligne + 5, 4, "d", formatNom)
+                feuille.write(ligne + 6, 4, "r2", formatNom)
+                feuille.write(ligne + 7, 4, "DPL", formatNom)
 
-            if utility == 'exp':
-                feuille.write(ligne + 1, 5, "exponential")
-            elif utility == 'quad':
-                feuille.write(ligne + 1, 5, "quadratic")
-            elif utility == 'pow':
-                feuille.write(ligne + 1, 5, "power")
-            elif utility == 'log':
-                feuille.write(ligne + 1, 5, "logarithm")
-            elif utility == 'lin':
-                feuille.write(ligne + 1, 5, "linear")
-            elif utility == 'expo-power':
-                feuille.write(ligne + 1, 5, "expo-power")
-
-            parameters=utilities[utility]
-
-            # On rempli les coefficients
-            try:
-                # On remplit d'abord le dernier car pour les coefficients d ça
-                # s'arretera
-                feuille.write(ligne + 6, 5, parameters['r2'], formatCoeff)
-                feuille.write(
-                    ligne + 7, 5, convert_to_text(utility, parameters, "x"), formatCoeff)
-                feuille.write(ligne + 2, 5, parameters['a'], formatCoeff)
-                feuille.write(ligne + 3, 5, parameters['b'], formatCoeff)
-                feuille.write(ligne + 4, 5, parameters['c'], formatCoeff)
-                feuille.write(ligne + 5, 5, parameters['d'], formatCoeff)
-            except:
-                print(sys.exc_info())
-                pass
-
-            feuille.set_column(5, 5, 20)
-
-            feuille.write(ligne + 0, 6, 'Calculated points', formatTitre)
-            feuille.write(ligne + 0, 7, '', formatTitre)
-            # On va maintenant generer plusieurs points
-            amplitude = (monAttribut['val_max'] -
-                         monAttribut['val_min']) / 10.0
-            for i in range(0, 11):
-                feuille.write(ligne + 1 + i, 6, monAttribut['val_min'] + i * amplitude)
                 if utility == 'exp':
-                    feuille.write_formula(ligne + 1 + i, 7, funcexp_excel("G" + str(
-                        ligne + 2 + i), "$F$" + str(ligne + 3), "$F$" + str(ligne + 4), "$F$" + str(ligne + 5)))
+                    feuille.write(ligne + 1, 5, "exponential")
                 elif utility == 'quad':
-                    feuille.write_formula(ligne + 1 + i, 7, funcquad_excel("G" + str(
-                        ligne + 2 + i), "$F$" + str(ligne + 3), "$F$" + str(ligne + 4), "$F$" + str(ligne + 5)))
+                    feuille.write(ligne + 1, 5, "quadratic")
                 elif utility == 'pow':
-                    feuille.write_formula(ligne + 1 + i, 7, funcpuis_excel("G" + str(
-                        ligne + 2 + i), "$F$" + str(ligne + 3), "$F$" + str(ligne + 4), "$F$" + str(ligne + 5)))
+                    feuille.write(ligne + 1, 5, "power")
                 elif utility == 'log':
-                    feuille.write_formula(ligne + 1 + i, 7, funclog_excel("G" + str(ligne + 2 + i), "$F$" + str(
-                        ligne + 3), "$F$" + str(ligne + 4), "$F$" + str(ligne + 5), "$F$" + str(ligne + 6)))
+                    feuille.write(ligne + 1, 5, "logarithm")
                 elif utility == 'lin':
-                    feuille.write_formula(ligne + 1 + i, 7, funclin_excel(
-                        "G" + str(ligne + 2 + i), "$F$" + str(ligne + 3), "$F$" + str(ligne + 4)))
+                    feuille.write(ligne + 1, 5, "linear")
                 elif utility == 'expo-power':
-                    feuille.write_formula(ligne + 1 + i, 7, funcexpopower_excel("G" + str(
-                        ligne + 2 + i), "$F$" + str(ligne + 3), "$F$" + str(ligne + 4), "$F$" + str(ligne + 5)))
+                    feuille.write(ligne + 1, 5, "expo-power")
 
-            # Ensuite on fait le Chart ! (le diagramme)
-            chart5 = classeur.add_chart({'type': 'scatter',
-                                         'subtype': 'smooth'})
+                parameters=utilities[utility]
 
-            # Configure the first series.
-            chart5.add_series({
-                              'name':       utility,
-                              'categories': '=\'' + monAttribut['name'] + '\'' + '!$G$' + str(ligne + 2) + ':$G$' + str(ligne + 12),
-                              'values':     '=\'' + monAttribut['name'] + '\'' + '!$H$' + str(ligne + 2) + ':$H$' + str(ligne + 12),
+                # On rempli les coefficients
+                try:
+                    # On remplit d'abord le dernier car pour les coefficients d ça
+                    # s'arretera
+                    feuille.write(ligne + 6, 5, parameters['r2'], formatCoeff)
+                    feuille.write(
+                        ligne + 7, 5, convert_to_text(utility, parameters, "x"), formatCoeff)
+                    feuille.write(ligne + 2, 5, parameters['a'], formatCoeff)
+                    feuille.write(ligne + 3, 5, parameters['b'], formatCoeff)
+                    feuille.write(ligne + 4, 5, parameters['c'], formatCoeff)
+                    feuille.write(ligne + 5, 5, parameters['d'], formatCoeff)
+                except:
+                    print(sys.exc_info())
+                    pass
 
-                              })
+                feuille.set_column(5, 5, 20)
 
-            # Add a chart title and some axis labels.
-            chart5.set_title({'name': 'Utility Function'})
+                feuille.write(ligne + 0, 6, 'Calculated points', formatTitre)
+                feuille.write(ligne + 0, 7, '', formatTitre)
+                # On va maintenant generer plusieurs points
+                amplitude = (monAttribut['val_max'] -
+                            monAttribut['val_min']) / 10.0
+                for i in range(0, 11):
+                    feuille.write(ligne + 1 + i, 6, monAttribut['val_min'] + i * amplitude)
+                    if utility == 'exp':
+                        feuille.write_formula(ligne + 1 + i, 7, funcexp_excel("G" + str(
+                            ligne + 2 + i), "$F$" + str(ligne + 3), "$F$" + str(ligne + 4), "$F$" + str(ligne + 5)))
+                    elif utility == 'quad':
+                        feuille.write_formula(ligne + 1 + i, 7, funcquad_excel("G" + str(
+                            ligne + 2 + i), "$F$" + str(ligne + 3), "$F$" + str(ligne + 4), "$F$" + str(ligne + 5)))
+                    elif utility == 'pow':
+                        feuille.write_formula(ligne + 1 + i, 7, funcpuis_excel("G" + str(
+                            ligne + 2 + i), "$F$" + str(ligne + 3), "$F$" + str(ligne + 4), "$F$" + str(ligne + 5)))
+                    elif utility == 'log':
+                        feuille.write_formula(ligne + 1 + i, 7, funclog_excel("G" + str(ligne + 2 + i), "$F$" + str(
+                            ligne + 3), "$F$" + str(ligne + 4), "$F$" + str(ligne + 5), "$F$" + str(ligne + 6)))
+                    elif utility == 'lin':
+                        feuille.write_formula(ligne + 1 + i, 7, funclin_excel(
+                            "G" + str(ligne + 2 + i), "$F$" + str(ligne + 3), "$F$" + str(ligne + 4)))
+                    elif utility == 'expo-power':
+                        feuille.write_formula(ligne + 1 + i, 7, funcexpopower_excel("G" + str(
+                            ligne + 2 + i), "$F$" + str(ligne + 3), "$F$" + str(ligne + 4), "$F$" + str(ligne + 5)))
 
-            # Set an Excel chart style.
-            chart5.set_style(4)
-            chart5.set_x_axis({
-                'min': monAttribut['val_min'],
-                'max': monAttribut['val_max']
-            })
+                # Ensuite on fait le Chart ! (le diagramme)
+                chart5 = classeur.add_chart({'type': 'scatter',
+                                            'subtype': 'smooth'})
 
-            # Insert the chart into the worksheet (with an offset).
-            feuille.insert_chart('I' + str(1 + ligne),
-                                 chart5, {'x_offset': 25, 'y_offset': 10})
+                # Configure the first series.
+                chart5.add_series({
+                                'name':       utility,
+                                'categories': '=\'' + monAttribut['name'] + '\'' + '!$G$' + str(ligne + 2) + ':$G$' + str(ligne + 12),
+                                'values':     '=\'' + monAttribut['name'] + '\'' + '!$H$' + str(ligne + 2) + ':$H$' + str(ligne + 12),
 
-            ligne += 15
+                                })
+
+                # Add a chart title and some axis labels.
+                chart5.set_title({'name': 'Utility Function'})
+
+                # Set an Excel chart style.
+                chart5.set_style(4)
+                chart5.set_x_axis({
+                    'min': monAttribut['val_min'],
+                    'max': monAttribut['val_max']
+                })
+
+                # Insert the chart into the worksheet (with an offset).
+                feuille.insert_chart('I' + str(1 + ligne),
+                                    chart5, {'x_offset': 25, 'y_offset': 10})
+
+                ligne += 15
 
     for mesK in data['k_calculus']:
         feuille = classeur.add_worksheet("Multi attribute " + mesK['method'])
