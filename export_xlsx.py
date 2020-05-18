@@ -103,17 +103,20 @@ def generate_fichier(data):
                 points.append([monAttribut['val_min'], 1])
 
             # go for fit regression using our points
-            utilities = fit.regressions(points)
+            if monAttribut['type'] == 'Quantitative' :
+                utilities = fit.regressions(points)
+            else:
+                utilities = {}
         else:
             # no need of fit regression because we don't have point
             utilities = {}
         
         
 
-        if monAttribut['type'] == 'Quantitative' :
+        
             
             ligne = 0
-            
+
             for utility in utilities.keys():
 
                 feuille.write(ligne, 4, 'Utility Function', formatTitre)
@@ -208,7 +211,7 @@ def generate_fichier(data):
 
                 # Insert the chart into the worksheet (with an offset).
                 feuille.insert_chart('I' + str(1 + ligne),
-                                    chart5, {'x_offset': 25, 'y_offset': 10})
+                                    chart5, {'x_offset': 35, 'y_offset': 10})
 
                 ligne += 15
 
