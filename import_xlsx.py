@@ -5,6 +5,15 @@ import traceback
 import sys
 import fit
 
+def convert_utility(s):
+    """ Convert utility strings in excel to adapted format """
+    if s == 'quadratic':
+        return('quad')
+    elif s == 'expo-power':
+        return(s)
+    else:
+        return(s[:3])
+
 def importation(file):
 
     try:
@@ -53,7 +62,19 @@ def importation(file):
 
             myAttribut['questionnaire']['points']=mesPoints
             myAttribut['questionnaire']['number']=number
+            
             myAttribut['utility'] = {}
+            i = 1
+            while ws['F' + str(i)].value != None :
+                dic = {}
+                dic['a'] = ws['F' + str(i+1)].value
+                dic['b'] = ws['F' + str(i+2)].value
+                dic['c'] = ws['F' + str(i+3)].value
+                dic['d'] = ws['F' + str(i+4)].value
+                dic['r2'] = ws['F' + str(i+5)].value
+                myAttribut['utility'][convert_utility(ws['F' + str(i)].value)] = dic
+                i += 15
+
 
             mySession['attributes'].append(myAttribut)
 
