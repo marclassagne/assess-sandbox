@@ -42,10 +42,10 @@ def importation(file):
 
             ligne=3
             number=0
-            mesPoints=[]
+            mesPoints={}
 
             while ws['C'+str(ligne)].value!=None:
-                mesPoints.append([ws['C'+str(ligne)].value, ws['D'+str(ligne)].value])
+                mesPoints[ws['D'+str(ligne)].value] = ws['C'+str(ligne)].value
                 ligne=ligne+1
                 number=number+1
 
