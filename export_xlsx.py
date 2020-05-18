@@ -50,6 +50,7 @@ def generate_fichier(data):
         feuille.write(6, 0, 'Method', formatNom)
         feuille.write(7, 0, 'Mode', formatNom)
         feuille.write(8, 0, 'Active', formatNom)
+        feuille.write(9, 0, 'Completed', formatNom)
 
         feuille.write(1, 1, monAttribut['name'])
         feuille.write(2, 1, monAttribut['type'])
