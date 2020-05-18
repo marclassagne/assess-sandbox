@@ -28,15 +28,17 @@ def importation(file):
             myAttribut['method']=ws['B7'].value
             myAttribut['mode']=ws['B8'].value
             myAttribut['checked']=ws['B9'].value
+            myAttribut['completed'] = ws['B10'].value
 
             myAttribut['val_med'] = []
             
             i = 2
             while ws['J' + str(i)].value != None :
-                myAttribut['val_med'].append(ws['J' + str(i)].value)
+                myAttribut['val_med'].append(str(ws['J' + str(i)].value))
                 i += 1
 
             myAttribut['questionnaire']={}
+            
 
 
 
@@ -51,6 +53,7 @@ def importation(file):
 
             myAttribut['questionnaire']['points']=mesPoints
             myAttribut['questionnaire']['number']=number
+            myAttribut['utility'] = {}
 
             mySession['attributes'].append(myAttribut)
 

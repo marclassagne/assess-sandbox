@@ -2,6 +2,7 @@
 
 import numpy as np
 import json
+import sys
 import fit
 import random
 import math
@@ -58,7 +59,7 @@ def generate_fichier(data):
         feuille.write(6, 1, monAttribut['method'])
         feuille.write(7, 1, monAttribut['mode'])
         feuille.write(8, 1, monAttribut['checked'])
-        feuille.write(9, 1, " ")
+        feuille.write(9, 1, monAttribut['completed'])
         feuille.write(10, 1, " ")
         feuille.write(11, 1, " ")
         feuille.write(12, 1, " ")
@@ -147,6 +148,7 @@ def generate_fichier(data):
                 feuille.write(ligne + 4, 5, parameters['c'], formatCoeff)
                 feuille.write(ligne + 5, 5, parameters['d'], formatCoeff)
             except:
+                print(sys.exc_info())
                 pass
 
             feuille.set_column(5, 5, 20)
@@ -395,7 +397,7 @@ def generate_fichier_with_specification(data):
         feuille.write(6, 1, monAttribut['method'])
         feuille.write(7, 1, monAttribut['mode'])
         feuille.write(8, 1, monAttribut['checked'])
-        feuille.write(9, 1, " ")
+        feuille.write(9, 1, monAttribut['completed'])
         feuille.write(10, 1, " ")
         feuille.write(11, 1, " ")
         feuille.write(12, 1, " ")
