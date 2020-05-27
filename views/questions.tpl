@@ -1026,6 +1026,7 @@
 			// we delete the select div
 			$('#select').hide();
 			//$('#attribute_name').show().html(question_name.toUpperCase());
+
 			// which index is it ?
 			var indice;
 			for (var j = 0; j < assess_session.attributes.length; j++) {
@@ -1033,12 +1034,14 @@
 					indice = j;
 				}
 			}
+
 			var val_min = assess_session.attributes[indice].val_min,
 				val_max = assess_session.attributes[indice].val_max,
 				val_med = assess_session.attributes[indice].val_med,
 				list_names = [].concat(val_min, val_med, val_max),
 				points = assess_session.attributes[indice].questionnaire.points,
 				list_points = [];
+
 			points[val_min] = 0; //On force l'utilité de la pire à 0
 			points[val_max] = 1; //On force l'utilité de la meilleure à 1
 			
@@ -1046,28 +1049,57 @@
 				list_points.push(points[list_names[ii]]);
 			};
 			
-			function addGraph(data_graph, names_graph) {
-				$.post('ajax', 
-					JSON.stringify({
-						"type": "svg_QUALI",
-						"data": data_graph,
-						"list_names": names_graph,
-						"width": 6
-					}), 
-				function(data2) {
-					$('#main_graph').append(data2);
-				});
+			
+
+			console.log(list_points)
+			console.log(list_names)
+			$('#charts_quali').show();
+			$('#charts_quali').append('<table id="curves_choice" class="table"><thead><tr><th>Choices</th></tr></thead>');
+			$('#curves_choice').append('<tbody><tr><td style="text-align:center"><input class="Table_choice" type="radio" name="choice"  value="table">Table</td>')
+			$('#curves_choice').append('<tr><td style="text-align:center"><input  class="Histogram" type="radio" name="choice"  value="histogram">histogram</td></tr></tbody>');
+			$('#charts_quali').append("</table><div id='data_show'></div>")
+
+			
+
+			function table_choice() {
+				
+				$('#main_graph').hide().empty();
+				$('#functions').hide().empty();
+				$('#data_show').show().empty();
+				$('#data_show').append('<table   style="  width:100%;"> <thead><tr><th>value</th><th>utility</th></tr></thead><tbody id="table_info"></tbody>');
+				for (var i = 0; i < list_points.length; i++) 
+				{
+				$('#table_info').append('<tr><td>'+list_names[i]+'</td><td>'+list_points[i]+'</td></tr>');
+				};
 			}
-			
-			$('#main_graph').show().empty();
-			addGraph(list_points, list_names);
-			
+
+			$('.Table_choice').on('click',table_choice);
+					
 		});
+				
 		
+
 	
 	});
 </script>
 <!-- Library to copy into clipboard -->
 <script src="{{ get_url('static', path='js/clipboard.min.js') }}"></script>
+<style>
+	table {
+	  font-family: arial, sans-serif;
+	  border-collapse: collapse;
+	  width: 100%;
+	}
+	
+	td, th {
+	  border: 1px solid #dddddd;
+	  text-align: left;
+	  padding: 8px;
+	}
+	
+	tr:nth-child(even) {
+	  background-color: #e2e2e2;
+	}
+	</style>
 </body>
 </html>
