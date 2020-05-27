@@ -102,11 +102,10 @@
 %include('js.tpl')
 
 <script>
-//First we hide the attributes creation forms, and we highlight the "Manage" tab.
+//First we hide the attributes creation forms, and we highlight the "Manage" tab
 $("#form_quanti").hide();
 $("#form_quali").hide();
 $('li.manage').addClass("active");
-
 /////////////////////////////////////////////////////////////////////////////////////////
 // Fonctions pour ajouter/supprimer des zones de texte pour les valeurs intermédiaires //
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -114,7 +113,6 @@ var list_med_values = document.getElementById('list_med_values_quali'),
 	lists = list_med_values.getElementsByTagName('li'),
 	add_value_med = document.getElementById('add_value_med_quali'),
 	del_value_med = document.getElementById('del_value_med_quali');
-
 /// Defines what happens when clicking on the "Add an item" button
 add_value_med.addEventListener('click', function() {
 	var longueur = lists.length;
@@ -122,7 +120,6 @@ add_value_med.addEventListener('click', function() {
 	new_item.innerHTML = "<input type='text' class='form-control' id='att_value_med_quali_"+ String(longueur+1) +"' placeholder='Intermediary Value " + String(longueur+1) +"'/>";
 	lists[longueur-1].parentNode.appendChild(new_item);
 });
-
 /// Defines what happens when clicking on the "Delete last item" button
 del_value_med.addEventListener('click', function() {
 	var longueur = lists.length;
@@ -132,7 +129,6 @@ del_value_med.addEventListener('click', function() {
 		alert("Please put at least one medium value for the attribute "+$('#att_name').val());
 	};
 });
-
 /// Function that manages the influence of the "button_type" buttons (Quantitative/Qualitative) (just the design : green/white)
 function update_method_button(type){
 	var list_types = ["Quantitative", "Qualitative"];
@@ -147,7 +143,6 @@ function update_method_button(type){
 		}
 	}
 }
-
 /// Action from Quantitative/Qualitative button
 $(function() {
 	///  ACTION FROM BUTTON QUANTITATIVE
@@ -157,7 +152,6 @@ $(function() {
 		$("#form_quanti").fadeIn(500);
 		window.scrollBy(0, 500);
 	});
-
 	///  ACTION FROM BUTTON QUALITATIVE
 	$("#button_Qualitative").click(function () {
 		update_method_button("Qualitative"); //update the active type of new attribute
@@ -166,8 +160,6 @@ $(function() {
 		window.scrollBy(0, 500);
 	});
 });
-
-
 $(function() {
 	var assess_session = JSON.parse(localStorage.getItem("assess_session")),
 		edit_mode = false,
@@ -210,7 +202,6 @@ $(function() {
 		};
 		localStorage.setItem("assess_session", JSON.stringify(assess_session));
 	};
-
 	///////////////////////////////////////////////////////////////////////
 	//////////////////////         FUNCTIONS         //////////////////////
 	///////////////////////////////////////////////////////////////////////
@@ -263,17 +254,14 @@ $(function() {
 		};
 		return true;
 	};
-
 	// Function to change the property of a checked box
 	function checked_button_clicked(element) {
 		var assess_session = JSON.parse(localStorage.getItem("assess_session")),
 			checked = $(element).prop("checked"),
 			i = $(element).val();
-
 		assess_session.attributes[i].checked = checked; // we modify the propriety
 		localStorage.setItem("assess_session", JSON.stringify(assess_session)); // we update the assess_session storage
 	}
-
 	// Function to update the attributes table
 	function sync_table() {
 		$('#table_attributes').empty();
@@ -304,7 +292,6 @@ $(function() {
 					'<td><button type="button" class="btn btn-default" id="deleteK'+i+'"><img src="/static/img/delete.ico" style="width:16px"/></button></td></tr>';
 								
 				$('#table_attributes').append(text_table);
-
 				//We define the action when we click on the State check input
 				$('#checkbox_' + i).click(function() {
 					checked_button_clicked($(this))
@@ -321,7 +308,6 @@ $(function() {
 						window.location.reload();//refresh the page
 					});
 				})(i);
-
 				// Defines what happend when you click on the Edit button
 				(function(_i) {
 					$('#edit_' + _i).click(function() {
@@ -336,7 +322,7 @@ $(function() {
 							$("#form_quali").fadeOut(500);
 							$("#form_quanti").fadeIn(500);
 							
-							// Rewrites the existing values inside the textboxs
+							// Rewrites the existing values inside the textboxes
 							$('#att_name_quanti').val(attribute_edit.name);
 							$('#att_unit_quanti').val(attribute_edit.unit);
 							$('#att_value_min_quanti').val(attribute_edit.val_min);
@@ -370,14 +356,12 @@ $(function() {
 		}
 	}
 	sync_table();
-
 	/// Defines what happens when you click on the QUANTITATIVE Submit button
 	$('#submit_quanti').click(function() {
 		var name = $('#att_name_quanti').val(),
 			unit = $('#att_unit_quanti').val(),
 			val_min = parseInt($('#att_value_min_quanti').val()),
 			val_max = parseInt($('#att_value_max_quanti').val());
-
 		var method = "PE";
 		if ($("select option:selected").text() == "Probability Equivalence") {
 			method = "PE";
@@ -388,10 +372,8 @@ $(function() {
 		} else if ($("select option:selected").text() == "Certainty Equivalence - Variable Probability") {
 			method = "CE_Variable_Prob";
 		}
-
 		var mode = ($('input[name=mode]').is(':checked') ? "Reversed" : "Normal");
 		
-
 		if (!(name || unit || val_min || val_max) || isNaN(val_min) || isNaN(val_max)) {
 			alert('Please fill correctly all the fields');
 		} else if (isAttribute(name) && (edit_mode == false)) {
@@ -423,7 +405,10 @@ $(function() {
 						'number': 0,
 						'points': {},
 						'utility': {}
-					}
+					},
+						'fonction':'',
+						'numero': 0,
+						'pts':[]
 				});
 			} else {
 				if (confirm("Are you sure you want to edit the attribute? All assessements will be deleted") == true) {
@@ -446,7 +431,10 @@ $(function() {
 							'number': 0,
 							'points': {},
 							'utility': {}
-						}
+									},
+						'fonction':'',
+						'numero': 0,
+						'pts':[]
 					};
 				}	
 				edit_mode=false;
@@ -478,7 +466,6 @@ $(function() {
 		for (var ii=1; ii<nb_med_values+1; ii++){
 			val_med.push($('#att_value_med_quali_'+ii).val());
 		};
-
 		var method = "PE";
 		
 		if (name=="" || val_min=="" || val_max=="") {
@@ -511,7 +498,10 @@ $(function() {
 						'number': 0,
 						'points': {},
 						'utility': {}
-					}
+					},
+						'fonction':'',
+						'numero': 0,
+						'pts':[]
 				});
 			} else {
 				if (confirm("Are you sure you want to edit this attribute? All assessements will be deleted") == true) {
@@ -530,7 +520,10 @@ $(function() {
 							'number': 0,
 							'points': {},
 							'utility': {}
-						}
+						},
+						'fonction':'',
+						'numero': 0,
+						'pts':[]
 					};
 				}
 				edit_mode=false;
@@ -557,8 +550,6 @@ $(function() {
 		}
 	});
 });
-
 </script>
 </body>
-
 </html>
