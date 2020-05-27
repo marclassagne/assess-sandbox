@@ -5,44 +5,83 @@ import traceback
 import sys
 import fit
 
+def convert_utility(s):
+    """ Convert utility strings in excel to adapted format """
+    if s == 'quadratic':
+        return('quad')
+    elif s == 'expo-power':
+        return(s)
+    else:
+        return(s[:3])
+
 def importation(file):
 
     try:
         wb = load_workbook(filename=file, read_only=True)
 
 
-        mySession={'attributes':[], 'k_calculus':[{'method':'multiplicative', 'active':True, 'k':[], 'GK':None, 'GU':None},{'method':'multilinear','active':False, 'k':[], 'GK':None, 'GU':None}]}
+        mySession={'attributes':[], 'k_calculus':[{'method':'multiplicative', 'active':True, 'k':[], 'GK':None, 'GU':None},{'method':'multilinear','active':False, 'k':[], 'GK':None, 'GU':None}], "settings": {
+				"decimals_equations": 3,
+				"decimals_dpl": 8,
+				"proba_ce": 0.3,
+				"proba_le": 0.3,
+				"language": "english",
+				"display": "trees"
+			}}
 
 
         for sheet in wb:
             myAttribut={}
             ws = wb[sheet.title] # ws is now an IterableWorksheet
             if sheet.title=="Multi attribute multilinear" or sheet.title=="Multi attribute multiplicative":
-                continue
+                continue 
 
             myAttribut['name']=ws['B2'].value
-            myAttribut['unit']=ws['B3'].value
-            myAttribut['val_min']=ws['B4'].value
-            myAttribut['val_max']=ws['B5'].value
-            myAttribut['method']=ws['B6'].value
-            myAttribut['mode']=ws['B7'].value
-            myAttribut['checked']=ws['B8'].value
+            myAttribut['type']=ws['B3'].value
+            myAttribut['unit']=ws['B4'].value
+            myAttribut['val_min']=ws['B5'].value
+            myAttribut['val_max']=ws['B6'].value
+            myAttribut['method']=ws['B7'].value
+            myAttribut['mode']=ws['B8'].value
+            myAttribut['checked']=ws['B9'].value
+            myAttribut['completed'] = ws['B10'].value
 
-            myAttribut['questionnaire']={};
+            myAttribut['val_med'] = []
+            
+            i = 2
+            while ws['J' + str(i)].value != None :
+                myAttribut['val_med'].append(str(ws['J' + str(i)].value))
+                i += 1
+
+            myAttribut['questionnaire']={}
+            
 
 
 
             ligne=3
             number=0
-            mesPoints=[]
+            mesPoints={}
 
             while ws['C'+str(ligne)].value!=None:
-                mesPoints.append([ws['C'+str(ligne)].value, ws['D'+str(ligne)].value])
+                mesPoints[ws['D'+str(ligne)].value] = ws['C'+str(ligne)].value
                 ligne=ligne+1
                 number=number+1
 
-            myAttribut['questionnaire']['points']=mesPoints;
-            myAttribut['questionnaire']['number']=number;
+            myAttribut['questionnaire']['points']=mesPoints
+            myAttribut['questionnaire']['number']=number
+            
+            myAttribut['utility'] = {}
+            i = 1
+            while ws['F' + str(i)].value != None :
+                dic = {}
+                dic['a'] = ws['F' + str(i+1)].value
+                dic['b'] = ws['F' + str(i+2)].value
+                dic['c'] = ws['F' + str(i+3)].value
+                dic['d'] = ws['F' + str(i+4)].value
+                dic['r2'] = ws['F' + str(i+5)].value
+                myAttribut['utility'][convert_utility(ws['F' + str(i)].value)] = dic
+                i += 15
+
 
             mySession['attributes'].append(myAttribut)
 
@@ -80,18 +119,18 @@ def importation(file):
                     if utilityType==None: #we brake all
                         ligne=2
                         break
-                    ID_attribute=ws['D'+str(ligne)].value.replace("[","").replace("]","");
+                    ID_attribute=ws['D'+str(ligne)].value.replace("[","").replace("]","")
                     monAttribut=mySession['attributes'][int(ID_attribute)]
 
                     points=monAttribut['questionnaire']['points'][:]
                     if monAttribut['mode']=="normal":
-                        points.append([monAttribut['val_max'], 1]);
-                        points.append([monAttribut['val_min'], 0]);
+                        points.append([monAttribut['val_max'], 1])
+                        points.append([monAttribut['val_min'], 0])
                     else:
-                        points.append([monAttribut['val_max'], 0]);
-                        points.append([monAttribut['val_min'], 1]);
+                        points.append([monAttribut['val_max'], 0])
+                        points.append([monAttribut['val_min'], 1])
 
-                    allUtilities=fit.regressions(points,True);
+                    allUtilities=fit.regressions(points,True)
                     for myUtility in allUtilities:
                         if myUtility['type']==utilityType:
                             GU['utilities'].append(myUtility)

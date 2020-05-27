@@ -2,6 +2,7 @@
 
 import numpy as np
 import json
+import sys
 import fit
 import random
 import math
@@ -42,26 +43,35 @@ def generate_fichier(data):
         feuille.write(0, 0, 'Attribut', formatTitre)
         feuille.write(0, 1, '', formatTitre)
         feuille.write(1, 0, 'Name', formatNom)
-        feuille.write(2, 0, 'Unit', formatNom)
-        feuille.write(3, 0, 'Val_min', formatNom)
-        feuille.write(4, 0, 'Val_max', formatNom)
-        feuille.write(5, 0, 'Method', formatNom)
-        feuille.write(6, 0, 'Mode', formatNom)
-        feuille.write(7, 0, 'Active', formatNom)
+        feuille.write(2, 0, 'Type', formatNom)
+        feuille.write(3, 0, 'Unit', formatNom)
+        feuille.write(4, 0, 'Val_min', formatNom)
+        feuille.write(5, 0, 'Val_max', formatNom)
+        feuille.write(6, 0, 'Method', formatNom)
+        feuille.write(7, 0, 'Mode', formatNom)
+        feuille.write(8, 0, 'Active', formatNom)
+        feuille.write(9, 0, 'Completed', formatNom)
 
         feuille.write(1, 1, monAttribut['name'])
-        feuille.write(2, 1, monAttribut['unit'])
-        feuille.write(3, 1, monAttribut['val_min'])
-        feuille.write(4, 1, monAttribut['val_max'])
-        feuille.write(5, 1, monAttribut['method'])
-        feuille.write(6, 1, monAttribut['mode'])
-        feuille.write(7, 1, monAttribut['checked'])
-        feuille.write(8, 1, " ")
-        feuille.write(9, 1, " ")
+        feuille.write(2, 1, monAttribut['type'])
+        feuille.write(3, 1, monAttribut['unit'])
+        feuille.write(4, 1, monAttribut['val_min'])
+        feuille.write(5, 1, monAttribut['val_max'])
+        feuille.write(6, 1, monAttribut['method'])
+        feuille.write(7, 1, monAttribut['mode'])
+        feuille.write(8, 1, monAttribut['checked'])
+        feuille.write(9, 1, monAttribut['completed'])
         feuille.write(10, 1, " ")
         feuille.write(11, 1, " ")
         feuille.write(12, 1, " ")
         feuille.write(13, 1, " ")
+        feuille.write(14, 1, " ")
+
+        feuille.write(0,9, 'Intermediary values', formatTitre)
+
+        
+        for i in range(len(monAttribut['val_med'])):
+            feuille.write(i+1,9,monAttribut['val_med'][i])
 
         # ensuite on va mettre les points obtenus:
         feuille.write(0, 2, 'Points', formatTitre)
@@ -80,24 +90,32 @@ def generate_fichier(data):
         # on fait une regression à l'aide des points que l'on a dans le
         # questionnaire et on envoit tout ça dans la fonction regressions du
         # fichier fit.py
-        pointsY = monAttribut['questionnaire']['points'].values()
-        pointsX = monAttribut['questionnaire']['points'].keys()
-        pointsX = map(float,pointsX)
-        points = np.stack((pointsX,pointsY), axis = 1).tolist()
+        utilities = {}
+        
+        if monAttribut['type'] == 'Quantitative' :
+        
+            pointsY = monAttribut['questionnaire']['points'].values()
+            pointsX = monAttribut['questionnaire']['points'].keys()
+            pointsX = map(float,pointsX)
+            points = np.stack((pointsX,pointsY), axis = 1).tolist()
 
-        if len(points) > 0:
-            if monAttribut['mode'] == "normal":
-                points.append([monAttribut['val_max'], 1])
-                points.append([monAttribut['val_min'], 0])
-            else:
-                points.append([monAttribut['val_max'], 0])
-                points.append([monAttribut['val_min'], 1])
+            if len(points) > 0:
+                if monAttribut['mode'] == "Normal":
+                    points.append([monAttribut['val_max'], 1])
+                    points.append([monAttribut['val_min'], 0])
+                else:
+                    points.append([monAttribut['val_max'], 0])
+                    points.append([monAttribut['val_min'], 1])
 
-            # go for fit regression using our points
-            utilities = fit.regressions(points)
-        else:
-            # no need of fit regression because we don't have point
-            utilities = {}
+                # go for fit regression using our points
+            
+                utilities = fit.regressions(points)
+                      
+        
+        
+
+        
+            
         ligne = 0
 
         for utility in utilities.keys():
@@ -139,6 +157,7 @@ def generate_fichier(data):
                 feuille.write(ligne + 4, 5, parameters['c'], formatCoeff)
                 feuille.write(ligne + 5, 5, parameters['d'], formatCoeff)
             except:
+                print(sys.exc_info())
                 pass
 
             feuille.set_column(5, 5, 20)
@@ -147,7 +166,7 @@ def generate_fichier(data):
             feuille.write(ligne + 0, 7, '', formatTitre)
             # On va maintenant generer plusieurs points
             amplitude = (monAttribut['val_max'] -
-                         monAttribut['val_min']) / 10.0
+                        monAttribut['val_min']) / 10.0
             for i in range(0, 11):
                 feuille.write(ligne + 1 + i, 6, monAttribut['val_min'] + i * amplitude)
                 if utility == 'exp':
@@ -171,15 +190,15 @@ def generate_fichier(data):
 
             # Ensuite on fait le Chart ! (le diagramme)
             chart5 = classeur.add_chart({'type': 'scatter',
-                                         'subtype': 'smooth'})
+                                        'subtype': 'smooth'})
 
             # Configure the first series.
             chart5.add_series({
-                              'name':       utility,
-                              'categories': '=\'' + monAttribut['name'] + '\'' + '!$G$' + str(ligne + 2) + ':$G$' + str(ligne + 12),
-                              'values':     '=\'' + monAttribut['name'] + '\'' + '!$H$' + str(ligne + 2) + ':$H$' + str(ligne + 12),
+                            'name':       utility,
+                            'categories': '=\'' + monAttribut['name'] + '\'' + '!$G$' + str(ligne + 2) + ':$G$' + str(ligne + 12),
+                            'values':     '=\'' + monAttribut['name'] + '\'' + '!$H$' + str(ligne + 2) + ':$H$' + str(ligne + 12),
 
-                              })
+                            })
 
             # Add a chart title and some axis labels.
             chart5.set_title({'name': 'Utility Function'})
@@ -193,7 +212,7 @@ def generate_fichier(data):
 
             # Insert the chart into the worksheet (with an offset).
             feuille.insert_chart('I' + str(1 + ligne),
-                                 chart5, {'x_offset': 25, 'y_offset': 10})
+                                chart5, {'x_offset': 35, 'y_offset': 10})
 
             ligne += 15
 
@@ -371,26 +390,34 @@ def generate_fichier_with_specification(data):
         feuille.write(0, 0, 'Attribut', formatTitre)
         feuille.write(0, 1, '', formatTitre)
         feuille.write(1, 0, 'Name', formatNom)
-        feuille.write(2, 0, 'Unit', formatNom)
-        feuille.write(3, 0, 'Val_min', formatNom)
-        feuille.write(4, 0, 'Val_max', formatNom)
-        feuille.write(5, 0, 'Method', formatNom)
-        feuille.write(6, 0, 'Mode', formatNom)
-        feuille.write(7, 0, 'Active', formatNom)
+        feuille.write(2, 0, 'Type', formatNom)
+        feuille.write(3, 0, 'Unit', formatNom)
+        feuille.write(4, 0, 'Val_min', formatNom)
+        feuille.write(5, 0, 'Val_max', formatNom)
+        feuille.write(6, 0, 'Method', formatNom)
+        feuille.write(7, 0, 'Mode', formatNom)
+        feuille.write(8, 0, 'Active', formatNom)
 
         feuille.write(1, 1, monAttribut['name'])
-        feuille.write(2, 1, monAttribut['unit'])
-        feuille.write(3, 1, monAttribut['val_min'])
-        feuille.write(4, 1, monAttribut['val_max'])
-        feuille.write(5, 1, monAttribut['method'])
-        feuille.write(6, 1, monAttribut['mode'])
-        feuille.write(7, 1, monAttribut['checked'])
-        feuille.write(8, 1, " ")
-        feuille.write(9, 1, " ")
+        feuille.write(2, 1, monAttribut['type'])
+        feuille.write(3, 1, monAttribut['unit'])
+        feuille.write(4, 1, monAttribut['val_min'])
+        feuille.write(5, 1, monAttribut['val_max'])
+        feuille.write(6, 1, monAttribut['method'])
+        feuille.write(7, 1, monAttribut['mode'])
+        feuille.write(8, 1, monAttribut['checked'])
+        feuille.write(9, 1, monAttribut['completed'])
         feuille.write(10, 1, " ")
         feuille.write(11, 1, " ")
         feuille.write(12, 1, " ")
         feuille.write(13, 1, " ")
+        feuille.write(14, 1, " ")
+
+        feuille.write(0,9, 'Intermediary values', formatTitre)
+
+        if monAttribut['type'] == 'Qualitative':
+            for i in range(len(monAttribut['val_med'])):
+                feuille.write(i+1,9,monAttribut['val_med'][i])
 
         # ensuite on va mettre les points obtenus:
         # feuille.merge_range('C1:D1','Points')
