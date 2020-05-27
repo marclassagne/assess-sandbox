@@ -21,6 +21,9 @@
 <div id="charts">
 	<h2>Select the regression function you want to use</h2>
 </div>
+<div id="charts_quali">
+	<h2>Select your choice </h2>
+</div>
 <div id ="nouveaubloc"><h6>Choose a function</h6></div>
 <div id="ton_choix"></div>
 <div id="tableau_fonctions" >
@@ -57,6 +60,7 @@
 		$('li.questions').addClass("active");
 		$('#attribute_name').hide();
 		$('#charts').hide();
+		$('#charts_quali').hide();
 		$('#main_graph').hide();
 		$('#functions').hide();
 		$('#nouveaubloc').hide();
@@ -108,7 +112,7 @@
 				};
 			} else {
 				if (attribute.questionnaire.number === attribute.val_med.length) {
-					text_table += '<td><button type="button" class="btn btn-default btn-xs calc_util_quali" id="u_' + attribute.name + '">Utility graph</button></td>';
+					text_table += '<td><button type="button" class="btn btn-default btn-xs calc_util_quali" id="u_' + attribute.name + '">result</button></td>';
 				} else {
 					text_table += '<td>Please assess all the medium values</td>';
 				};
