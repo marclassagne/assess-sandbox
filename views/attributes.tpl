@@ -53,7 +53,7 @@
 			<select class="form-control" id="att_method_quanti">
 				<option value="PE">Probability Equivalence</option>
 				<option value="CE_Constant_Prob">Certainty Equivalence - Constant Probability</option>
-				<option value="CE_Variable_Prob" disabled>Certainty Equivalence - Variable Probability</option>
+				<option value="CE_Variable_Prob">Certainty Equivalence - Variable Probability</option>
 				<option value="LE">Lottery Equivalence</option>
 			</select>
 		</div>
