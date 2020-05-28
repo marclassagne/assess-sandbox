@@ -53,7 +53,7 @@
 			<select class="form-control" id="att_method_quanti">
 				<option value="PE">Probability Equivalence</option>
 				<option value="CE_Constant_Prob">Certainty Equivalence - Constant Probability</option>
-				<option value="CE_Variable_Prob" disabled>Certainty Equivalence - Variable Probability</option>
+				<option value="CE_Variable_Prob">Certainty Equivalence - Variable Probability</option>
 				<option value="LE">Lottery Equivalence</option>
 			</select>
 		</div>
@@ -423,7 +423,10 @@ $(function() {
 						'number': 0,
 						'points': {},
 						'utility': {}
-					}
+					},
+						'fonction':'',
+						'numero': 0,
+						'pts':[]
 				});
 			} else {
 				if (confirm("Are you sure you want to edit the attribute? All assessements will be deleted") == true) {
@@ -446,7 +449,10 @@ $(function() {
 							'number': 0,
 							'points': {},
 							'utility': {}
-						}
+									},
+						'fonction':'',
+						'numero': 0,
+						'pts':[]
 					};
 				}	
 				edit_mode=false;
@@ -511,7 +517,10 @@ $(function() {
 						'number': 0,
 						'points': {},
 						'utility': {}
-					}
+					},
+						'fonction':'',
+						'numero': 0,
+						'pts':[]
 				});
 			} else {
 				if (confirm("Are you sure you want to edit this attribute? All assessements will be deleted") == true) {
@@ -530,7 +539,10 @@ $(function() {
 							'number': 0,
 							'points': {},
 							'utility': {}
-						}
+						},
+						'fonction':'',
+						'numero': 0,
+						'pts':[]
 					};
 				}
 				edit_mode=false;
