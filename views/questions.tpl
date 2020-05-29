@@ -399,9 +399,9 @@
 								assess_session.attributes[indice].questionnaire.points[String(final_gain)]=parseFloat(final_utility);
 								assess_session.attributes[indice].questionnaire.number += 1;
 								// backup local
-								//localStorage.setItem("assess_session", JSON.stringify(assess_session));
+								localStorage.setItem("assess_session", JSON.stringify(assess_session));
 								// we reload the page
-								//window.location.reload();
+								window.location.reload();
 							}
 						});
 					}
@@ -497,13 +497,13 @@
 						console.log(assess_session.attributes[indice].questionnaire.points);
 						console.log(assess_session.attributes[indice].questionnaire.number);
 						console.log(Object.keys(assess_session.attributes[indice].questionnaire.points).length);
-      						var point_cevp = console.log(Object.keys(assess_session.attributes[indice].questionnaire.points).length);
+      						var point_cepv = console.log(Object.keys(assess_session.attributes[indice].questionnaire.points).length);
 	
 						// when the user validate
 						$('.final_validation').click(function() {
 							var final_gain = parseFloat($('#final_proba').val());
 							var final_utility = arbre_cepv.questions_proba_haut;
-							var point_cevp = console.log(Object.keys(assess_session.attributes[indice].questionnaire.points).length);
+							var point_cepv = console.log(Object.keys(assess_session.attributes[indice].questionnaire.points).length);
 							var number_cepv = assess_session.attributes[indice].questionnaire.number
 							console.log(assess_session.attributes[indice].questionnaire.number)
 							console.log(final_utility)
@@ -512,15 +512,17 @@
 							if (final_gain <= parseFloat(arbre_cepv.questions_val_max) && final_gain >= parseFloat(arbre_cepv.questions_val_min)) {
 								// we save it
 								assess_session.attributes[indice].questionnaire.points[String(final_gain)]=parseFloat(final_utility);
-								if ( point_cevp == number_cepv ) {
+								if ( point_cepv == number_cepv ) {
 									assess_session.attributes[indice].questionnaire.number += 1;
 									console.log(assess_session.attributes[indice].questionnaire.number)
 								}
-								
+								console.log(point_cepv)
+								console.log(number_cepv)
+								console.log(assess_session.attributes[indice].questionnaire.number)
 								// backup local
-								localStorage.setItem("assess_session", JSON.stringify(assess_session));
+								//localStorage.setItem("assess_session", JSON.stringify(assess_session));
 								// we reload the page
-								window.location.reload();
+								//window.location.reload();
 							}
 							console.log(assess_session.attributes[indice].questionnaire.number)
 							
