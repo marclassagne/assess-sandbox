@@ -496,7 +496,7 @@
 						);
 						console.log(assess_session.attributes[indice].questionnaire.points);
 						console.log(Object.keys(assess_session.attributes[indice].questionnaire.points).length);
-      						var point_cevp = Object.Keys(assess_session.attributes[indice].questionnaire.points);
+      						var point_cevp = console.log(Object.keys(assess_session.attributes[indice].questionnaire.points).length);
 						console.log(point_cevp.length);	
 						// when the user validate
 						$('.final_validation').click(function() {
