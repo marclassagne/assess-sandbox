@@ -510,7 +510,7 @@
 							if (final_gain <= parseFloat(arbre_cepv.questions_val_max) && final_gain >= parseFloat(arbre_cepv.questions_val_min)) {
 								// we save it
 								assess_session.attributes[indice].questionnaire.points[String(final_gain)]=parseFloat(final_utility);
-								if (
+								
 								assess_session.attributes[indice].questionnaire.number += 1;
 
 								
