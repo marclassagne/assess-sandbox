@@ -515,6 +515,7 @@
 							}
 							
 						});
+						console.log(assess_session.attributes[indice].questionnaire.points);
 					}
 							
 
@@ -533,7 +534,7 @@
 							console.log(data);
 						});
 					});
-					console.log(assess_session.attributes[indice].questionnaire.points);
+					
 				})()
 			}
 		});
