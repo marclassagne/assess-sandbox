@@ -502,13 +502,15 @@
 							var final_utility = arbre_cepv.questions_proba_haut;
 							console.log(final_utility)
 							console.log(final_gain);
+							var points = assess_session.attributes[indice].questionnaire.points
+							var number = assess_session.attributes[indice].questionnaire.number 
                                                         
 							if (final_gain <= parseFloat(arbre_cepv.questions_val_max) && final_gain >= parseFloat(arbre_cepv.questions_val_min)) {
 								// we save it
 								assess_session.attributes[indice].questionnaire.points[String(final_gain)]=parseFloat(final_utility);
 								
 								
-								if ( Object.Keys(assess_session.attributes[indice].questionnaire.points).length== assess_session.attributes[indice].questionnaire.number ) {
+								if ( Object.Keys(points).length == number  ) {
 									assess_session.attributes[indice].questionnaire.number += 1;
 
 								}
