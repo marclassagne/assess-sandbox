@@ -512,6 +512,9 @@
 							if (final_gain <= parseFloat(arbre_cepv.questions_val_max) && final_gain >= parseFloat(arbre_cepv.questions_val_min)) {
 								// we save it
 								assess_session.attributes[indice].questionnaire.points[String(final_gain)]=parseFloat(final_utility);
+								var point_cepv = Object.keys(assess_session.attributes[indice].questionnaire.points).length;
+								console.log(point_cepv)
+								var number_cepv = assess_session.attributes[indice].questionnaire.number
 								if ( point_cepv == number_cepv ) {
 									assess_session.attributes[indice].questionnaire.number += 1;
 									console.log(assess_session.attributes[indice].questionnaire.number)
