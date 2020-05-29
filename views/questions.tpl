@@ -497,12 +497,13 @@
 						console.log(assess_session.attributes[indice].questionnaire.points);
 						console.log(Object.keys(assess_session.attributes[indice].questionnaire.points).length);
       						var point_cevp = console.log(Object.keys(assess_session.attributes[indice].questionnaire.points).length);
-						console.log(point_cevp.length);	
+	
 						// when the user validate
 						$('.final_validation').click(function() {
 							var final_gain = parseFloat($('#final_proba').val());
 							var final_utility = arbre_cepv.questions_proba_haut;
-							var point_cevp = Object.Keys(assess_session.attributes[indice].questionnaire.points);
+							var point_cevp = console.log(Object.keys(assess_session.attributes[indice].questionnaire.points).length);
+							
 							
 							console.log(final_utility)
 							console.log(final_gain); 
@@ -510,9 +511,9 @@
 							if (final_gain <= parseFloat(arbre_cepv.questions_val_max) && final_gain >= parseFloat(arbre_cepv.questions_val_min)) {
 								// we save it
 								assess_session.attributes[indice].questionnaire.points[String(final_gain)]=parseFloat(final_utility);
-								
-								assess_session.attributes[indice].questionnaire.number += 1;
-
+								if ( point_cevp == assess_session.attributes[indice].questionnaire.number ) {
+									assess_session.attributes[indice].questionnaire.number += 1;
+								}
 								
 								// backup local
 								localStorage.setItem("assess_session", JSON.stringify(assess_session));
