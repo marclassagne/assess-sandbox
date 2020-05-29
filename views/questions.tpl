@@ -494,6 +494,8 @@
 						 <= <input type="text" class="form-control" id="final_proba" placeholder="Probability" value="' + val + '" style="width: 100px; display: inline-block"> <= ' + max_interval +
 							'</p><button type="button" class="btn btn-default final_validation">Validate</button></div>'
 						);
+						console.log(assess_session.attributes[indice].questionnaire.points);
+
 						// when the user validate
 						$('.final_validation').click(function() {
 							var final_gain = parseFloat($('#final_proba').val());
@@ -508,6 +510,7 @@
 								
 								
 								assess_session.attributes[indice].questionnaire.number += 1;
+
 								// backup local
 								localStorage.setItem("assess_session", JSON.stringify(assess_session));
 								// we reload the page
