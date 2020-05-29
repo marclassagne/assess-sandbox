@@ -511,10 +511,10 @@
 								assess_session.attributes[indice].questionnaire.points[String(final_gain)]=parseFloat(final_utility);
 								
 								
-								//if ( Object.Keys(points).length == number  ) {
-									//assess_session.attributes[indice].questionnaire.number += 1;
+								if ( Object.Keys(points).length == number  ) {
+									assess_session.attributes[indice].questionnaire.number += 1;
 
-								//}
+								}
 								// backup local
 								localStorage.setItem("assess_session", JSON.stringify(assess_session));
 								// we reload the page
