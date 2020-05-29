@@ -399,9 +399,9 @@
 								assess_session.attributes[indice].questionnaire.points[String(final_gain)]=parseFloat(final_utility);
 								assess_session.attributes[indice].questionnaire.number += 1;
 								// backup local
-								localStorage.setItem("assess_session", JSON.stringify(assess_session));
+								//localStorage.setItem("assess_session", JSON.stringify(assess_session));
 								// we reload the page
-								window.location.reload();
+								//window.location.reload();
 							}
 						});
 					}
