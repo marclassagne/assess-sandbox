@@ -11,6 +11,7 @@
 				<th>Assessment</th>
 				<th>Utility </th>
 				<th>Reset assessements</th>
+				
 			</tr>
 		</thead>
 		<tbody id="table_attributes">
