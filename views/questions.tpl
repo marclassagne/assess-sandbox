@@ -495,6 +495,7 @@
 							'</p><button type="button" class="btn btn-default final_validation">Validate</button></div>'
 						);
 						console.log(assess_session.attributes[indice].questionnaire.points);
+						console.log(assess_session.attributes[indice].questionnaire.number);
 						console.log(Object.keys(assess_session.attributes[indice].questionnaire.points).length);
       						var point_cevp = console.log(Object.keys(assess_session.attributes[indice].questionnaire.points).length);
 	
