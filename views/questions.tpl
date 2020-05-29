@@ -516,9 +516,6 @@
 						});
 					}
 							
-						});
-					}
-
 
 
 					// HANDLE USERS ACTIONS
