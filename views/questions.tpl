@@ -498,7 +498,7 @@
 						console.log(assess_session.attributes[indice].questionnaire.number);
 						console.log(Object.keys(assess_session.attributes[indice].questionnaire.points).length);
       						var point_cepv = console.log(Object.keys(assess_session.attributes[indice].questionnaire.points).length);
-	
+						console.log( point_cepv)
 						// when the user validate
 						$('.final_validation').click(function() {
 							var final_gain = parseFloat($('#final_proba').val());
