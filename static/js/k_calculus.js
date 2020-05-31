@@ -850,7 +850,7 @@ function list(){
 						list_names = [].concat(val_min, val_med, val_max),
 						points = monAttribut.questionnaire.points,
 						list_points = [];
-					$('#functions_' + _i).append('<table class="table"><thead><tr><th>choix</th><th>value</th><th>utility</th></tr></thead><tbody id="table_info"></tbody></table>');
+					$('#functions_' + _i).append('<table class="table"><thead><tr><th>choix</th><th>value</th><th>utility</th></tr></thead><tbody id="table_info'+_i+'"></tbody></table>');
 					if (monAttribut.checked){
 						points[val_min] = 0; 
 						points[val_max] = 1; 
@@ -863,7 +863,7 @@ function list(){
 				
 				
 													
-							$('#table_info').append('<tr><td id="choix'+_i+'numero'+k+'"></td><td id="value'+_i+'numero'+k+'"></td><td id="utility'+_i+'numero'+k+'"></td></tr>');
+							$('#table_info'+_i).append('<tr><td id="choix'+_i+'numero'+k+'"></td><td id="value'+_i+'numero'+k+'"></td><td id="utility'+_i+'numero'+k+'"></td></tr>');
 							$('#choix'+_i+'numero'+k).append('<input type="radio" name="radio_'+_i+'" id="checkbox_'+_i+'numero'+k+'">');
 							$('#value'+_i+'numero'+k).append(list_names[k]);
 							$('#utility'+_i+'numero'+k).append(list_points[k]);
