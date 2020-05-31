@@ -19,6 +19,27 @@ function number_attributes_checked(){
 function update_method_button(type){
 	var assess_session = JSON.parse(localStorage.getItem("assess_session"));
 	
+	for(var i=0; i<assess_session.k_calculu////////////////////////////////////////////////////////////////////////////////////////////////////////
+///			javascript Function for k_calculus
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/// Function to calculate the number of active attributes (minimum 2 attributes are needed)
+function number_attributes_checked(){
+	var assess_session = JSON.parse(localStorage.getItem("assess_session")),
+		counter=0;
+		
+	for (var i=0; i < assess_session.attributes.length; i++){
+		if(assess_session.attributes[i].checked){
+			counter++;
+		};
+	};
+	return counter;
+};
+
+/// Function that manages the influence of the "button_method" buttons (multiplicative/multilinear)
+function update_method_button(type){
+	var assess_session = JSON.parse(localStorage.getItem("assess_session"));
+	
 	for(var i=0; i<assess_session.k_calculus.length; i++){
 		if(assess_session.k_calculus[i].method==type){
 			assess_session.k_calculus[i].active=true;
@@ -839,6 +860,43 @@ function list(){
 		
 		
 		(function(_i) {
+			
+				
+			
+				if (monAttribut.type == "Qualitative"){
+					
+					var val_min = monAttribut.val_min,
+						val_max = monAttribut.val_max,
+						val_med = monAttribut.val_med,
+						list_names = [].concat(val_min, val_med, val_max),
+						points = monAttribut.questionnaire.points,
+						list_points = [];
+					$('#functions_' + _i).append('<table class="table"><thead><tr><th>choix</th><th>value</th><th>utility</th></tr></thead><tbody id="table_info'+_i+'"></tbody></table>');
+					if (monAttribut.checked){
+						points[val_min] = 0; 
+						points[val_max] = 1; 
+						for (var ii=0; ii<list_names.length; ii++) {
+							list_points.push(points[list_names[ii]]);
+						};
+					
+						for (var k = 0; k < list_points.length; k++){
+				
+				
+				
+													
+							$('#table_info'+_i).append('<tr><td id="choix'+_i+'numero'+k+'"></td><td id="value'+_i+'numero'+k+'"></td><td id="utility'+_i+'numero'+k+'"></td></tr>');
+							$('#choix'+_i+'numero'+k).append('<input type="radio" name="radio_'+_i+'" id="checkbox_'+_i+'numero'+k+'">');
+							$('#value'+_i+'numero'+k).append(list_names[k]);
+							$('#utility'+_i+'numero'+k).append(list_points[k]);
+				
+							nvxdico = { "type" :'quali', "a": list_points[k] };
+				
+							(function(_data){$('#checkbox_'+_i+'numero'+k).click(function(){update_utility(_i, _data)});})(nvxdico);
+						};
+					};
+				};
+			
+			if (monAttribut.type == "Quantitative"){
 			var json_2_send = {"type": "calc_util", "points":[]},
 				val_max=monAttribut.val_max,
 				val_min=monAttribut.val_min,
@@ -846,8 +904,7 @@ function list(){
 				points_dict = monAttribut.questionnaire.points,
 				points=[],
 			    	choice= monAttribut.fonction;
-				
-
+			
 			for (key in points_dict) {
 				points.push([parseFloat(key), parseFloat(points_dict[key])]);
 			};
@@ -869,6 +926,7 @@ function list(){
 					}), function (data2) {
 						
 						$('#charts_' + _i).append('<div>' + data2 + '</div>');
+						
 						for (var key in data) {
 
 							var functions = "";
@@ -924,6 +982,7 @@ function list(){
 				else if(!monAttribut.checked)
 					$('#charts_' + _i).append("The attribute is inactive");
 			}
+		};
 		})(i);
 	}
 }
