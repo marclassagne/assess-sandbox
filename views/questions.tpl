@@ -7,11 +7,10 @@
 				<th>Attribute</th>
 				<th>Type</th>
 				<th>Method</th>
-				<th>Number of assessed points</th>
-				<th>Assessment</th>
-				<th>Utility </th>
+				<th>Utility function</th>
+				<th>Assess another point</th>
+				<th>Display utility function</th>
 				<th>Reset assessements</th>
-				
 			</tr>
 		</thead>
 		<tbody id="table_attributes">
@@ -20,13 +19,36 @@
 </div>
 <div id="trees"></div>
 <div id="charts">
-	<h2>Select the regression function you want to use</h2>
+	<h2>Select the utility function you want to use</h2>
 </div>
 <div id="charts_quali">
 	<h2>Select your choice </h2>
 </div>
+<div id= "retour_quali" > <button type="button" class="btn btn-default comeback_quali" id = "update"> Go to main page </button> 
+</div>
+<div id= "attribute_name"></div>
 <div id ="nouveaubloc"><h6>Choose a function</h6></div>
-<div id="ton_choix"></div>
+<div id="choix_fonction">
+	<table class="table">
+		<thead>
+			<tr>
+				
+				<th>Your choice</th>
+				<th>Update your choice</th>
+			</tr>
+		</thead>
+		<tbody id="tableau_fct">
+			
+					<tr>
+						
+						<td id="ton_choix"></td>
+						<td><button type="button" class="btn btn-default comeback" id = "update">Update</button> </td>
+					</tr>
+						
+		</tbody>
+	</table>
+</div>
+
 <div id="tableau_fonctions" >
 	<table class="table">
 		<thead>
@@ -61,12 +83,14 @@
 		$('li.questions').addClass("active");
 		$('#attribute_name').hide();
 		$('#charts').hide();
-		$('#charts_quali').hide();
 		$('#main_graph').hide();
 		$('#functions').hide();
 		$('#nouveaubloc').hide();
 		$('#tableau_fonctions').hide();
-		
+		$('#choix_fonction').hide();
+		$('#attribute_name').hide();
+		$('#charts_quali').hide();
+		$('#retour_quali').hide();
 		
 		var assess_session = JSON.parse(localStorage.getItem("assess_session")),
 			settings = assess_session.settings;
@@ -79,8 +103,11 @@
 				text_table = '<tr><td>' + attribute.name + '</td>'+
 							 '<td>' + attribute.type + '</td>'+
 							 '<td>' + attribute.method + '</td>'+
-							 '<td>' + attribute.questionnaire.number + '</td>';
-							
+							 '<td id="graph_choisi'+i+'" ></td>';
+							 
+							 
+		
+		
 			text_table += '<td><table style="width:100%"><tr><td>' + attribute.val_min + '</td><td> : </td><td>'+(attribute.mode=="Normal"?0:1)+'</td></tr>';
 			
 			if (attribute.method == "PE" || attribute.method == "LE"){
@@ -333,7 +360,7 @@
 				(function() {
 					// VARIABLES
 					var min_interval = (assess_session.attributes[indice].questionnaire.number==2 ? parseFloat(Object.keys(assess_session.attributes[indice].questionnaire.points)[0]) : parseFloat(val_min)),  
-					    max_interval = (assess_session.attributes[indice].questionnaire.number==1 ? parseFloat(Object.keys(assess_session.attributes[indice].questionnaire.points)[0]) : parseFloat(val_max)); 
+						max_interval = (assess_session.attributes[indice].questionnaire.number==1 ? parseFloat(Object.keys(assess_session.attributes[indice].questionnaire.points)[0]) : parseFloat(val_max)); 
 					
 					var L = [0.75 * (max_interval - min_interval) + min_interval, 0.25 * (max_interval - min_interval) + min_interval];
 					var gain = Math.round(random_proba(L[0], L[1]));
@@ -386,10 +413,9 @@
 						 <= <input type="text" class="form-control" id="final_proba" placeholder="Probability" value="' + val + '" style="width: 100px; display: inline-block"> <= ' + max_interval +
 							'</p><button type="button" class="btn btn-default final_validation">Validate</button></div>'
 						);
-			
 						// when the user validate
 						$('.final_validation').click(function() {
-							var final_gain = parseFloat($('#final_proba').val());
+							var final_gain = parseInt($('#final_proba').val());
 							var final_utility = arbre_ce.questions_proba_haut * utility_finder(parseFloat(arbre_ce.questions_val_max)) + (1 - arbre_ce.questions_proba_haut) * utility_finder(parseFloat(arbre_ce.questions_val_min));
 							console.log(arbre_ce.questions_proba_haut);
 							console.log(utility_finder(parseFloat(arbre_ce.questions_val_max)));
@@ -422,23 +448,26 @@
 							console.log("gain");
 						});
 					});
-					
 				})()
 			}
 			//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 			///////////////////////////////////////////////////////////////// CEPV METHOD ////////////////////////////////////////////////////////////////
 			//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-			else if (method == 'CE_Variable_Prob') {
+                        else if (method == 'CE_Variable_Prob') {
 				(function() {
 					// VARIABLES
-					var min_interval = val_min;
-					var max_interval = val_max;
 					if (assess_session.attributes[indice].questionnaire.number == 0) {
+					        var min_interval = val_min;
+						var max_interval = val_max;
 						p = 0.25;
 					} else if (assess_session.attributes[indice].questionnaire.number == 1) {
+					        var min_interval = Object.keys(assess_session.attributes[indice].questionnaire.points)[0];
+						var max_interval = val_max;
 						p = 0.5;
 					} else if (assess_session.attributes[indice].questionnaire.number == 2) {
-		                 		p = 0.75;
+		                               var max_interval = Object.keys(assess_session.attributes[indice].questionnaire.points)[0];
+					       var min_interval = val_min;
+					       p = 0.75;
 					}
 					var L = [0.75 * (max_interval - min_interval) + min_interval, 0.25 * (max_interval - min_interval) + min_interval];
 					var gain = Math.round(random_proba(L[0], L[1]));
@@ -489,52 +518,34 @@
 						$('.lottery_a').hide();
 						$('.lottery_b').hide();
 						$('.container-fluid').append(
-							'<div id= "final_value" style="text-align: center;"><br /><br /><p>We are almost done. Please enter the probability that makes you indifferent between the two situations above. Your previous choices indicate that it should be between ' + min_interval + ' and ' + max_interval + ' but you are not constrained to that range <br /> ' + min_interval +
+							'<div id= "final_value" style="text-align: center;"><br /><br /><p>We are almost done, please now enter the value of the gain: <br /> ' + min_interval +
 							'\
 						 <= <input type="text" class="form-control" id="final_proba" placeholder="Probability" value="' + val + '" style="width: 100px; display: inline-block"> <= ' + max_interval +
 							'</p><button type="button" class="btn btn-default final_validation">Validate</button></div>'
 						);
-						console.log(assess_session.attributes[indice].questionnaire.points);
-						console.log(assess_session.attributes[indice].questionnaire.number);
-						console.log(Object.keys(assess_session.attributes[indice].questionnaire.points).length);
-      						var point_cepv = Object.keys(assess_session.attributes[indice].questionnaire.points).length;
-						console.log( point_cepv)
 						// when the user validate
 						$('.final_validation').click(function() {
-							var final_gain = parseFloat($('#final_proba').val());
-							var final_utility = arbre_cepv.questions_proba_haut;
-							var point_cepv = console.log(Object.keys(assess_session.attributes[indice].questionnaire.points).length);
-							var number_cepv = assess_session.attributes[indice].questionnaire.number
-							console.log(assess_session.attributes[indice].questionnaire.number)
+							var final_gain = parseInt($('#final_proba').val());
+							var final_utility = arbre_cepv.questions_proba_haut * utility_finder(parseFloat(arbre_cepv.questions_val_max)) + (1 - arbre_cepv.questions_proba_haut) * utility_finder(parseFloat(arbre_cepv.questions_val_min));
 							console.log(final_utility)
-							console.log(final_gain); 
+							console.log(parseFloat(arbre_cepv.questions_val_max))
+							console.log(parseFloat(arbre_cepv.questions_val_min))
+							console.log(arbre_cepv.questions_proba_haut);
+							console.log(utility_finder(parseFloat(arbre_cepv.questions_val_max)));
+							console.log(utility_finder(parseFloat(arbre_cepv.questions_val_min)));
                                                         
 							if (final_gain <= parseFloat(arbre_cepv.questions_val_max) && final_gain >= parseFloat(arbre_cepv.questions_val_min)) {
 								// we save it
 								assess_session.attributes[indice].questionnaire.points[String(final_gain)]=parseFloat(final_utility);
-								var point_cepv = Object.keys(assess_session.attributes[indice].questionnaire.points).length;
-								console.log(point_cepv)
-								var number_cepv = assess_session.attributes[indice].questionnaire.number
-								if ( point_cepv == number_cepv ) {
-									assess_session.attributes[indice].questionnaire.number += 1;
-									console.log(assess_session.attributes[indice].questionnaire.number)
-								}
-								console.log(point_cepv)
-								console.log(number_cepv)
-								console.log(assess_session.attributes[indice].questionnaire.number)
+								assess_session.attributes[indice].questionnaire.number += 1;
 								// backup local
 								localStorage.setItem("assess_session", JSON.stringify(assess_session));
 								// we reload the page
 								window.location.reload();
 							}
-							console.log(assess_session.attributes[indice].questionnaire.number)
 							
 						});
-						console.log(assess_session.attributes[indice].questionnaire.points);
 					}
-							
-
-
 					// HANDLE USERS ACTIONS
 					$('#lottery').click(function() {
 						$.post('ajax', '{"type":"question", "method": "CE_Constant_Prob", "gain": ' + String(gain) + ', "min_interval": ' + min_interval + ', "max_interval": ' + max_interval + ' ,"choice": "0" , "mode": "' + String(mode) + '"}', function(data) {
@@ -542,14 +553,12 @@
 							console.log(data);
 						});
 					});
-
 					$('#gain').click(function() {
 						$.post('ajax', '{"type":"question","method": "CE_Constant_Prob", "gain": ' + String(gain) + ', "min_interval": ' + min_interval + ', "max_interval": ' + max_interval + ' ,"choice": "1" , "mode": "' + String(mode) + '"}', function(data) {
 							treat_answer(data);
 							console.log(data);
 						});
 					});
-					
 				})()
 			}
 		});
@@ -844,7 +853,7 @@
 							var render = reduce_signe(data[i][key]['a'], false, false) + "(x+" + delta + ")" + reduce_signe(data[i][key]['b'], false);
 							var excel = reduce_signe(data[i][key]['a']) + "*(x+" + delta + ")" + reduce_signe(data[i][key]['b']);
 							addTextForm(div_function, copie, render, key, excel);
-						} else if (key=='expo-power'){
+						} else if (key == 'expo-powerr'){
 						
 							var div_function = $('<div id="' + key + '" class="functions_graph" style="overflow-x: auto;"><h3 style="color:#26C4EC">Expo-Power</h3><br />Coefficient of determination: ' + Math.round(data[i][key]['r2'] * 100) / 100 + '<br /><br/></div>');
 							var copie = reduce_signe(data[i][key]['a']) + "+exp(-(" + reduce_signe(data[i][key]['b']) + ")*pow((x+"+delta+")," + reduce_signe(data[i][key]['c']) + "))" ;
@@ -889,7 +898,7 @@
 							var render = reduce_signe(data[i][key]['a'], false, false) + "x" + reduce_signe(data[i][key]['b'], false);
 							var excel = reduce_signe(data[i][key]['a']) + "*x" + reduce_signe(data[i][key]['b']);
 							addTextForm(div_function, copie, render, key, excel);
-						} else if (key=='expo-power'){
+						} else if (key == 'expo-powerr'){
 						
 							var div_function = $('<div id="' + key + '" class="functions_graph" style="overflow-x: auto;"><h3 style="color:#26C4EC">Expo-Power</h3><br />Coefficient of determination: ' + Math.round(data[i][key]['r2'] * 100) / 100 + '<br /><br/></div>');
 							var copie = reduce_signe(data[i][key]['a']) + "+exp(-(" + reduce_signe(data[i][key]['b']) + ")*pow(x," + reduce_signe(data[i][key]['c']) + "))" ;
@@ -908,7 +917,7 @@
 					"min": min,
 					"max": max,
 					"liste_cord": data[i]['coord'],
-					"width": 6,
+					"width": 5,
 					"choice":choice,
 				}), function(data2) {
 					$('#main_graph1').append(data2);
@@ -922,27 +931,79 @@
 					"min": min,
 					"max": max,
 					"liste_cord": data[i]['coord'],
-					"width": 6,
+					"width": 5,
 					
 				}), function(data2) {
 					$('#main_graph2').append(data2);
 				});
 			}
+			function addGraph3(i, data, min, max, choice) {
+				console.log("addgraph");
+				$.post('ajax', JSON.stringify({
+					"type": "svgg",
+					"data": data[i],
+					"min": min,
+					"max": max,
+					"liste_cord": data[i]['coord'],
+					"width": 3,
+					"choice":choice,
+				}), function(data2) {
+					$('#graph_choisi' + indice).append('<div>' + data2 + '</div>');
+				});
+			}
+			
 			function availableRegressions(data) {
 				console.log("availreg");
 				var text = '';
 				for (var key in data) {
 					if (typeof(data[key]['r2']) !== 'undefined') {
-						text = text + key + ': ' + Math.round(data[key]['r2'] * 100) / 100 + ', ';
+						if (key != 'quad') {
+							if (key != 'expo-power') {
+							text = text + key + ': ' + Math.round(data[key]['r2'] * 10000) / 10000 + ', ';
+							}
+						}
+					}
+				};
+				for (var key in data) {
+					if (typeof(data[key]['r2']) !== 'undefined') {
+						if (key != 'lin') {
+							if (key != 'expo-power') {
+								if (key != 'pow') {
+									if (key != 'exp') {
+									 	if (key != 'log') {
+							
+							text = text + key + ': ' + Math.round(data[key]['r2'] * 10000) / 10000 + ', ';
+							}}}}}
+						
+					}
+					
+				}
+				
+				
+				return text;
+			}
+			
+			function availableRegressions2(data) {
+				console.log("availreg");
+				var text = '';
+				for (var key in data) {
+					if (typeof(data[key]['r2']) !== 'undefined') {
+						if (key != 'quad') {
+							if (key != 'expo-power') {
+							text = text + key + ': ' + Math.round(data[key]['r2'] * 10000) / 10000 + ', ';
+							}
+						}
 					}
 				}
 				return text;
 			}
 			
 			$.post('ajax', JSON.stringify(json_2_send), function(data) {
-				$('#charts').show();
-				$('#nouveaubloc').show();
+				$('#charts').show().empty();
+				$('#nouveaubloc').show().empty();
 				$('#tableau_fonctions').show();
+				$('#attribute_name').show().empty();
+				
 				if (val_min<0){
 					for (i in data['data']){
 						for (j in data['data'][i]['coord']){
@@ -951,6 +1012,8 @@
 					};
 				}
 				var assess_session = JSON.parse(localStorage.getItem("assess_session"));
+				
+				$('#attribute_name').append('<h2>' + assess_session.attributes[indice].name + '</h2>');
 				assess_session.attributes[indice].numero = 10000;
 				assess_session.attributes[indice].fonction = '';
 				
@@ -958,17 +1021,27 @@
 				
 				console.log(JSON.stringify(json_2_send));
 				$('#nouveaubloc').append('<table id="NEWcurves_choice" class="table"><thead><tr><th></th><th> Functions </th></tr></thead></table>');
-				LISTE=['logarithmic','exponential','power','linear','quadratic'];
+				LISTE=['logarithmic','exponential','power','linear'];
+					if (data['data'][0]['quad'] !== undefined) {
+						LISTE = ['logarithmic','exponential','power','linear','quadratic'];
+						};
 				for (var i = 0; i < LISTE.length; i++) {
 					$('#NEWcurves_choice').append('<tr><td><input type="radio" class="ice" name="select2" value=' +LISTE[i]+ '></td><td>' + LISTE[i] + '</td><tr>');
 				}
 				$('#charts').append('<table id="curves_choice" class="table"><thead><tr><th></th><th>Points used</th><th>Available regressions: r2</th></tr></thead></table>');
+				if (data['data'][0]['quad'] == undefined) {
+					for (var i = 0; i < data['data'].length; i++) {
+						regressions_text = availableRegressions2(data['data'][i]);
+						$('#curves_choice').append('<tr><td><input type="radio" class="hoice" name="select" value=' + i + '></td><td>' + data['data'][i]['points'] + '</td><td>' + regressions_text + '</td></tr>');
+					}
+				};
+				if (data['data'][0]['quad'] !== undefined) {
+				
 				for (var i = 0; i < data['data'].length; i++) {
-					regressions_text = availableRegressions(data['data'][i]);
-					$('#curves_choice').append('<tr><td><input type="radio" class="hoice" name="select" value=' + i + '></td><td>' + data['data'][i]['points'] + '</td><td>' + regressions_text + '</td></tr>');
-				}
-				
-				
+						regressions_text = availableRegressions(data['data'][i]);
+						$('#curves_choice').append('<tr><td><input type="radio" class="hoice" name="select" value=' + i + '></td><td>' + data['data'][i]['points'] + '</td><td>' + regressions_text + '</td></tr>');
+					}
+				};
 			
 				
 				
@@ -976,6 +1049,8 @@
 				
 				
 				$('.ice').on('click', function() {
+			
+					$('#choix_fonction').show();
 					$('#ton_choix').empty();
 					var choice = this.value;
 					$('#ton_choix').append("You chose " + choice);
@@ -988,11 +1063,13 @@
 						$('#functions').show().empty();
 						$('#main_graph1').show().empty();
 						$('#main_graph2').show().empty();
+						$('#graph_choisi'+indice).show().empty();
 						
 						var h =data['data'];
 						assess_session.attributes[indice].pts = h[num];
 						addGraph(num, data['data'], val_min, val_max, choice);
 						addGraph2(num, data['data'], val_min, val_max);
+						addGraph3(num, data['data'], val_min, val_max, choice);
 						addFunctions(num, data['data'],val_min,choice);
 						};
 					localStorage.setItem("assess_session", JSON.stringify(assess_session));
@@ -1012,20 +1089,41 @@
 						$('#functions').show().empty();
 						$('#main_graph1').show().empty();
 						$('#main_graph2').show().empty();
+						$('#graph_choisi'+indice).show().empty();
 						
 						var h =data['data'];
 						assess_session.attributes[indice].pts = h[Number(this.value)];
 						addGraph(Number(this.value), data['data'], val_min, val_max, choice);
 						addGraph2(Number(this.value), data['data'], val_min, val_max);
+						addGraph3(Number(this.value), data['data'], val_min, val_max, choice);
 						addFunctions(Number(this.value), data['data'],val_min,choice);
 						};
 					localStorage.setItem("assess_session", JSON.stringify(assess_session));
 						
 					});
-				
+					
+				$('.comeback').click(function() {
+					
+					
+					$('#attribute_name').hide();
+					$('#charts').hide();
+					$('#main_graph').hide();
+					$('#functions').hide();
+					$('#nouveaubloc').hide();
+					$('#tableau_fonctions').hide();
+					$('#choix_fonction').hide();
+					
+					$('#select').show();
+					
+					$('#main_graph1').empty();
+					$('#main_graph2').empty();
+					
+					
+					
+					
+					});
 			});
 		});
-	
 		
 		/// When you click on a QUALITATIVE utility function button
 		$('.calc_util_quali').click(function() {
@@ -1035,7 +1133,6 @@
 			// we delete the select div
 			$('#select').hide();
 			//$('#attribute_name').show().html(question_name.toUpperCase());
-
 			// which index is it ?
 			var indice;
 			for (var j = 0; j < assess_session.attributes.length; j++) {
@@ -1043,14 +1140,12 @@
 					indice = j;
 				}
 			}
-
 			var val_min = assess_session.attributes[indice].val_min,
 				val_max = assess_session.attributes[indice].val_max,
 				val_med = assess_session.attributes[indice].val_med,
 				list_names = [].concat(val_min, val_med, val_max),
 				points = assess_session.attributes[indice].questionnaire.points,
 				list_points = [];
-
 			points[val_min] = 0; //On force l'utilité de la pire à 0
 			points[val_max] = 1; //On force l'utilité de la meilleure à 1
 			
@@ -1059,17 +1154,14 @@
 			};
 			
 			
-
 			console.log(list_points)
 			console.log(list_names)
 			$('#charts_quali').show();
-			$('#charts_quali').append('<table id="curves_choice" class="table"><thead><tr><th>Choices</th></tr></thead>');
-			$('#curves_choice').append('<tbody><tr><td style="text-align:center"><input class="Table_choice" type="radio" name="choice"  value="table">Table</td>')
+			$('#charts_quali').append('<table id="curves_choice_quali" class="table"><thead><tr><th>Choices</th></tr></thead>');
+			$('#curves_choice_quali').append('<tbody><tr><td style="text-align:center"><input class="Table_choice" type="radio" name="choice"  value="table">Table</td>')
 			$('#charts_quali').append("</table><div id='data_show'></div>")
-
-		
+			$('#retour_quali').show();
 			
-
 			function table_choice() {
 				
 				$('#main_graph').hide().empty();
@@ -1081,13 +1173,34 @@
 				$('#table_info').append('<tr><td>'+list_names[i]+'</td><td>'+list_points[i]+'</td></tr>');
 				};
 			}
-
 			$('.Table_choice').on('click',table_choice);
 					
 		});
+		
+		$('.comeback_quali').click(function() {
+					
+					
+					$('#attribute_name').hide();
+					$('#charts').hide();
+					$('#main_graph').hide();
+					$('#functions').hide();
+					$('#nouveaubloc').hide();
+					$('#tableau_fonctions').hide();
+					$('#choix_fonction').hide();
+					$('#retour_quali').hide();
+					$('#select').show();
+					
+					$('#charts_quali').empty();
+					$('#charts_quali').hide();
+					$('#main_graph1').empty();
+					$('#main_graph2').empty();
+					
+					
+					
+					
+					});
 				
 		
-
 	
 	});
 </script>
