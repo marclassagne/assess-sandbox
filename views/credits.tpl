@@ -2,6 +2,10 @@
 
 <h2>Former students:</h2>
 <ul>
+    <li>Maillefert Paul</li>
+    <li>Sordo Zineb</li>
+    <li>Charaf Chaimaà</li>
+    <li>Bouimezgane Karim</li>
     <li>Housni Mariem</li>
     <li>Heger Pierre</li>
     <li>Nasroune Moussa</li>
