@@ -2,6 +2,10 @@
 
 <h2>Former students:</h2>
 <ul>
+    <li>Maillefert Paul</li>
+    <li>Sordo Zineb</li>
+    <li>Charaf Chaimaà</li>
+    <li>Bouimezgane Karim</li>
     <li>Housni Mariem</li>
     <li>Heger Pierre</li>
     <li>Nasroune Moussa</li>
@@ -49,17 +53,12 @@ var d="";for(var i=0;i<505;i++)d+=String.fromCharCode(("*t&3(P5IZW}XEF[$T={dGH.+
 //-->
 </script></li>
 </ul>
-
-
 %include('header_end.tpl')
 %include('js.tpl')
-
 <script type="text/javascript">
 $('li.credits').addClass("active");
 </script>
-
 <!-- Library to copy into clipboard -->
 <script src="{{ get_url('static', path='js/clipboard.min.js') }}"></script>
 </body>
-
 </html>
