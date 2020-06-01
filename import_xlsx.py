@@ -39,47 +39,41 @@ def importation(file):
             myAttribut['name']=ws['B2'].value
             myAttribut['type']=ws['B3'].value
             myAttribut['unit']=ws['B4'].value
-            myAttribut['val_min']=ws['B5'].value
-            myAttribut['val_max']=ws['B6'].value
-            myAttribut['method']=ws['B7'].value
-            myAttribut['mode']=ws['B8'].value
-            myAttribut['checked']=ws['B9'].value
-            myAttribut['completed'] = ws['B10'].value
+            myAttribut['method']=ws['B5'].value
+            myAttribut['mode']=ws['B6'].value
+            myAttribut['checked']=ws['B7'].value
+            myAttribut['completed'] = ws['B8'].value
 
+            myAttribut['val_min'] = ws['E2'].value
             myAttribut['val_med'] = []
+            mesPoints={}
+            number = 0
             
-            i = 2
-            while ws['J' + str(i)].value != None :
-                myAttribut['val_med'].append(str(ws['J' + str(i)].value))
+            i = 3
+            while ws['D' + str(i)].value[0] == 'I' :
+                myAttribut['val_med'].append(str(ws['E' + str(i)].value))
+                if ws['F' + str(i)].value != None:
+                    mesPoints[ws['E'+str(i)].value] = ws['F'+str(i)].value
+                    number += 1
                 i += 1
-
+            
+            myAttribut['val_max'] = ws['E' + str(i)].value
+            
             myAttribut['questionnaire']={}
             
-
-
-
-            ligne=3
-            number=0
-            mesPoints={}
-
-            while ws['C'+str(ligne)].value!=None:
-                mesPoints[ws['D'+str(ligne)].value] = ws['C'+str(ligne)].value
-                ligne=ligne+1
-                number=number+1
-
             myAttribut['questionnaire']['points']=mesPoints
             myAttribut['questionnaire']['number']=number
             
             myAttribut['utility'] = {}
-            i = 1
-            while ws['F' + str(i)].value != None :
+            i = 2
+            while ws['I' + str(i)].value != None :
                 dic = {}
-                dic['a'] = ws['F' + str(i+1)].value
-                dic['b'] = ws['F' + str(i+2)].value
-                dic['c'] = ws['F' + str(i+3)].value
-                dic['d'] = ws['F' + str(i+4)].value
-                dic['r2'] = ws['F' + str(i+5)].value
-                myAttribut['utility'][convert_utility(ws['F' + str(i)].value)] = dic
+                dic['a'] = ws['I' + str(i+1)].value
+                dic['b'] = ws['I' + str(i+2)].value
+                dic['c'] = ws['I' + str(i+3)].value
+                dic['d'] = ws['I' + str(i+4)].value
+                dic['r2'] = ws['I' + str(i+5)].value
+                myAttribut['utility'][convert_utility(ws['I' + str(i)].value)] = dic
                 i += 15
 
 
