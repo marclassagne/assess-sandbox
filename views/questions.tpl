@@ -189,7 +189,7 @@
 			};
 		};
 		h=h/3;
-		$('#test4').append(h);
+		
 		for (var j=0; j < assess_session.attributes.length; j++){
 			var l = 0;
 			if (assess_session.attributes[j].type == "Qualitative"){
@@ -209,7 +209,7 @@
 			};
 		};
 		$('#test4').append(e);
-		$('#test4').append(c);
+		
 		if ( c == e+h ){
 			for (var j=0; j < assess_session.attributes.length; j++){
 				if (assess_session.attributes[j].type == "Quantitative"){
