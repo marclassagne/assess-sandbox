@@ -198,7 +198,7 @@
 					
 					c += 1;
 					l += assess_session.attributes[j].questionnaire.number;
-					var y = Object.keys(attribute[j].questionnaire.points).length;
+					var y = Object.keys(assess_session.attributes[j].questionnaire.points).length;
 					$('#test4').append(y);
 					e += l/y;
 				
