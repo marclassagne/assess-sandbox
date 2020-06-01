@@ -178,7 +178,7 @@
 			c += 1;
 			h += assess_session.attributes[j].questionnaire.number;
 		};
-		h = h/3;
+		
 		if ( c==h ){
 			for (var j=0; j < assess_session.attributes.length; j++){
 				$('#u_' + assess_session.attributes[j].name).show();
