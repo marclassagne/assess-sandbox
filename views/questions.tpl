@@ -197,9 +197,12 @@
 					l += assess_session.attributes[j].questionnaire.number;
 				
 				};
-			};
-			if (assess_session.attributes[j].questionnaire.points.length != 2){
-				e += l/(assess_session.attributes[j].questionnaire.points.length-2)
+				if (assess_session.attributes[j].questionnaire.points.length != 2){
+				
+				e += l/(assess_session.attributes[j].questionnaire.points.length-2);
+				
+				};
+			
 			};
 		};
 		
