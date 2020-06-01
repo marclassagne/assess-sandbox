@@ -182,7 +182,9 @@
 				h += assess_session.attributes[j].questionnaire.number;
 			};
 		};
-		h=h/3
+		h=h/3;
+		console.log(c);
+		console.log(h);
 		if ( c==h ){
 			for (var j=0; j < assess_session.attributes.length; j++){
 				if (assess_session.attributes[j].type == "Quantitative"){
