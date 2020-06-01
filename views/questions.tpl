@@ -201,8 +201,9 @@
 				
 				};
 				if (assess_session.attributes[j].questionnaire.points.length != 2){
-				$('#test4').append(assess_session.attributes[j].questionnaire.points.length);
-				e += l/((assess_session.attributes[j].questionnaire.points.length)-2);
+				var y = assess_session.attributes[j].questionnaire.points.length
+				$('#test4').append(y);
+				e += l/(y-2);
 				
 				};
 			
