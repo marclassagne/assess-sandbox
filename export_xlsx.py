@@ -169,23 +169,23 @@ def generate_fichier(data):
             for i in range(0, 11):
                 feuille.write(ligne + 1 + i, 9, monAttribut['val_min'] + i * amplitude)
                 if utility == 'exp':
-                    feuille.write_formula(ligne + 1 + i, 10, funcexp_excel("G" + str(
-                        ligne + 2 + i), "$F$" + str(ligne + 3), "$F$" + str(ligne + 4), "$F$" + str(ligne + 5)))
+                    feuille.write_formula(ligne + 1 + i, 10, funcexp_excel("J" + str(
+                        ligne + 2 + i), "$I$" + str(ligne + 3), "$I$" + str(ligne + 4), "$I$" + str(ligne + 5)))
                 elif utility == 'quad':
-                    feuille.write_formula(ligne + 1 + i, 10, funcquad_excel("G" + str(
-                        ligne + 2 + i), "$F$" + str(ligne + 3), "$F$" + str(ligne + 4), "$F$" + str(ligne + 5)))
+                    feuille.write_formula(ligne + 1 + i, 10, funcquad_excel("J" + str(
+                        ligne + 2 + i), "$I$" + str(ligne + 3), "$I$" + str(ligne + 4), "$I$" + str(ligne + 5)))
                 elif utility == 'pow':
-                    feuille.write_formula(ligne + 1 + i, 10, funcpuis_excel("G" + str(
-                        ligne + 2 + i), "$F$" + str(ligne + 3), "$F$" + str(ligne + 4), "$F$" + str(ligne + 5)))
+                    feuille.write_formula(ligne + 1 + i, 10, funcpuis_excel("J" + str(
+                        ligne + 2 + i), "$I$" + str(ligne + 3), "$I$" + str(ligne + 4), "$I$" + str(ligne + 5)))
                 elif utility == 'log':
-                    feuille.write_formula(ligne + 1 + i, 10, funclog_excel("G" + str(ligne + 2 + i), "$F$" + str(
-                        ligne + 3), "$F$" + str(ligne + 4), "$F$" + str(ligne + 5), "$F$" + str(ligne + 6)))
+                    feuille.write_formula(ligne + 1 + i, 10, funclog_excel("J" + str(ligne + 2 + i), "$I$" + str(
+                        ligne + 3), "$I$" + str(ligne + 4), "$I$" + str(ligne + 5), "$I$" + str(ligne + 6)))
                 elif utility == 'lin':
                     feuille.write_formula(ligne + 1 + i, 10, funclin_excel(
-                        "G" + str(ligne + 2 + i), "$F$" + str(ligne + 3), "$F$" + str(ligne + 4)))
+                        "J" + str(ligne + 2 + i), "$I$" + str(ligne + 3), "$I$" + str(ligne + 4)))
                 elif utility == 'expo-power':
-                    feuille.write_formula(ligne + 1 + i, 10, funcexpopower_excel("G" + str(
-                        ligne + 2 + i), "$F$" + str(ligne + 3), "$F$" + str(ligne + 4), "$F$" + str(ligne + 5)))
+                    feuille.write_formula(ligne + 1 + i, 10, funcexpopower_excel("J" + str(
+                        ligne + 2 + i), "$I$" + str(ligne + 3), "$I$" + str(ligne + 4), "$I$" + str(ligne + 5)))
 
             # Ensuite on fait le Chart ! (le diagramme)
             chart5 = classeur.add_chart({'type': 'scatter',
@@ -194,8 +194,8 @@ def generate_fichier(data):
             # Configure the first series.
             chart5.add_series({
                             'name':       utility,
-                            'categories': '=\'' + monAttribut['name'] + '\'' + '!$G$' + str(ligne + 2) + ':$G$' + str(ligne + 12),
-                            'values':     '=\'' + monAttribut['name'] + '\'' + '!$H$' + str(ligne + 2) + ':$H$' + str(ligne + 12),
+                            'categories': '=\'' + monAttribut['name'] + '\'' + '!$J$' + str(ligne + 2) + ':$J$' + str(ligne + 12),
+                            'values':     '=\'' + monAttribut['name'] + '\'' + '!$K$' + str(ligne + 2) + ':$K$' + str(ligne + 12),
 
                             })
 
@@ -412,22 +412,24 @@ def generate_fichier_with_specification(data):
         
         nb_intermediary = len(monAttribut['val_med'])
         
-        feuille.write(1, 3, 'Val_min', formatNom)
-        feuille.write(1,4, monAttribut['val_min'])
         
         dic_points = monAttribut['questionnaire']['points']
         dic_points[monAttribut['val_min']] = int(monAttribut['mode']!='Normal')
         dic_points[monAttribut['val_max']] = int(monAttribut['mode']=='Normal')
+
+        feuille.write(1, 3, 'Val_min', formatNom)
+        feuille.write(1,4, monAttribut['val_min'])
+        feuille.write(1,5, dic_points[monAttribut['val_min']])
+
         
         for i in range(nb_intermediary):
             feuille.write(i+2,3,'Intermediary value ' + str(i+1), formatNom)
             feuille.write(i+2,4,monAttribut['val_med'][i])
-            feuille.write(i+2,4,dic_points[monAttribut['val_med'][i]])
+            feuille.write(i+2,5,dic_points[monAttribut['val_med'][i]])
         
         feuille.write(nb_intermediary+2,3,'Val_max', formatNom)
         feuille.write(nb_intermediary+2, 4, monAttribut['val_max'])
         feuille.write(nb_intermediary+2, 5, dic_points[monAttribut['val_max']])
-
         # Ensuite on s'occupe de la fonction d'utilité
         #feuille.merge_range('E1:F1','Utility Function')
         # on fait une regression à l'aide des points que l'on a dans le
@@ -490,23 +492,23 @@ def generate_fichier_with_specification(data):
             for i in range(0, 11):
                 feuille.write(ligne + 1 + i, 9, i * amplitude)
                 if utility['type'] == 'exp':
-                    feuille.write_formula(ligne + 1 + i, 10, funcexp_excel("G" + str(
-                        ligne + 2 + i), "$F$" + str(ligne + 3), "$F$" + str(ligne + 4), "$F$" + str(ligne + 5)))
+                    feuille.write_formula(ligne + 1 + i, 10, funcexp_excel("J" + str(
+                        ligne + 2 + i), "$I$" + str(ligne + 3), "$I$" + str(ligne + 4), "$I$" + str(ligne + 5)))
                 elif utility['type'] == 'quad':
-                    feuille.write_formula(ligne + 1 + i, 10, funcquad_excel("G" + str(
-                        ligne + 2 + i), "$F$" + str(ligne + 3), "$F$" + str(ligne + 4), "$F$" + str(ligne + 5)))
+                    feuille.write_formula(ligne + 1 + i, 10, funcquad_excel("J" + str(
+                        ligne + 2 + i), "$I$" + str(ligne + 3), "$I$" + str(ligne + 4), "$I$" + str(ligne + 5)))
                 elif utility['type'] == 'pow':
-                    feuille.write_formula(ligne + 1 + i, 10, funcpuis_excel("G" + str(
-                        ligne + 2 + i), "$F$" + str(ligne + 3), "$F$" + str(ligne + 4), "$F$" + str(ligne + 5)))
+                    feuille.write_formula(ligne + 1 + i, 10, funcpuis_excel("J" + str(
+                        ligne + 2 + i), "$I$" + str(ligne + 3), "$I$" + str(ligne + 4), "$I$" + str(ligne + 5)))
                 elif utility['type'] == 'log':
-                    feuille.write_formula(ligne + 1 + i, 10, funclog_excel("G" + str(ligne + 2 + i), "$F$" + str(
-                        ligne + 3), "$F$" + str(ligne + 4), "$F$" + str(ligne + 5), "$F$" + str(ligne + 6)))
+                    feuille.write_formula(ligne + 1 + i, 10, funclog_excel("J" + str(ligne + 2 + i), "$I$" + str(
+                        ligne + 3), "$I$" + str(ligne + 4), "$I$" + str(ligne + 5), "$I$" + str(ligne + 6)))
                 elif utility['type'] == 'lin':
                     feuille.write_formula(ligne + 1 + i, 10, funclin_excel(
-                        "G" + str(ligne + 2 + i), "$F$" + str(ligne + 3), "$F$" + str(ligne + 4)))
+                        "J" + str(ligne + 2 + i), "$I$" + str(ligne + 3), "$I$" + str(ligne + 4)))
                 elif utility['type'] == 'expo-power':
-                    feuille.write_formula(ligne + 1 + i, 10, funcexpopower_excel("G" + str(
-                        ligne + 2 + i), "$F$" + str(ligne + 3), "$F$" + str(ligne + 4), "$F$" + str(ligne + 5)))
+                    feuille.write_formula(ligne + 1 + i, 10, funcexpopower_excel("J" + str(
+                        ligne + 2 + i), "$I$" + str(ligne + 3), "$I$" + str(ligne + 4), "$I$" + str(ligne + 5)))
 
             # Ensuite on fait le Chart ! (le diagramme)
             chart5 = classeur.add_chart({'type': 'scatter',
@@ -515,8 +517,8 @@ def generate_fichier_with_specification(data):
             # Configure the first series.
             chart5.add_series({
                               'name':       utility['type'],
-                              'categories': '=' + monAttribut['name'] + '!$G$' + str(ligne + 2) + ':$G$' + str(ligne + 12),
-                              'values':     '=' + monAttribut['name'] + '!$H$' + str(ligne + 2) + ':$H$' + str(ligne + 12),
+                              'categories': '=' + monAttribut['name'] + '!$J$' + str(ligne + 2) + ':$J$' + str(ligne + 12),
+                              'values':     '=' + monAttribut['name'] + '!$K$' + str(ligne + 2) + ':$K$' + str(ligne + 12),
 
                               })
 
