@@ -66,17 +66,20 @@ def generate_fichier(data):
         
         nb_intermediary = len(monAttribut['val_med'])
         
-        feuille.write(1, 3, 'Val_min', formatNom)
-        feuille.write(1,4, monAttribut['val_min'])
         
         dic_points = monAttribut['questionnaire']['points']
         dic_points[monAttribut['val_min']] = int(monAttribut['mode']!='Normal')
         dic_points[monAttribut['val_max']] = int(monAttribut['mode']=='Normal')
+
+        feuille.write(1, 3, 'Val_min', formatNom)
+        feuille.write(1,4, monAttribut['val_min'])
+        feuille.write(1,5, dic_points[monAttribut['val_min']])
+
         
         for i in range(nb_intermediary):
             feuille.write(i+2,3,'Intermediary value ' + str(i+1), formatNom)
             feuille.write(i+2,4,monAttribut['val_med'][i])
-            feuille.write(i+2,4,dic_points[monAttribut['val_med'][i]])
+            feuille.write(i+2,5,dic_points[monAttribut['val_med'][i]])
         
         feuille.write(nb_intermediary+2,3,'Val_max', formatNom)
         feuille.write(nb_intermediary+2, 4, monAttribut['val_max'])
