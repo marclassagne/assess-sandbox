@@ -179,6 +179,7 @@
 		};
 		var c = 0;
 		var h = 0;
+		var e = 0;
 		for (var j=0; j < assess_session.attributes.length; j++){
 			if (assess_session.attributes[j].type == "Quantitative"){
 				if (assess_session.attributes[j].checked){
@@ -188,8 +189,21 @@
 			};
 		};
 		h=h/3;
+		for (var j=0; j < assess_session.attributes.length; j++){
+			if (assess_session.attributes[j].type == "Qualitative"){
+				if (assess_session.attributes[j].checked){
+					var l = 0;
+					c += 1;
+					l += assess_session.attributes[j].questionnaire.number;
+				
+				};
+			};
+			if (assess_session.attributes[j].questionnaire.points.length != 2){
+				e += l/(assess_session.attributes[j].questionnaire.points.length-2)
+			};
+		};
 		
-		if ( c==h ){
+		if ( c == e+h ){
 			for (var j=0; j < assess_session.attributes.length; j++){
 				if (assess_session.attributes[j].type == "Quantitative"){
 					if (assess_session.attributes[j].checked){
