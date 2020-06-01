@@ -201,9 +201,9 @@
 				
 				};
 				if (Object.keys(attribute.questionnaire.points).length != 0){
-				var y = Object.keys(attribute.questionnaire.points).length
-				$('#test4').append(y);
-				e += l/y;
+					var y = Object.keys(attribute.questionnaire.points).length;
+					$('#test4').append(y);
+					e += l/y;
 				
 				};
 			
