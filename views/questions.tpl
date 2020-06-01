@@ -170,18 +170,24 @@
 			
 		};
 		for (var j=0; j < assess_session.attributes.length; j++){
-			$('#u_' + assess_session.attributes[j].name).hide();
+			if (assess_session.attributes[j].type == "Quantitative"){
+				$('#u_' + assess_session.attributes[j].name).hide();
+				};
 		};
 		var c = 0;
 		var h = 0;
 		for (var j=0; j < assess_session.attributes.length; j++){
-			c += 1;
-			h += assess_session.attributes[j].questionnaire.number;
+			if (assess_session.attributes[j].type == "Quantitative"){
+				c += 1;
+				h += assess_session.attributes[j].questionnaire.number;
+			};
 		};
-		
+		h=h/3
 		if ( c==h ){
 			for (var j=0; j < assess_session.attributes.length; j++){
-				$('#u_' + assess_session.attributes[j].name).show();
+				if (assess_session.attributes[j].type == "Quantitative"){
+					$('#u_' + assess_session.attributes[j].name).show();
+				};
 			};
 			
 		};
