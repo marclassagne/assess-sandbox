@@ -1161,4 +1161,3 @@ function GK_calculated() {
 		$("#utility_function").html('');
 	}
 }
-
