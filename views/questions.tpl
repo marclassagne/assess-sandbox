@@ -265,20 +265,19 @@
 						$.post('ajax', '{"type":"question", "method": "PE", "proba": ' + String(probability) + ', "min_interval": ' + min_interval + ', "max_interval": ' + max_interval + ' ,"choice": "0", "mode": "' + 'normal' + '"}', function(data) {
 							treat_answer(data);
 							console.log(data);
-							$('#select').show();
-							$('#attribute_name').hide().html(question_name.toUpperCase());
-							$('#trees').empty().hide();
+							
 						});
 					});
 					$('#lottery').click(function() {
 						$.post('ajax', '{"type":"question","method": "PE", "proba": ' + String(probability) + ', "min_interval": ' + min_interval + ', "max_interval": ' + max_interval + ' ,"choice": "1" , "mode": "' + 'normal' + '"}', function(data) {
 							treat_answer(data);
 							console.log(data);
-							$('#select').show();
-							$('#attribute_name').hide().html(question_name.toUpperCase());
-							$('#trees').empty().hide();
+							
 						});
 					});
+					$('#select').show();
+					$('#attribute_name').hide().html(question_name.toUpperCase());
+					$('#trees').empty().hide();
 				})()
 			}
 			//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -347,20 +346,19 @@
 						$.post('ajax', '{"type":"question", "method": "LE", "proba": ' + String(probability) + ', "min_interval": ' + min_interval + ', "max_interval": ' + max_interval + ' ,"choice": "0" , "mode": "' + String(mode) + '"}', function(data) {
 							treat_answer(data);
 							console.log(data);
-							$('#select').show();
-							$('#attribute_name').hide().html(question_name.toUpperCase());
-							$('#trees').empty().hide();
+							
 						});
 					});
 					$('.lottery_b').click(function() {
 						$.post('ajax', '{"type":"question","method": "LE", "proba": ' + String(probability) + ', "min_interval": ' + min_interval + ', "max_interval": ' + max_interval + ' ,"choice": "1" , "mode": "' + String(mode) + '"}', function(data) {
 							treat_answer(data);
 							console.log(data);
-							$('#select').show();
-							$('#attribute_name').hide().html(question_name.toUpperCase());
-							$('#trees').empty().hide();
+							
 						});
 					});
+					$('#select').show();
+					$('#attribute_name').hide().html(question_name.toUpperCase());
+					$('#trees').empty().hide();
 				})()
 			}
 			//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -447,9 +445,7 @@
 							console.log(data);
 							console.log(String(mode)=="Reversed");
 							console.log("lottery");
-							$('#select').show();
-							$('#attribute_name').hide().html(question_name.toUpperCase());
-							$('#trees').empty().hide();
+						
 						});
 					});
 					$('#gain').click(function() {
@@ -458,11 +454,12 @@
 							console.log(data);
 							console.log(String(mode)=="Reversed");
 							console.log("gain");
-							$('#select').show();
-							$('#attribute_name').hide().html(question_name.toUpperCase());
-							$('#trees').empty().hide();
+							
 						});
 					});
+					$('#select').show();
+					$('#attribute_name').hide().html(question_name.toUpperCase());
+					$('#trees').empty().hide();
 				})()
 			}
 			//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -574,11 +571,12 @@
 						$.post('ajax', '{"type":"question","method": "CE_Constant_Prob", "gain": ' + String(gain) + ', "min_interval": ' + min_interval + ', "max_interval": ' + max_interval + ' ,"choice": "1" , "mode": "' + String(mode) + '"}', function(data) {
 							treat_answer(data);
 							console.log(data);
-							$('#select').show();
-							$('#attribute_name').hide().html(question_name.toUpperCase());
-							$('#trees').empty().hide();
+							
 						});
 					});
+					$('#select').show();
+					$('#attribute_name').hide().html(question_name.toUpperCase());
+					$('#trees').empty().hide();
 				})()
 			}
 			
@@ -685,9 +683,7 @@
 							function(data) {
 								treat_answer(data);
 								console.log("PE 2");
-								$('#select').show();
-								$('#attribute_name').hide().html(question_name.toUpperCase());
-								$('#trees').empty().hide();
+								
 							});
 					});
 					$('#lottery').click(function() {
@@ -702,11 +698,12 @@
 							function(data) {
 								treat_answer(data);
 								console.log("PE 2");
-								$('#select').show();
-								$('#attribute_name').hide().html(question_name.toUpperCase());
-								$('#trees').empty().hide();
+								
 							});
 					});
+					$('#select').show();
+					$('#attribute_name').hide().html(question_name.toUpperCase());
+					$('#trees').empty().hide();
 				})()
 			}
 		});
