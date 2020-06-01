@@ -1,3 +1,4 @@
+  
 %include('header_init.tpl', heading='Assess utility functions')
 <h3 id="attribute_name"></h3>
 <div id="select">
@@ -69,6 +70,7 @@
 		</tbody>
 	</table>
 </div>
+
 <div id="main_graph" class="col-lg-5"></div>
 <div id="functions" class="col-lg-7"></div>
 %include('header_end.tpl')
@@ -98,7 +100,10 @@
 		for (var i = 0; i < assess_session.attributes.length; i++) {
 			if (!assess_session.attributes[i].checked) //if this attribute is not activated
 				continue; //we skip this attribute and go to the next one
-				
+			
+			
+			
+			
 			var attribute = assess_session.attributes[i],
 				text_table = '<tr><td>' + attribute.name + '</td>'+
 							 '<td>' + attribute.type + '</td>'+
@@ -164,6 +169,14 @@
 					window.location.reload();
 				});
 			})(i);
+			
+		};
+		for (var j=0; j < assess_session.attributes.length; j++){
+			if (assess_session.attributes[j].type == "Quantitative"){
+				if (assess_session.attributes[j].checked){
+					$('#u_' + assess_session.attributes[j].name).hide();
+				};
+			};
 		};
 		var c = 0;
 		var h = 0;
