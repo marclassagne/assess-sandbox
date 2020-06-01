@@ -198,12 +198,11 @@
 					
 					c += 1;
 					l += assess_session.attributes[j].questionnaire.number;
-				
-				};
-				if (Object.keys(attribute.questionnaire.points).length != 0){
-					var y = Object.keys(attribute.questionnaire.points).length;
-					
-					e += l/y;
+					var y = Object.keys(assess_session.attributes[j].questionnaire.points).length;
+					if (y!=0){
+						
+						e += l/y;
+					};
 				
 				};
 			
