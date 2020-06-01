@@ -69,7 +69,7 @@
 		</tbody>
 	</table>
 </div>
-
+<div id="test4"></div>
 <div id="main_graph" class="col-lg-5"></div>
 <div id="functions" class="col-lg-7"></div>
 %include('header_end.tpl')
@@ -190,22 +190,24 @@
 		};
 		h=h/3;
 		for (var j=0; j < assess_session.attributes.length; j++){
+			var l = 0;
 			if (assess_session.attributes[j].type == "Qualitative"){
+			
 				if (assess_session.attributes[j].checked){
-					var l = 0;
+					
 					c += 1;
 					l += assess_session.attributes[j].questionnaire.number;
 				
 				};
 				if (assess_session.attributes[j].questionnaire.points.length != 2){
-				
+				$('#test4').append(l);
 				e += l/(assess_session.attributes[j].questionnaire.points.length-2);
 				
 				};
 			
 			};
 		};
-		
+		$('#test4').append(c);
 		if ( c == e+h ){
 			for (var j=0; j < assess_session.attributes.length; j++){
 				if (assess_session.attributes[j].type == "Quantitative"){
