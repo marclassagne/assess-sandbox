@@ -177,7 +177,7 @@
 		};
 		h=h/3;
 		
-		if ( c!=h ){
+		if ( c==h ){
 			for (var j=0; j < assess_session.attributes.length; j++){
 				if (assess_session.attributes[j].type == "Quantitative"){
 					if (assess_session.attributes[j].checked){
