@@ -200,10 +200,10 @@
 					l += assess_session.attributes[j].questionnaire.number;
 				
 				};
-				if (Object.keys(attribute.questionnaire.points).length != 2){
+				if (Object.keys(attribute.questionnaire.points).length != 0){
 				var y = Object.keys(attribute.questionnaire.points).length
 				$('#test4').append(y);
-				e += l/(y-2);
+				e += l/y;
 				
 				};
 			
