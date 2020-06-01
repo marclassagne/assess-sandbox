@@ -98,7 +98,10 @@
 		for (var i = 0; i < assess_session.attributes.length; i++) {
 			if (!assess_session.attributes[i].checked) //if this attribute is not activated
 				continue; //we skip this attribute and go to the next one
-				
+			
+			
+			
+			
 			var attribute = assess_session.attributes[i],
 				text_table = '<tr><td>' + attribute.name + '</td>'+
 							 '<td>' + attribute.type + '</td>'+
@@ -164,7 +167,24 @@
 					window.location.reload();
 				});
 			})(i);
-		}
+			
+		};
+		for (var j=0; j < assess_session.attributes.length; j++){
+			$('#u_' + assess_session.attributes[j].name).hide();
+		};
+		var c = 0;
+		var h = 0;
+		for (var j=0; j < assess_session.attributes.length; j++){
+			c += 1;
+			h += assess_session.attributes[j].questionnaire.number;
+		};
+		h = h/3;
+		if ( c==h ){
+			for (var j=0; j < assess_session.attributes.length; j++){
+				$('#u_' + assess_session.attributes[j].name).show();
+			};
+			
+		};
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////////// CLICK ON THE ANSWER BUTTON ////////////////////////////////////////////////////////////////
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
