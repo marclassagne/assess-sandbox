@@ -57,6 +57,7 @@
 	<div class="page-header">
 	  <h3>Utility function for each attributes</h3>
 	</div>
+
 	<div id="attribute" >
 		<table class="table">
 			<thead>
@@ -70,10 +71,12 @@
 			<tbody id="table_attributes"></tbody>
 		</table>
 	</div>
+
 	<div style="text-align:center;" >
 		<button type="button" class="btn btn-default btn-lg" id="button_generate_list" style="text-align:center">Generate graph</button>
 		<br/>
 	</div>
+
 	
 	<!---------------------- Determine the multi-attribute utility function ---------------------->
 	<div class="page-header">
