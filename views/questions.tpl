@@ -200,8 +200,8 @@
 					l += assess_session.attributes[j].questionnaire.number;
 				
 				};
-				if (assess_session.attributes[j].questionnaire.points.length != 2){
-				var y = assess_session.attributes[j].questionnaire.points.length
+				if (Object.keys(attribute.questionnaire.points).length != 2){
+				var y = Object.keys(attribute.questionnaire.points).length
 				$('#test4').append(y);
 				e += l/(y-2);
 				
