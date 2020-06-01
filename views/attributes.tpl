@@ -31,9 +31,10 @@
 	
     <!------------ FORM FOR A QUANTITATIVE ATTRIBUTE ------------>
 	<div id="form_quanti">
-		<div class="form-group">
+		<div class="form-group" id="quantiname">
 			<label for="att_name_quanti">Name:</label>
-			<input type="text" class="form-control" id="att_name_quanti" placeholder="Name">
+			
+			
 		</div>
 
 		<div class="form-group">
@@ -66,9 +67,9 @@
 	
 	<!------------ FORM FOR A QUALITATIVE ATTRIBUTE ------------>
 	<div id="form_quali">
-		<div class="form-group">
+		<div class="form-group" id="qualiname" >
 			<label for="att_name_quali">Name:</label>
-			<input type="text" class="form-control" id="att_name_quali" placeholder="Name">
+			
 		</div>
 		
 		<h3> Please rank the values by order of preference: </h3>
@@ -107,6 +108,23 @@ $("#form_quanti").hide();
 $("#form_quali").hide();
 $('li.manage').addClass("active");
 
+function verifierCaracteres(event) {
+	 		
+	var keyCode = event.which ? event.which : event.keyCode;
+	var touche = String.fromCharCode(keyCode);
+			
+	var champ = document.getElementById('mon_input');
+			
+	var caracteres = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+			
+	if(caracteres.indexOf(touche) >= 0) {
+		champ.value += touche;
+	}
+			
+};
+
+$("#quantiname").append('<input type="text" class="form-control" id="att_name_quanti" placeholder="Name" onkeypress="verifierCaracteres(event); return false;" />');
+$("#qualiname").append('<input type="text" class="form-control" id="att_name_quali" placeholder="Name" onkeypress="verifierCaracteres(event); return false;" />');
 /////////////////////////////////////////////////////////////////////////////////////////
 // Fonctions pour ajouter/supprimer des zones de texte pour les valeurs intermédiaires //
 /////////////////////////////////////////////////////////////////////////////////////////
