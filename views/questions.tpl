@@ -255,7 +255,9 @@
 								assess_session.attributes[indice].questionnaire.number += 1;
 								// backup local
 								localStorage.setItem("assess_session", JSON.stringify(assess_session));
-								
+								$('#select').show();
+								$('#attribute_name').hide().html(question_name.toUpperCase());
+								$('#trees').empty().hide()
 							}
 						});
 					}
@@ -332,7 +334,9 @@
 								assess_session.attributes[indice].questionnaire.number += 1;
 								// backup local
 								localStorage.setItem("assess_session", JSON.stringify(assess_session));
-								
+								$('#select').show();
+								$('#attribute_name').hide().html(question_name.toUpperCase());
+								$('#trees').empty().hide()
 							}
 						});
 					}
@@ -424,7 +428,9 @@
 								assess_session.attributes[indice].questionnaire.number += 1;
 								// backup local
 								localStorage.setItem("assess_session", JSON.stringify(assess_session));
-								
+								$('#select').show();
+								$('#attribute_name').hide().html(question_name.toUpperCase());
+								$('#trees').empty().hide()
 							}
 						});
 					}
@@ -537,7 +543,9 @@
 								assess_session.attributes[indice].questionnaire.number += 1;
 								// backup local
 								localStorage.setItem("assess_session", JSON.stringify(assess_session));
-								
+								$('#select').show();
+								$('#attribute_name').hide().html(question_name.toUpperCase());
+								$('#trees').empty().hide()
 							}
 							
 						});
@@ -642,7 +650,9 @@
 								assess_session.attributes[indice].questionnaire.number += 1;
 								
 								localStorage.setItem("assess_session", JSON.stringify(assess_session)); // backup local
-								
+								$('#select').show();
+								$('#attribute_name').hide().html(question_name.toUpperCase());
+								$('#trees').empty().hide()
 							}
 						});
 					}
