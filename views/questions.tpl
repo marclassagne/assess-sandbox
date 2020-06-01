@@ -69,7 +69,7 @@
 		</tbody>
 	</table>
 </div>
-<div id="test4">
+
 <div id="main_graph" class="col-lg-5"></div>
 <div id="functions" class="col-lg-7"></div>
 %include('header_end.tpl')
@@ -200,7 +200,7 @@
 					l += assess_session.attributes[j].questionnaire.number;
 					var y = Object.keys(assess_session.attributes[j].questionnaire.points).length;
 					if (y!=0){
-						$('#test4').append(y);
+						
 						e += l/y;
 					};
 				
