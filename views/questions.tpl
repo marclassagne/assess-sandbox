@@ -255,7 +255,8 @@
 								assess_session.attributes[indice].questionnaire.number += 1;
 								// backup local
 								localStorage.setItem("assess_session", JSON.stringify(assess_session));
-								
+								// we reload the page
+								window.location.reload();
 							}
 						});
 					}
@@ -265,19 +266,14 @@
 						$.post('ajax', '{"type":"question", "method": "PE", "proba": ' + String(probability) + ', "min_interval": ' + min_interval + ', "max_interval": ' + max_interval + ' ,"choice": "0", "mode": "' + 'normal' + '"}', function(data) {
 							treat_answer(data);
 							console.log(data);
-							
 						});
 					});
 					$('#lottery').click(function() {
 						$.post('ajax', '{"type":"question","method": "PE", "proba": ' + String(probability) + ', "min_interval": ' + min_interval + ', "max_interval": ' + max_interval + ' ,"choice": "1" , "mode": "' + 'normal' + '"}', function(data) {
 							treat_answer(data);
 							console.log(data);
-							
 						});
 					});
-					$('#select').show();
-					$('#attribute_name').hide().html(question_name.toUpperCase());
-					$('#trees').empty().hide();
 				})()
 			}
 			//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -337,7 +333,8 @@
 								assess_session.attributes[indice].questionnaire.number += 1;
 								// backup local
 								localStorage.setItem("assess_session", JSON.stringify(assess_session));
-								
+								// we reload the page
+								window.location.reload();
 							}
 						});
 					}
@@ -346,19 +343,14 @@
 						$.post('ajax', '{"type":"question", "method": "LE", "proba": ' + String(probability) + ', "min_interval": ' + min_interval + ', "max_interval": ' + max_interval + ' ,"choice": "0" , "mode": "' + String(mode) + '"}', function(data) {
 							treat_answer(data);
 							console.log(data);
-							
 						});
 					});
 					$('.lottery_b').click(function() {
 						$.post('ajax', '{"type":"question","method": "LE", "proba": ' + String(probability) + ', "min_interval": ' + min_interval + ', "max_interval": ' + max_interval + ' ,"choice": "1" , "mode": "' + String(mode) + '"}', function(data) {
 							treat_answer(data);
 							console.log(data);
-							
 						});
 					});
-					$('#select').show();
-					$('#attribute_name').hide().html(question_name.toUpperCase());
-					$('#trees').empty().hide();
 				})()
 			}
 			//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -434,7 +426,8 @@
 								assess_session.attributes[indice].questionnaire.number += 1;
 								// backup local
 								localStorage.setItem("assess_session", JSON.stringify(assess_session));
-								
+								// we reload the page
+								window.location.reload();
 							}
 						});
 					}
@@ -445,7 +438,6 @@
 							console.log(data);
 							console.log(String(mode)=="Reversed");
 							console.log("lottery");
-						
 						});
 					});
 					$('#gain').click(function() {
@@ -454,12 +446,8 @@
 							console.log(data);
 							console.log(String(mode)=="Reversed");
 							console.log("gain");
-							
 						});
 					});
-					$('#select').show();
-					$('#attribute_name').hide().html(question_name.toUpperCase());
-					$('#trees').empty().hide();
 				})()
 			}
 			//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -552,7 +540,8 @@
 								assess_session.attributes[indice].questionnaire.number += 1;
 								// backup local
 								localStorage.setItem("assess_session", JSON.stringify(assess_session));
-								
+								// we reload the page
+								window.location.reload();
 							}
 							
 						});
@@ -562,24 +551,16 @@
 						$.post('ajax', '{"type":"question", "method": "CE_Constant_Prob", "gain": ' + String(gain) + ', "min_interval": ' + min_interval + ', "max_interval": ' + max_interval + ' ,"choice": "0" , "mode": "' + String(mode) + '"}', function(data) {
 							treat_answer(data);
 							console.log(data);
-							$('#select').show();
-							$('#attribute_name').hide().html(question_name.toUpperCase());
-							$('#trees').empty().hide();
 						});
 					});
 					$('#gain').click(function() {
 						$.post('ajax', '{"type":"question","method": "CE_Constant_Prob", "gain": ' + String(gain) + ', "min_interval": ' + min_interval + ', "max_interval": ' + max_interval + ' ,"choice": "1" , "mode": "' + String(mode) + '"}', function(data) {
 							treat_answer(data);
 							console.log(data);
-							
 						});
 					});
-					$('#select').show();
-					$('#attribute_name').hide().html(question_name.toUpperCase());
-					$('#trees').empty().hide();
 				})()
 			}
-			
 		});
 		/// When you click on a QUALITATIVE attribute for assessment
 		$('.answer_quest_quali').click(function() {
@@ -665,7 +646,7 @@
 								assess_session.attributes[indice].questionnaire.number += 1;
 								
 								localStorage.setItem("assess_session", JSON.stringify(assess_session)); // backup local
-								
+								window.location.reload(); // we reload the page
 							}
 						});
 					}
@@ -683,7 +664,6 @@
 							function(data) {
 								treat_answer(data);
 								console.log("PE 2");
-								
 							});
 					});
 					$('#lottery').click(function() {
@@ -698,12 +678,8 @@
 							function(data) {
 								treat_answer(data);
 								console.log("PE 2");
-								
 							});
 					});
-					$('#select').show();
-					$('#attribute_name').hide().html(question_name.toUpperCase());
-					$('#trees').empty().hide();
 				})()
 			}
 		});
@@ -1249,4 +1225,3 @@
 	</style>
 </body>
 </html>
-
