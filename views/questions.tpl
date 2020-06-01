@@ -69,7 +69,7 @@
 		</tbody>
 	</table>
 </div>
-<div id="test4"></div>
+
 <div id="main_graph" class="col-lg-5"></div>
 <div id="functions" class="col-lg-7"></div>
 %include('header_end.tpl')
@@ -202,14 +202,14 @@
 				};
 				if (Object.keys(attribute.questionnaire.points).length != 0){
 					var y = Object.keys(attribute.questionnaire.points).length;
-					$('#test4').append(y);
+					
 					e += l/y;
 				
 				};
 			
 			};
 		};
-		$('#test4').append(e);
+		
 		
 		if ( c == e+h ){
 			for (var j=0; j < assess_session.attributes.length; j++){
