@@ -164,7 +164,29 @@
 					window.location.reload();
 				});
 			})(i);
-		}
+		};
+		var c = 0;
+		var h = 0;
+		for (var j=0; j < assess_session.attributes.length; j++){
+			if (assess_session.attributes[j].type == "Quantitative"){
+				if (assess_session.attributes[j].checked){
+					c += 1;
+					h += assess_session.attributes[j].questionnaire.number;
+				};
+			};
+		};
+		h=h/3;
+		
+		if ( c==h ){
+			for (var j=0; j < assess_session.attributes.length; j++){
+				if (assess_session.attributes[j].type == "Quantitative"){
+					if (assess_session.attributes[j].checked){
+						$('#u_' + assess_session.attributes[j].name).show();
+					};
+				};
+			};
+			
+		};
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////////// CLICK ON THE ANSWER BUTTON ////////////////////////////////////////////////////////////////
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
