@@ -1,4 +1,3 @@
-  
 %include('header_init.tpl', heading='Assess utility functions')
 <h3 id="attribute_name"></h3>
 <div id="select">
@@ -180,6 +179,7 @@
 		};
 		var c = 0;
 		var h = 0;
+		var e = 0;
 		for (var j=0; j < assess_session.attributes.length; j++){
 			if (assess_session.attributes[j].type == "Quantitative"){
 				if (assess_session.attributes[j].checked){
@@ -190,7 +190,28 @@
 		};
 		h=h/3;
 		
-		if ( c==h ){
+		for (var j=0; j < assess_session.attributes.length; j++){
+			var l = 0;
+			if (assess_session.attributes[j].type == "Qualitative"){
+			
+				if (assess_session.attributes[j].checked){
+					
+					c += 1;
+					l += assess_session.attributes[j].questionnaire.number;
+				
+				};
+				if (Object.keys(attribute.questionnaire.points).length != 0){
+					var y = Object.keys(attribute.questionnaire.points).length;
+					
+					e += l/y;
+				
+				};
+			
+			};
+		};
+		
+		
+		if ( c == e+h ){
 			for (var j=0; j < assess_session.attributes.length; j++){
 				if (assess_session.attributes[j].type == "Quantitative"){
 					if (assess_session.attributes[j].checked){
