@@ -19,27 +19,6 @@ function number_attributes_checked(){
 function update_method_button(type){
 	var assess_session = JSON.parse(localStorage.getItem("assess_session"));
 	
-	for(var i=0; i<assess_session.k_calculu////////////////////////////////////////////////////////////////////////////////////////////////////////
-///			javascript Function for k_calculus
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-/// Function to calculate the number of active attributes (minimum 2 attributes are needed)
-function number_attributes_checked(){
-	var assess_session = JSON.parse(localStorage.getItem("assess_session")),
-		counter=0;
-		
-	for (var i=0; i < assess_session.attributes.length; i++){
-		if(assess_session.attributes[i].checked){
-			counter++;
-		};
-	};
-	return counter;
-};
-
-/// Function that manages the influence of the "button_method" buttons (multiplicative/multilinear)
-function update_method_button(type){
-	var assess_session = JSON.parse(localStorage.getItem("assess_session"));
-	
 	for(var i=0; i<assess_session.k_calculus.length; i++){
 		if(assess_session.k_calculus[i].method==type){
 			assess_session.k_calculus[i].active=true;
