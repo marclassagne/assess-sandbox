@@ -6,7 +6,7 @@ import io
 from functions import *
 
 
-def generate_svg_plot(dictionary, min, max, liste_cord, width):
+def generate_svg_plot(dictionary, min_, max_, liste_cord, width):
 
     # img
     imgdata = io.BytesIO()
@@ -24,12 +24,12 @@ def generate_svg_plot(dictionary, min, max, liste_cord, width):
     y1 = np.array(ly)
 
     plt.figure(figsize=(width, width))
-    plt.axis([min, max, 0., 1.])
+    plt.axis([min_, max_, 0., 1.])
     plt.plot(x1, y1, 'ko', label="Original Data")
-    x = np.linspace(min, max, 100)
+    x = np.linspace(min_, max_, 100)
 
     #translation suivant x des courbes a afficher en cas de valeurs negatives
-    xneg = np.linspace(0, max-min, 100)
+    xneg = np.linspace(0, max_-min_, 100)
 
     if min >= 0 :
         for func in dictionary.keys():

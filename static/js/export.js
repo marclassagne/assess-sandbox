@@ -70,7 +70,7 @@ function list()
 			var val_max=assess_session.attributes[_i].val_max;
 			var val_min=assess_session.attributes[_i].val_min;
 			if (points.length > 0 && assess_session.attributes[i].checked) {
-			if (mode=="normal") {
+			if (mode=="Normal") {
 				points.push([val_max, 1]);
 				points.push([val_min, 0]);
 			}
