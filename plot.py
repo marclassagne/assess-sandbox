@@ -26,7 +26,7 @@ def generate_svg_plot(dictionary, min_, max_, liste_cord, width):
     plt.figure(figsize=(width, width))
     plt.axis([min_, max_, 0., 1.])
     
-    plt.xlim(min_,max_)
+    plt.xlim(0,1)
     x = np.linspace(min_, max_, 100)
 
     #translation suivant x des courbes a afficher en cas de valeurs negatives
