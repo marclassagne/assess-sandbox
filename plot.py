@@ -25,6 +25,7 @@ def generate_svg_plot(dictionary, min_, max_, liste_cord, width):
 
     plt.figure(figsize=(width, width))
     plt.axis([min_, max_, 0., 1.])
+
     plt.plot(x1, y1, 'ko', label="Original Data")
     x = np.linspace(min_, max_, 100)
 
@@ -32,6 +33,7 @@ def generate_svg_plot(dictionary, min_, max_, liste_cord, width):
     xneg = np.linspace(0, max_ - min_, 100)
 
     if min_ >= 0 :
+        plt.xlim(min_,max_)
         for func in dictionary.keys():
             if func == 'exp':
                 a = dictionary[func]['a']
