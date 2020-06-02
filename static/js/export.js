@@ -71,12 +71,12 @@ function list()
 			var val_min=assess_session.attributes[_i].val_min;
 			if (points.length > 0 && assess_session.attributes[i].checked) {
 			if (mode=="Normal") {
-				points.push([val_max, 1]);
-				points.push([val_min, 0]);
+				points.push([String(val_max), 1]);
+				points.push([String(val_min), 0]);
 			}
 			else {
-				points.push([val_max, 0]);
-				points.push([val_min, 1]);
+				points.push([String(val_max), 0]);
+				points.push([String(val_min), 1]);
 			}
 			json_2_send["points"] = points;
 				$.post('ajax', JSON.stringify(json_2_send), function (data) {

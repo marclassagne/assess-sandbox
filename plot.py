@@ -16,7 +16,7 @@ def generate_svg_plot(dictionary, min_, max_, liste_cord, width):
     ly = []
 
     for coord in liste_cord:
-        lx.append(coord[0])
+        lx.append(float(coord[0]))
         ly.append(coord[1])
 
     # creation des valeurs en abscisses et en ordonnee avec les listes lx et ly
