@@ -25,15 +25,14 @@ def generate_svg_plot(dictionary, min_, max_, liste_cord, width):
 
     plt.figure(figsize=(width, width))
     plt.axis([min_, max_, 0., 1.])
-
-    plt.plot(x1, y1, 'ko', label="Original Data")
+    
+    plt.xlim(min_,max_)
     x = np.linspace(min_, max_, 100)
 
     #translation suivant x des courbes a afficher en cas de valeurs negatives
     xneg = np.linspace(0, max_ - min_, 100)
 
     if min_ >= 0 :
-        plt.xlim(min_,max_)
         for func in dictionary.keys():
             if func == 'exp':
                 a = dictionary[func]['a']
@@ -77,6 +76,7 @@ def generate_svg_plot(dictionary, min_, max_, liste_cord, width):
                          '#26C4EC', label="Expo-Power Fitted Curve")
 
     else: 
+        plt.xlim(0,max_ - min_)
         for func in dictionary.keys():
             if func == 'exp':
                 a = dictionary[func]['a']
@@ -120,6 +120,7 @@ def generate_svg_plot(dictionary, min_, max_, liste_cord, width):
                          '#26C4EC', label="Expo-Power Fitted Curve")
 
 
+    plt.plot(x1, y1, 'ko', label="Original Data")
     plt.savefig(imgdata, format='svg')
     plt.close()
 
