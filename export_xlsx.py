@@ -474,7 +474,7 @@ def generate_fichier_with_specification(data):
                 # s'arretera
                 feuille.write(ligne + 6, 8, utility['r2'], formatCoeff)
                 feuille.write(
-                    ligne + 7, 8, convert_to_text(utility, parameters, "x"), formatCoeff)
+                    ligne + 7, 8, convert_to_text(utility['type'], utility, "x"), formatCoeff)
                 feuille.write(ligne + 2, 8, utility['a'], formatCoeff)
                 feuille.write(ligne + 3, 8, utility['b'], formatCoeff)
                 feuille.write(ligne + 4, 8, utility['c'], formatCoeff)
