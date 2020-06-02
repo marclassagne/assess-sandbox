@@ -119,7 +119,7 @@ def generate_svg_plot(dictionary, min_, max_, liste_cord, width):
                          '#26C4EC', label="Expo-Power Fitted Curve")
 
 
-    plt.plot(x1, y1, 'ko', label="Original Data")
+    #plt.plot(x1, y1, 'ko', label="Original Data")
     plt.savefig(imgdata, format='svg')
     plt.close()
 
