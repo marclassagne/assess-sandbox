@@ -64,7 +64,7 @@ function list()
 			var json_2_send = {"type": "calc_util", "points":[]};
 			var obj = assess_session.attributes[_i].questionnaire.points;
 			var points = Object.keys(obj).map(function(key) {
-  return [Number(key), obj[key]];
+  return [key, obj[key]];
   });
 			var mode = assess_session.attributes[_i].mode;
 			var val_max=assess_session.attributes[_i].val_max;
