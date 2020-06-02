@@ -24,10 +24,10 @@ def generate_svg_plot(dictionary, min_, max_, liste_cord, width):
     y1 = np.array(ly)
 
     plt.figure(figsize=(width, width))
-    plt.axis([min_, max_, 0., 1.])
+    plt.axis([0, 1, 0., 1.])
     
     plt.xlim(0,1)
-    x = np.linspace(min_, max_, 100)
+    x = np.linspace(0, 1, 100)
 
     #translation suivant x des courbes a afficher en cas de valeurs negatives
     xneg = np.linspace(0, max_ - min_, 100)
