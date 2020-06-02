@@ -29,9 +29,9 @@ def generate_svg_plot(dictionary, min_, max_, liste_cord, width):
     x = np.linspace(min_, max_, 100)
 
     #translation suivant x des courbes a afficher en cas de valeurs negatives
-    xneg = np.linspace(0, max_-min_, 100)
+    xneg = np.linspace(0, max_ - min_, 100)
 
-    if min >= 0 :
+    if min_ >= 0 :
         for func in dictionary.keys():
             if func == 'exp':
                 a = dictionary[func]['a']
