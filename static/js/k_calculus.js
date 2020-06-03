@@ -973,11 +973,11 @@ var assess_session = JSON.parse(localStorage.getItem("assess_session"));
 
 
 function update_utility(i, data){
-	if(get_Active_Method()==0){  //multiplicative
+	
 		k_utility_multiplicative[i]=data;
-	} else {
+	
 		k_utility_multilinear[i]=data;
-	}
+	
 }
 
 function addTextForm(div, copie, excel, latex) {
