@@ -1085,7 +1085,7 @@ $(function(){
 			{
 				if(k_utility_multilinear[i]==null)
 				{
-					alert("You need to choose a utility function for all your attributes in the list above");
+					alert("Wrong");
 					return;
 				}
 			}
