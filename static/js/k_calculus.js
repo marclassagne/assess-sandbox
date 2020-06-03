@@ -255,7 +255,7 @@ function update_k_list(number){
 					} else if(number==1){ //multilinear
 						if (_i == ma_list.length - 1) {
 							k_multilinear_calculate_last_one(_i);
-							window.location.reload();
+							
 						} else {
 							k_multilinear_answer(_i);
 						};
