@@ -736,7 +736,9 @@ function ki_calculated() {
 $(function(){
 	$("#button_calculate_k").click(function() {
 		if (get_Active_Method() == 0){
+			
 			K_Calculate_Multiplicative();
+			window.location.reload();
 		}
 	});
 });
