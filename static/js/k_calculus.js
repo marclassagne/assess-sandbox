@@ -70,8 +70,8 @@ $(function() {
 		$("#update_box").hide("slow");
 	});
 
-	$("#update_box").ready(function () {
-		$("#update_box").hide();
+	
+		
 		var NAttri = number_attributes_checked(),
 			assess_session = JSON.parse(localStorage.getItem("assess_session")),
 			NK = assess_session.k_calculus[0].k.length;
@@ -88,7 +88,7 @@ $(function() {
 			$("#update_attributes_plurial").html((NAttri>1 ? "attributes are activated" : "attribute is activated"));
 			
 		
-	});
+	
 });
 
 /// Action from multiplicative/multilinear button
