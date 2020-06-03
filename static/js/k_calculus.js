@@ -901,7 +901,7 @@ function list(){
 						"data": data['data'][num],
 						"min": val_min,
 						"max": val_max,
-						"liste_cord": data['data]'[num]['coord'],
+						"liste_cord": data['data'][num]['coord'],
 						"width": 3,
 						"choice":choice
 					}), function (data2) {
