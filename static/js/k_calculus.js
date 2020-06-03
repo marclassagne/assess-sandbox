@@ -836,10 +836,10 @@ function list(){
 						'</tr>';
 
 		$('#table_attributes').append(text_table);
-		
+		$('#test').append(4);
 		
 		(function(_i) {
-			
+				
 				var name = monAttribut.name;
 			
 				if (monAttribut.type == "Qualitative"){
