@@ -952,7 +952,7 @@ function list(){
 								update_utility(i,data['data'][num][key]);
 							}}
 						};
-					};
+					});
 				});
 			
 			 };
