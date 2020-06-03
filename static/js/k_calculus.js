@@ -876,14 +876,15 @@ function list(){
 				};
 			
 			if (monAttribut.type == "Quantitative"){
-			var json_2_send = {"type": "calc_util", "points":[]},
+			var json_2_send = {"type": "calc_util_multi", "points":[]},
 				val_max=monAttribut.val_max,
 				val_min=monAttribut.val_min,
 				mode = monAttribut.mode,
 				points_dict = monAttribut.questionnaire.points,
 				points=[],
-			    	choice= monAttribut.fonction;
-			
+			    	choice= monAttribut.fonction,
+				num=monAttribut.numero;
+				
 			for (key in points_dict) {
 				points.push([parseFloat(key), parseFloat(points_dict[key])]);
 			};
@@ -896,7 +897,7 @@ function list(){
 				$.post('ajax', JSON.stringify(json_2_send), function (data) {
 					$.post('ajax', JSON.stringify({
 						"type": "svgg",
-						"data": data,
+						"data": data[num],
 						"min": val_min,
 						"max": val_max,
 						"liste_cord": points,
@@ -906,7 +907,7 @@ function list(){
 						
 						$('#charts_' + _i).append('<div>' + data2 + '</div>');
 						
-						for (var key in data) {
+						for (var key in data[num]) {
 							
 							var functions = "";
 							if (key == 'exp') {
