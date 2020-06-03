@@ -95,7 +95,7 @@ $(function() {
 $(function() {
 	///  ACTION FROM BUTTON MULTIPLICATIVE
 	$("#button_multiplicative").click(function () {
-		$("#update_box").hide("slow");
+		
 		update_method_button("multiplicative"); //update the active methode for k_kalculus
 		update_k_list(0);
 		show_list();
