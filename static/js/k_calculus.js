@@ -76,7 +76,7 @@ $(function() {
 		update_k_list(0);
 		show_list();
 		ki_calculated();
-		$("#update_box").hide("slow");
+		
 	});
 
 	
@@ -1031,7 +1031,7 @@ function addTextForm(div, copie, excel, latex) {
 $(function(){
 	
 	$("#button_calculate_utility").click(function() {
-		
+		window.location.reload();
 		
 		
 		$('#utility_function').empty().show();
