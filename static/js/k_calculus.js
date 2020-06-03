@@ -830,7 +830,7 @@ function list(){
 			
 		$('#test2').append(4);
 		
-		(function(_i) {
+		
 				
 				var name = monAttribut.name;
 				$('#test2').append(3);
@@ -859,7 +859,7 @@ function list(){
 				
 							var nvxdico = { "type" :'quali', "a": list_points[k], "name" : name };
 				
-							update_utility(_i, nvxdico);
+							update_utility(i, nvxdico);
 						};
 					};
 				};
@@ -906,14 +906,14 @@ function list(){
 						
 						$('#test2').append(2);
 						for (var key in data['data'][num]) {
-							$('#test2').append(1);
+							
 							
 							if (key == 'exp') {
 								if (choice == 'exponential') {
 								
 								data['data'][num][key]['type']='exp';
 								data['data'][num][key]['name']= name ;
-								update_utility(_i,data['data'][num][key]);
+								update_utility(i,data['data'][num][key]);
 
 							}}
 							else if (key == 'log'){
@@ -921,49 +921,49 @@ function list(){
 								
 								data['data'][num][key]['type']='log';
 								data['data'][num][key]['name']= name ;
-								update_utility(_i,data['data'][num][key]);
+								update_utility(i,data['data'][num][key]);
 							}}
 							else if (key == 'pow'){
 								if (choice == 'power') {
 								
 								data['data'][num][key]['type']='pow';
 								data['data'][num][key]['name']= name ;
-								update_utility(_i,data['data'][num][key]);
+								update_utility(i,data['data'][num][key]);
 							}}
 							else if (key == 'quad'){
 								if (choice == 'quadratic') {
 								
 								data['data'][num][key]['type']='quad';
 								data['data'][num][key]['name']= name ;
-								update_utility(_i,data['data'][num][key]);
+								update_utility(i,data['data'][num][key]);
 							}}
 							else if (key == 'lin'){
 								if (choice == 'linear') {
 								
 								data['data'][num][key]['type']='lin';
 								data['data'][num][key]['name']= name ;
-								update_utility(_i,data['data'][num][key]);
+								update_utility(i,data['data'][num][key]);
 							}}
 							else if (key == 'expo-power'){
 								if (choice == 'exponential-power') {
 								
 								data['data'][num][key]['type']='expo-power';
 								data['data'][num][key]['name']= name ;
-								update_utility(_i,data['data'][num][key]);
+								update_utility(i,data['data'][num][key]);
 							}}
-						}
-					})
+						};
+					});
 				});
-			 } else {
+			 }; else {
 				if(points.length == 0 && monAttribut.checked)
 					$('#test2').append("Please assess a utility function for this attribute");
 				else if(!monAttribut.checked)
 					$('#test2').append("The attribute is inactive");
-			 }
+			 };
 		};
-		})(i);
-	}
-}
+		
+	};
+};
 
 
 
