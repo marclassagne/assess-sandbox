@@ -43,7 +43,7 @@ function update_method_button(type){
 $(function() {
 	$("#not_enough_attributes").hide();
 	$('#utility_function').hide();
-	$('#button_calculate_utility').show();
+	$('#button_generate_list').show();
 	
 	update_method_button("multiplicative"); //update the active methode for k_kalculus
 	update_k_list(0);
