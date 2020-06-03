@@ -1056,7 +1056,7 @@ $(function(){
 			{
 				if(k_utility_multiplicative[i]==null)
 				{
-					alert("Wrong");
+					alert("You must reset your relative attributes");
 					return;
 				}
 			}
@@ -1094,7 +1094,7 @@ $(function(){
 			{
 				if(k_utility_multilinear[i]==null)
 				{
-					alert("Wrong");
+					alert("You must reset your relative attributes");
 					return;
 				}
 			}
