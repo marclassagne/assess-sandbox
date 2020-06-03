@@ -12,6 +12,7 @@
 	  <span id="update_attributes_number"></span> <span id="update_attributes_plurial">attributes are activated</span> but <span id="update_k_number"></span> <span id="update_k_number_plurial">are</span> used for the computation of the K<sub>i</sub>. You need to refresh the list of the K<sub>i</sub>. All the scaling constants’ values will be reset.
 	</div>
 	<div id="test"></div>
+	<div id="test2"></div>
 	<div id="error_message"></div>
 	<div id="message"></div>
 
