@@ -823,8 +823,7 @@ function list(){
 	}
 
 	
-	$('#table_attributes').html("");
-	// We fill the table
+	
 	for (var i=0; i < maList.length; i++){
 
 		var monAttribut=assess_session.attributes[maList[i].ID_attribute],
@@ -908,13 +907,13 @@ function list(){
 						$('#test2').append(2);
 						for (var key in data['data'][num]) {
 							$('#test2').append(1);
-							var functions = "";
+							
 							if (key == 'exp') {
 								if (choice == 'exponential') {
 								
 								data['data'][num][key]['type']='exp';
 								data['data'][num][key]['name']= name ;
-								update_utility(_i,data['data'][num][key] );
+								update_utility(_i,data['data'][num][key]);
 
 							}}
 							else if (key == 'log'){
@@ -922,35 +921,35 @@ function list(){
 								
 								data['data'][num][key]['type']='log';
 								data['data'][num][key]['name']= name ;
-								update_utility(_i,data['data'][num][key] );
+								update_utility(_i,data['data'][num][key]);
 							}}
 							else if (key == 'pow'){
 								if (choice == 'power') {
 								
 								data['data'][num][key]['type']='pow';
 								data['data'][num][key]['name']= name ;
-								update_utility(_i,data['data'][num][key] );
+								update_utility(_i,data['data'][num][key]);
 							}}
 							else if (key == 'quad'){
 								if (choice == 'quadratic') {
 								
 								data['data'][num][key]['type']='quad';
 								data['data'][num][key]['name']= name ;
-								update_utility(_i,data['data'][num][key] );
+								update_utility(_i,data['data'][num][key]);
 							}}
 							else if (key == 'lin'){
 								if (choice == 'linear') {
 								
 								data['data'][num][key]['type']='lin';
 								data['data'][num][key]['name']= name ;
-								update_utility(_i,data['data'][num][key] );
+								update_utility(_i,data['data'][num][key]);
 							}}
 							else if (key == 'expo-power'){
 								if (choice == 'exponential-power') {
 								
 								data['data'][num][key]['type']='expo-power';
 								data['data'][num][key]['name']= name ;
-								update_utility(_i,data['data'][num][key] );
+								update_utility(_i,data['data'][num][key]);
 							}}
 						}
 					})
