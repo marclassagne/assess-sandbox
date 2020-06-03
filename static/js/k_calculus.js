@@ -895,9 +895,9 @@ function list(){
 				
 				
 				if (val_min<0) {
-					for (i in points) {
-						points[i][0]-=val_min;
-						console.log(points[i]);
+					for (j in points) {
+						points[j][0]-=val_min;
+						
 					};
 				}
 				
