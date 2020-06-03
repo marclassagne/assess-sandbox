@@ -650,7 +650,7 @@ function k_multiplicative_answer(i) {
 							$("#k_value_" + i).hide("fast", function () {
 								update_k_list(0);
 								show_list();
-								
+								window.location.reload();
 							});
 
 						}
@@ -817,7 +817,7 @@ $(function(){
 	var k_utility_multiplicative=[];
 	var k_utility_multilinear=[];
 	list();
-	localStorage.setItem("assess_session", JSON.stringify(assess_session));	
+	
 	
 });
 function list(){
