@@ -44,6 +44,7 @@ $(function() {
 	$("#not_enough_attributes").hide();
 	$('#utility_function').hide();
 	$('#button_generate_list').show();
+	$('#k_list').show();
 	
 	update_method_button("multiplicative"); //update the active methode for k_kalculus
 	update_k_list(0);
@@ -61,7 +62,7 @@ $(function() {
 
 	$("#update").click(function () {
 		var assess_session = JSON.parse(localStorage.getItem("assess_session"));
-		
+		$('#k_list').hide;
 		// we delete the general utility functions
 		assess_session.k_calculus[0].GU=null;
 		assess_session.k_calculus[1].GU=null;
