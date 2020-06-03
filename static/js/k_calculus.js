@@ -893,6 +893,14 @@ function list(){
 				points.push([val_min, (mode == "Normal" ? 0 : 1)]);
 				points.push([val_max, (mode == "Normal" ? 1 : 0)]);
 				
+				
+				if (val_min<0) {
+					for (i in points) {
+						points[i][0]-=val_min;
+						console.log(points[i]);
+					};
+				}
+				
 				json_2_send["points"] = points;
 				$('#test2').append(6);
 				$.post('ajax', JSON.stringify(json_2_send), function (data) {
@@ -905,7 +913,7 @@ function list(){
 						"width": 3,
 						"choice":choice
 					}), function (data2) {
-						
+						$('#charts_' + _i).append(data2);
 						
 						$('#test2').append(2);
 						for (var key in data['data'][num]) {
