@@ -731,7 +731,7 @@ function ki_calculated() {
 	}
 	$("#button_generate_list").show();
 	GK_calculated();
-	window.location.reload();
+	
 	
 
 }
@@ -742,6 +742,7 @@ $(function(){
 			
 			
 			K_Calculate_Multiplicative();
+			window.location.reload();
 
 		}
 	});
