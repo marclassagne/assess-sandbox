@@ -828,12 +828,12 @@ function list(){
 
 		var monAttribut=assess_session.attributes[maList[i].ID_attribute],
 			
-		$('#test2').append(4);
+		
 		
 		
 				
 				var name = monAttribut.name;
-				$('#test2').append(3);
+				
 				if (monAttribut.type == "Qualitative"){
 					
 					var val_min = monAttribut.val_min,
@@ -952,13 +952,9 @@ function list(){
 								update_utility(i,data['data'][num][key]);
 							}}
 						};
-					});
+					};
 				});
-			 }; else {
-				if(points.length == 0 && monAttribut.checked)
-					$('#test2').append("Please assess a utility function for this attribute");
-				else if(!monAttribut.checked)
-					$('#test2').append("The attribute is inactive");
+			
 			 };
 		};
 		
