@@ -43,7 +43,12 @@ function update_method_button(type){
 $(function() {
 	$("#not_enough_attributes").hide();
 	$('#utility_function').hide();
+	update_method_button("multiplicative"); //update the active methode for k_kalculus
+	update_k_list(0);
+	show_list();
 	$("#K_computation").show();
+	$('#table_attributes').html("");
+	ki_calculated();
 	var counter = number_attributes_checked();
 	
 	if (counter < 2) {
