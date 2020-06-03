@@ -828,14 +828,7 @@ function list(){
 	for (var i=0; i < maList.length; i++){
 
 		var monAttribut=assess_session.attributes[maList[i].ID_attribute],
-			text_table = '<tr>'+
-						'<td>K' + maList[i].ID + '</td>'+
-						'<td>'+ monAttribut.name + '</td>'+
-						'<td id="charts_'+i+'"></td>'+
-						'<td id="functions_'+i+'"></td>'+
-						'</tr>';
-
-		$('#table_attributes').append(text_table);
+			
 		$('#test2').append(4);
 		
 		(function(_i) {
@@ -863,14 +856,11 @@ function list(){
 				
 				
 													
-							$('#table_info'+_i).append('<tr><td id="choix'+_i+'numero'+k+'"></td><td id="value'+_i+'numero'+k+'"></td><td id="utility'+_i+'numero'+k+'"></td></tr>');
-							$('#choix'+_i+'numero'+k).append('<input type="radio" name="radio_'+_i+'" id="checkbox_'+_i+'numero'+k+'">');
-							$('#value'+_i+'numero'+k).append(list_names[k]);
-							$('#utility'+_i+'numero'+k).append(list_points[k]);
+							
 				
 							nvxdico = { "type" :'quali', "a": list_points[k], "name" : name };
 				
-							(function(_data){$('#checkbox_'+_i+'numero'+k).click(function(){update_utility(_i, _data)});})(nvxdico);
+							update_utility(_i, nvxdico);
 						};
 					};
 				};
@@ -913,7 +903,7 @@ function list(){
 						"width": 3,
 						"choice":choice
 					}), function (data2) {
-						$('#charts_' + _i).append(data2);
+						
 						
 						$('#test2').append(2);
 						for (var key in data['data'][num]) {
@@ -921,62 +911,52 @@ function list(){
 							var functions = "";
 							if (key == 'exp') {
 								if (choice == 'exponential') {
-								functions= '<label style="color:#401539"><input type="radio" name="radio_'+_i+'" id="checkbox_'+_i+'_exp"> Exponential (' + Math.round(data['data'][num][key]['r2'] * 100) / 100 + ')</label><br/>';
-								$('#functions_' + _i).append(functions);
+								
 								data['data'][num][key]['type']='exp';
 								data['data'][num][key]['name']= name ;
-								(function(_data){$('#checkbox_'+_i+'_exp').click(function(){update_utility(_i, _data)});})(data['data'][num][key]);
+								update_utility(_i,data['data'][num][key] );
 
 							}}
 							else if (key == 'log'){
 								if (choice == 'logarithmic') {
-								functions='<label style="color:#D9585A"><input type="radio" name="radio_'+_i+'" id="checkbox_'+_i+'_log"> Logarithmic (' + Math.round(data['data'][num][key]['r2'] * 100) / 100 + ')</label><br/>';
-								$('#functions_' + _i).append(functions);
+								
 								data['data'][num][key]['type']='log';
 								data['data'][num][key]['name']= name ;
-								(function(_data){$('#checkbox_'+_i+'_log').click(function(){update_utility(_i, _data)});})(data['data'][num][key]);
+								update_utility(_i,data['data'][num][key] );
 							}}
 							else if (key == 'pow'){
 								if (choice == 'power') {
-								functions='<label style="color:#6DA63C"><input type="radio" name="radio_'+_i+'" id="checkbox_'+_i+'_pow"> Power (' + Math.round(data['data'][num][key]['r2'] * 100) / 100 + ')</label><br/>';
-								$('#functions_' + _i).append(functions);
+								
 								data['data'][num][key]['type']='pow';
 								data['data'][num][key]['name']= name ;
-								(function(_data){$('#checkbox_'+_i+'_pow').click(function(){update_utility(_i, _data)});})(data['data'][num][key]);
+								update_utility(_i,data['data'][num][key] );
 							}}
 							else if (key == 'quad'){
 								if (choice == 'quadratic') {
-								functions='<label style="color:#458C8C"><input type="radio" name="radio_'+_i+'" id="checkbox_'+_i+'_quad"> Quadratic (' + Math.round(data['data'][num][key]['r2'] * 100) / 100 + ')</label><br/>';
-								$('#functions_' + _i).append(functions);
+								
 								data['data'][num][key]['type']='quad';
 								data['data'][num][key]['name']= name ;
-								(function(_data){$('#checkbox_'+_i+'_quad').click(function(){update_utility(_i, _data)});})(data['data'][num][key]);
+								update_utility(_i,data['data'][num][key] );
 							}}
 							else if (key == 'lin'){
 								if (choice == 'linear') {
-								functions='<label style="color:#D9B504"><input type="radio" name="radio_'+_i+'" id="checkbox_'+_i+'_lin"> Linear (' + Math.round(data['data'][num][key]['r2'] * 100) / 100 + ')</label><br/>';
-								$('#functions_' + _i).append(functions);
+								
 								data['data'][num][key]['type']='lin';
 								data['data'][num][key]['name']= name ;
-								(function(_data){$('#checkbox_'+_i+'_lin').click(function(){update_utility(_i, _data)});})(data['data'][num][key]);
+								update_utility(_i,data['data'][num][key] );
 							}}
 							else if (key == 'expo-power'){
 								if (choice == 'exponential-power') {
-								functions='<label style="color:#26C4EC"><input type="radio" name="radio_'+_i+'" id="checkbox_'+_i+'_expo-power"> Expo-Power (' + Math.round(data['data'][num][key]['r2'] * 100) / 100 + ')</label><br/>';
-								$('#functions_' + _i).append(functions);
+								
 								data['data'][num][key]['type']='expo-power';
 								data['data'][num][key]['name']= name ;
-								(function(_data){$('#checkbox_'+_i+'_expo-power').click(function(){update_utility(_i, _data)});})(data['data'][num][key]);
+								update_utility(_i,data['data'][num][key] );
 							}}
 						}
 					})
 				});
-			} else {
-				if(points.length == 0 && monAttribut.checked)
-					$('#charts_' + _i).append("Please assess a utility function for this attribute");
-				else if(!monAttribut.checked)
-					$('#charts_' + _i).append("The attribute is inactive");
-			}
+			} 
+			
 		};
 		})(i);
 	}
