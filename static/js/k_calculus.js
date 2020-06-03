@@ -76,7 +76,7 @@ $(function() {
 			assess_session = JSON.parse(localStorage.getItem("assess_session")),
 			NK = assess_session.k_calculus[0].k.length;
 			
-		if (NAttri != NK) { //If we have different attribute number used and attribute number active we show the update box
+		
 			$("#update_box").show("slow");
 			
 		// 	  <span id="update_attributes_number"></span>
@@ -84,11 +84,10 @@ $(function() {
 		//    <span id="update_k_number"></span> 
 		//    <span id="update_k_number_plurial">are</span> used for the computation of the K<sub>i</sub> [...]
 
-			$("#update_attributes_number").html(NAttri);
+			$("#message_box").append(NAttri);
 			$("#update_attributes_plurial").html((NAttri>1 ? "attributes are activated" : "attribute is activated"));
-			$("#update_k_number").html(NK);
-			$("#update_k_number_plurial").html((NK>1 ? "are" : "is")); 
-		}
+			
+		
 	});
 });
 
