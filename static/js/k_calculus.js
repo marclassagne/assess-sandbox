@@ -1031,6 +1031,164 @@ function addTextForm(div, copie, excel, latex) {
 $(function(){
 
 	$("#button_calculate_utility").click(function() {
+		
+		var assess_session = JSON.parse(localStorage.getItem("assess_session"));
+
+	k_utility_multilinear=[];
+	k_utility_multiplicative=[];
+
+	//list of K with corresponding attribute:
+
+	var maList=assess_session.k_calculus[get_Active_Method()].k;
+	
+	for(var i=0; i<assess_session.k_calculus[0].k.length; i++) {
+		k_utility_multiplicative.push(null);
+		k_utility_multilinear.push(null);
+	}
+
+	
+	
+	for (var i=0; i < maList.length; i++){
+
+		var monAttribut=assess_session.attributes[maList[i].ID_attribute];
+			
+		
+		(function(_i) {
+		
+		
+				
+				var name = monAttribut.name;
+				
+				if (monAttribut.type == "Qualitative"){
+					
+					var val_min = monAttribut.val_min,
+						val_max = monAttribut.val_max,
+						val_med = monAttribut.val_med,
+						list_names = [].concat(val_min, val_med, val_max),
+						points = monAttribut.questionnaire.points,
+						list_points = [];
+					
+					if (monAttribut.checked){
+						points[val_min] = 0; 
+						points[val_max] = 1; 
+						for (var ii=0; ii<list_names.length; ii++) {
+							list_points.push(points[list_names[ii]]);
+						};
+					
+						for (var k = 0; k < list_points.length; k++){
+				
+				
+				
+													
+							
+				
+							var nvxdico = { "type" :'quali', "a": list_points[k], "name" : name };
+				
+							update_utility(_i, nvxdico);
+						};
+					};
+				};
+			
+			if (monAttribut.type == "Quantitative"){
+			var json_2_send = {"type": "calc_util_multi", "points":[]},
+				val_max=monAttribut.val_max,
+				val_min=monAttribut.val_min,
+				mode = monAttribut.mode,
+				points_dict = monAttribut.questionnaire.points,
+				points=[],
+			    	choice= monAttribut.fonction,
+				num=monAttribut.numero;
+				
+			for (key in points_dict) {
+				points.push([parseFloat(key), parseFloat(points_dict[key])]);
+			};
+			
+			if (points.length > 0 && monAttribut.checked) {
+				points.push([val_min, (mode == "Normal" ? 0 : 1)]);
+				points.push([val_max, (mode == "Normal" ? 1 : 0)]);
+				
+				
+				if (val_min<0) {
+					for (j in points) {
+						points[j][0]-=val_min;
+						
+					};
+				}
+				
+				json_2_send["points"] = points;
+				
+				$.post('ajax', JSON.stringify(json_2_send), function (data) {
+					$.post('ajax', JSON.stringify({
+						"type": "svgg",
+						"data": data['data'][num],
+						"min": val_min,
+						"max": val_max,
+						"liste_cord": data['data'][num]['coord'],
+						"width": 3,
+						"choice":choice
+					}), function (data2) {
+						
+						
+						
+						for (var key in data['data'][num]) {
+							
+							
+							if (key == 'exp') {
+								if (choice == 'exponential') {
+								
+								data['data'][num][key]['type']='exp';
+								data['data'][num][key]['name']= name ;
+								update_utility(_i,data['data'][num][key]);
+
+							}}
+							else if (key == 'log'){
+								if (choice == 'logarithmic') {
+							
+								data['data'][num][key]['type']='log';
+								data['data'][num][key]['name']= name ;
+								update_utility(_i,data['data'][num][key]);
+								
+							}}
+							else if (key == 'pow'){
+								if (choice == 'power') {
+								
+								data['data'][num][key]['type']='pow';
+								data['data'][num][key]['name']= name ;
+								update_utility(_i,data['data'][num][key]);
+							}}
+							else if (key == 'quad'){
+								if (choice == 'quadratic') {
+								
+								data['data'][num][key]['type']='quad';
+								data['data'][num][key]['name']= name ;
+								update_utility(_i,data['data'][num][key]);
+							}}
+							else if (key == 'lin'){
+								if (choice == 'linear') {
+								
+								data['data'][num][key]['type']='lin';
+								data['data'][num][key]['name']= name ;
+								update_utility(_i,data['data'][num][key]);
+							}}
+							else if (key == 'expo-power'){
+								if (choice == 'exponential-power') {
+								
+								data['data'][num][key]['type']='expo-power';
+								data['data'][num][key]['name']= name ;
+								update_utility(_i,data['data'][num][key]);
+							}}
+						};
+					});
+				});
+			
+			 };
+		};
+		})(i);
+	};
+		
+		
+		
+		
 		$('#utility_function').empty().show();
 		var assess_session = JSON.parse(localStorage.getItem("assess_session"));
 		if(get_Active_Method()==0)//multiplicative
