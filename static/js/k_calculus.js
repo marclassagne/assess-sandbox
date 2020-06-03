@@ -906,7 +906,7 @@ function list(){
 					}), function (data2) {
 						
 						$('#charts_' + _i).append('<div>' + data2 + '</div>');
-						$('#test').append(2);
+						$('#test2').append(2);
 						for (var key in data[num]) {
 							$('#test2').append(1);
 							var functions = "";
