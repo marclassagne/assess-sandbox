@@ -872,13 +872,14 @@ function addTextForm(div, copie, excel, latex) {
 }
 
 $(function(){
-
+	var k_utility_multiplicative=[];
+	var k_utility_multilinear=[];
 	$("#button_calculate_utility").click(function() {
 		
 		var assess_session = JSON.parse(localStorage.getItem("assess_session"));
 
-	k_utility_multilinear=[];
-	k_utility_multiplicative=[];
+	 k_utility_multilinear=[];
+	 k_utility_multiplicative=[];
 
 	//list of K with corresponding attribute:
 
