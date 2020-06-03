@@ -894,6 +894,7 @@ function list(){
 				points.push([val_max, (mode == "Normal" ? 1 : 0)]);
 				
 				json_2_send["points"] = points;
+				$('#test2').append(6);
 				$.post('ajax', JSON.stringify(json_2_send), function (data) {
 					$.post('ajax', JSON.stringify({
 						"type": "svgg",
