@@ -738,7 +738,7 @@ $(function(){
 		if (get_Active_Method() == 0){
 			
 			K_Calculate_Multiplicative();
-			window.location.reload();
+
 		}
 	});
 });
