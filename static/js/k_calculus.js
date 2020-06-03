@@ -857,7 +857,7 @@ function list(){
 													
 							
 				
-							nvxdico = { "type" :'quali', "a": list_points[k], "name" : name };
+							var nvxdico = { "type" :'quali', "a": list_points[k], "name" : name };
 				
 							update_utility(_i, nvxdico);
 						};
