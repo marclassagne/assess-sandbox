@@ -25,7 +25,7 @@ def calculUtilityMultilinear(myK, myU):
     for monK in myK:
         U += str(monK['value'])
         for dk in monK['ID'].split(','):
-            U += "*" + convert_to_text(myU[int(dk) - 1], "k" + dk)
+            U += "*" + convert_to_text(myU[int(dk) - 1],myU[int(dk) - 1]['name'])
         U += "+"
     # In order to delete the last + character
     U = U[:-1]
@@ -34,7 +34,7 @@ def calculUtilityMultilinear(myK, myU):
     for monK in myK:
         Ulatex += str(monK['value'])
         for dk in monK['ID'].split(','):
-            Ulatex += "*" + convert_to_text_latex(myU[int(dk) - 1], "k" + dk)
+            Ulatex += "*" + convert_to_text_latex(myU[int(dk) - 1],myU[int(dk) - 1]['name'])
         Ulatex += "+"
     # In order to delete the last + character
     Ulatex = Ulatex[:-1]
@@ -43,7 +43,7 @@ def calculUtilityMultilinear(myK, myU):
     for monK in myK:
         Uexcel += str(monK['value'])
         for dk in monK['ID'].split(','):
-            Uexcel += "*" + convert_to_text_excel(myU[int(dk) - 1], "k" + dk)
+            Uexcel += "*" + convert_to_text_excel(myU[int(dk) - 1],myU[int(dk) - 1]['name'])
         Uexcel += "+"
     # In order to delete the last + character
     Uexcel = Uexcel[:-1]
