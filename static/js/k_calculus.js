@@ -836,12 +836,12 @@ function list(){
 						'</tr>';
 
 		$('#table_attributes').append(text_table);
-		$('#test').append(4);
+		$('#test2').append(4);
 		
 		(function(_i) {
 				
 				var name = monAttribut.name;
-			
+				$('#test2').append(3);
 				if (monAttribut.type == "Qualitative"){
 					
 					var val_min = monAttribut.val_min,
@@ -906,9 +906,9 @@ function list(){
 					}), function (data2) {
 						
 						$('#charts_' + _i).append('<div>' + data2 + '</div>');
-						$('#test').append(1);
+						$('#test').append(2);
 						for (var key in data[num]) {
-							
+							$('#test2').append(1);
 							var functions = "";
 							if (key == 'exp') {
 								if (choice == 'exponential') {
