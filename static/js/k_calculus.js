@@ -800,10 +800,10 @@ var k_utility_multilinear=[],
 	k_utility_multiplicative=[];
 
 $(function(){
-	$("#button_generate_list").click(function() {
+	
 			list();
 			$("#button_generate_list").hide();
-	});
+	
 });
 
 
