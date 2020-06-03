@@ -807,76 +807,14 @@ function K_Calculate_Multiplicative() {
 
 
 $(function(){
-	
-			
+	var k_utility_multiplicative=[];
+	var k_utility_multilinear=[];
+			list();
 			$("#button_generate_list").hide();
 	
 });
-
-
-
-
-function update_utility(i, data){
-	if(get_Active_Method()==0){  //multiplicative
-		k_utility_multiplicative[i]=data;
-	} else {
-		k_utility_multilinear[i]=data;
-	}
-}
-
-function addTextForm(div, copie, excel, latex) {
-
-	// if (settings.language=="french") {
-	// 	excel=excel.replace(/\./gi,",");
-	// }
-
-	var copy_button_dpl = $('<button class="btn functions_text_form" id="btn_dpl" data-clipboard-text="' + copie + '" title="Click to copy me.">Copy to clipboard (DPL format)</button>');
-	var copy_button_excel = $('<button class="btn functions_text_form" id= "btn_excel" data-clipboard-text="' + excel + '" title="Click to copy me.">Copy to clipboard (Excel format)</button>');
-	var copy_button_latex = $('<button class="btn functions_text_form" id= "btn_latex" data-clipboard-text="' + latex + '" title="Click to copy me.">Copy to clipboard (LaTeX format)</button>');
-
-	div.html('')
-	div.append("<div><pre>"+copie+"</pre></div>"); // we write the formula. AT THIS POINT, THE TEXT IS UGLY, LET'S TRY TO WRITE IT BETTER
-	
-	div.append(copy_button_dpl);
-	div.append("<br /><br /><br /><br />");
-	//div.append("<div><pre>"+excel+"</pre></div>")
-	div.append(copy_button_excel);
-	div.append("<br /><br /><br /><br />");
-	// div.append("<div><pre>"+latex+"</pre></div>")
-	div.append(copy_button_latex);
-
-
-	var client = new Clipboard("#btn_dpl");
-	client.on("success", function(event) {
-		copy_button_dpl.text("Done !");
-		setTimeout(function() {
-			copy_button_dpl.text("Copy to clipboard (DPL format)");
-		}, 2000);
-	});
-
-	var client = new Clipboard("#btn_excel");
-	client.on("success", function(event) {
-		copy_button_excel.text("Done !");
-		setTimeout(function() {
-			copy_button_excel.text("Copy to clipboard (Excel format)");
-		}, 2000);
-	});
-
-	var client = new Clipboard("#btn_latex");
-	client.on("success", function(event) {
-		copy_button_latex.text("Done !");
-		setTimeout(function() {
-			copy_button_latex.text("Copy to clipboard (LaTeX format)");
-		}, 2000);
-	});
-}
-
-$(function(){
-	var k_utility_multiplicative=[];
-	var k_utility_multilinear=[];
-	$("#button_calculate_utility").click(function() {
-		
-		var assess_session = JSON.parse(localStorage.getItem("assess_session"));
+function list(){
+var assess_session = JSON.parse(localStorage.getItem("assess_session"));
 
 	 k_utility_multilinear=[];
 	 k_utility_multiplicative=[];
@@ -1030,6 +968,68 @@ $(function(){
 		})(i);
 	};
 		
+};	
+		
+
+
+function update_utility(i, data){
+	if(get_Active_Method()==0){  //multiplicative
+		k_utility_multiplicative[i]=data;
+	} else {
+		k_utility_multilinear[i]=data;
+	}
+}
+
+function addTextForm(div, copie, excel, latex) {
+
+	// if (settings.language=="french") {
+	// 	excel=excel.replace(/\./gi,",");
+	// }
+
+	var copy_button_dpl = $('<button class="btn functions_text_form" id="btn_dpl" data-clipboard-text="' + copie + '" title="Click to copy me.">Copy to clipboard (DPL format)</button>');
+	var copy_button_excel = $('<button class="btn functions_text_form" id= "btn_excel" data-clipboard-text="' + excel + '" title="Click to copy me.">Copy to clipboard (Excel format)</button>');
+	var copy_button_latex = $('<button class="btn functions_text_form" id= "btn_latex" data-clipboard-text="' + latex + '" title="Click to copy me.">Copy to clipboard (LaTeX format)</button>');
+
+	div.html('')
+	div.append("<div><pre>"+copie+"</pre></div>"); // we write the formula. AT THIS POINT, THE TEXT IS UGLY, LET'S TRY TO WRITE IT BETTER
+	
+	div.append(copy_button_dpl);
+	div.append("<br /><br /><br /><br />");
+	//div.append("<div><pre>"+excel+"</pre></div>")
+	div.append(copy_button_excel);
+	div.append("<br /><br /><br /><br />");
+	// div.append("<div><pre>"+latex+"</pre></div>")
+	div.append(copy_button_latex);
+
+
+	var client = new Clipboard("#btn_dpl");
+	client.on("success", function(event) {
+		copy_button_dpl.text("Done !");
+		setTimeout(function() {
+			copy_button_dpl.text("Copy to clipboard (DPL format)");
+		}, 2000);
+	});
+
+	var client = new Clipboard("#btn_excel");
+	client.on("success", function(event) {
+		copy_button_excel.text("Done !");
+		setTimeout(function() {
+			copy_button_excel.text("Copy to clipboard (Excel format)");
+		}, 2000);
+	});
+
+	var client = new Clipboard("#btn_latex");
+	client.on("success", function(event) {
+		copy_button_latex.text("Done !");
+		setTimeout(function() {
+			copy_button_latex.text("Copy to clipboard (LaTeX format)");
+		}, 2000);
+	});
+}
+
+$(function(){
+	
+	$("#button_calculate_utility").click(function() {
 		
 		
 		
