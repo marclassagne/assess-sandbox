@@ -1023,6 +1023,7 @@ function addTextForm(div, copie, excel, latex) {
 $(function(){
 
 	$("#button_calculate_utility").click(function() {
+		$('#utility_function').empty().show();
 		var assess_session = JSON.parse(localStorage.getItem("assess_session"));
 		if(get_Active_Method()==0)//multiplicative
 		{
@@ -1096,8 +1097,11 @@ $(function(){
 				}, 1000);
 			});
 		}
+		$('#utility_function').hide();
 
 	});
+	
+	
 });
 
 
