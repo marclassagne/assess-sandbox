@@ -907,11 +907,11 @@ function list(){
 						
 						
 						for (var key in data['data'][num]) {
-							$('#test2').append(7);
+							
 							
 							if (key == 'exp') {
 								if (choice == 'exponential') {
-								$('#test2').append(6);
+								
 								data['data'][num][key]['type']='exp';
 								data['data'][num][key]['name']= name ;
 								update_utility(_i,data['data'][num][key]);
@@ -919,7 +919,7 @@ function list(){
 							}}
 							else if (key == 'log'){
 								if (choice == 'logarithmic') {
-								$('#test2').append(5);
+							
 								data['data'][num][key]['type']='log';
 								data['data'][num][key]['name']= name ;
 								update_utility(_i,data['data'][num][key]);
@@ -927,28 +927,28 @@ function list(){
 							}}
 							else if (key == 'pow'){
 								if (choice == 'power') {
-								$('#test2').append(4);
+								
 								data['data'][num][key]['type']='pow';
 								data['data'][num][key]['name']= name ;
 								update_utility(_i,data['data'][num][key]);
 							}}
 							else if (key == 'quad'){
 								if (choice == 'quadratic') {
-								$('#test2').append(3);
+								
 								data['data'][num][key]['type']='quad';
 								data['data'][num][key]['name']= name ;
 								update_utility(_i,data['data'][num][key]);
 							}}
 							else if (key == 'lin'){
 								if (choice == 'linear') {
-								$('#test2').append(2);
+								
 								data['data'][num][key]['type']='lin';
 								data['data'][num][key]['name']= name ;
 								update_utility(_i,data['data'][num][key]);
 							}}
 							else if (key == 'expo-power'){
 								if (choice == 'exponential-power') {
-								$('#test2').append(1);
+								
 								data['data'][num][key]['type']='expo-power';
 								data['data'][num][key]['name']= name ;
 								update_utility(_i,data['data'][num][key]);
