@@ -902,7 +902,7 @@ function list(){
 						"width": 3,
 						"choice":choice
 					}), function (data2) {
-						
+						$('#test2').append(7);
 						
 						
 						for (var key in data['data'][num]) {
