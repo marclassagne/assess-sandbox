@@ -843,7 +843,7 @@ function list(){
 						list_names = [].concat(val_min, val_med, val_max),
 						points = monAttribut.questionnaire.points,
 						list_points = [];
-					$('#functions_' + _i).append('<table class="table"><thead><tr><th>choix</th><th>value</th><th>utility</th></tr></thead><tbody id="table_info'+_i+'"></tbody></table>');
+					
 					if (monAttribut.checked){
 						points[val_min] = 0; 
 						points[val_max] = 1; 
