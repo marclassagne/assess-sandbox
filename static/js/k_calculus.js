@@ -518,6 +518,7 @@ function k_multilinear_calculate_last_one(i){
 	$("#k_value_"+i).hide( "fast",function(){
 		update_k_list(1);
 		show_list();
+		
 	});
 }
 
@@ -728,6 +729,7 @@ function ki_calculated() {
 	}
 	$("#button_generate_list").show();
 	GK_calculated();
+	window.location.reload();
 
 }
 
@@ -1031,7 +1033,7 @@ function addTextForm(div, copie, excel, latex) {
 $(function(){
 	
 	$("#button_calculate_utility").click(function() {
-		window.location.reload();
+		
 		
 		
 		$('#utility_function').empty().show();
