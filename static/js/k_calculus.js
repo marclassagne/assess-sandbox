@@ -42,7 +42,7 @@ function update_method_button(type){
 ///  Action from Update button
 $(function() {
 	$("#not_enough_attributes").hide();
-
+	$('#utility_function').hide();
 	var counter = number_attributes_checked();
 	
 	if (counter < 2) {
@@ -1097,7 +1097,7 @@ $(function(){
 				}, 1000);
 			});
 		}
-		$('#utility_function').hide();
+		
 
 	});
 	
