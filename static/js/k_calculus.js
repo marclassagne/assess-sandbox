@@ -76,6 +76,7 @@ $(function() {
 		update_k_list(0);
 		show_list();
 		ki_calculated();
+		window.location.reload();
 		
 	});
 
@@ -742,7 +743,7 @@ $(function(){
 			
 			
 			K_Calculate_Multiplicative();
-			window.location.reload();
+			
 
 		}
 	});
