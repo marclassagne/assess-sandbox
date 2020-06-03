@@ -15,7 +15,7 @@
 	<div id="error_message"></div>
 	<div id="message"></div>
 	<div id="test2"></div>
-	<div id="test></div>
+	
 	<div id="button_method" style="text-align:center;">
 		<button type="button" class="btn btn-default btn-lg" id="button_multiplicative">Multiplicative</button>
 		<button type="button" class="btn btn-default btn-lg" id="button_multilinear">Multilinear</button>
