@@ -736,6 +736,7 @@ function ki_calculated() {
 $(function(){
 	$("#button_calculate_k").click(function() {
 		if (get_Active_Method() == 0){
+			window.location.reload();
 			
 			K_Calculate_Multiplicative();
 
