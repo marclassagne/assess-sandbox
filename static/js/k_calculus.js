@@ -1030,7 +1030,7 @@ function addTextForm(div, copie, excel, latex) {
 $(function(){
 	
 	$("#button_calculate_utility").click(function() {
-		list();
+		
 		
 		
 		$('#utility_function').empty().show();
