@@ -914,50 +914,50 @@ function list(){
 								if (choice == 'exponential') {
 								functions= '<label style="color:#401539"><input type="radio" name="radio_'+_i+'" id="checkbox_'+_i+'_exp"> Exponential (' + Math.round(data[key]['r2'] * 100) / 100 + ')</label><br/>';
 								$('#functions_' + _i).append(functions);
-								data[key]['type']='exp';
-								data[key]['name']= name ;
-								(function(_data){$('#checkbox_'+_i+'_exp').click(function(){update_utility(_i, _data)});})(data[key]);
+								data[num][key]['type']='exp';
+								data[num][key]['name']= name ;
+								(function(_data){$('#checkbox_'+_i+'_exp').click(function(){update_utility(_i, _data)});})(data[num][key]);
 
 							}}
 							else if (key == 'log'){
 								if (choice == 'logarithmic') {
 								functions='<label style="color:#D9585A"><input type="radio" name="radio_'+_i+'" id="checkbox_'+_i+'_log"> Logarithmic (' + Math.round(data[key]['r2'] * 100) / 100 + ')</label><br/>';
 								$('#functions_' + _i).append(functions);
-								data[key]['type']='log';
-								data[key]['name']= name ;
-								(function(_data){$('#checkbox_'+_i+'_log').click(function(){update_utility(_i, _data)});})(data[key]);
+								data[num][key]['type']='log';
+								data[num][key]['name']= name ;
+								(function(_data){$('#checkbox_'+_i+'_log').click(function(){update_utility(_i, _data)});})(data[num][key]);
 							}}
 							else if (key == 'pow'){
 								if (choice == 'power') {
 								functions='<label style="color:#6DA63C"><input type="radio" name="radio_'+_i+'" id="checkbox_'+_i+'_pow"> Power (' + Math.round(data[key]['r2'] * 100) / 100 + ')</label><br/>';
 								$('#functions_' + _i).append(functions);
-								data[key]['type']='pow';
-								data[key]['name']= name ;
-								(function(_data){$('#checkbox_'+_i+'_pow').click(function(){update_utility(_i, _data)});})(data[key]);
+								data[num][key]['type']='pow';
+								data[num][key]['name']= name ;
+								(function(_data){$('#checkbox_'+_i+'_pow').click(function(){update_utility(_i, _data)});})(data[num][key]);
 							}}
 							else if (key == 'quad'){
 								if (choice == 'quadratic') {
 								functions='<label style="color:#458C8C"><input type="radio" name="radio_'+_i+'" id="checkbox_'+_i+'_quad"> Quadratic (' + Math.round(data[key]['r2'] * 100) / 100 + ')</label><br/>';
 								$('#functions_' + _i).append(functions);
-								data[key]['type']='quad';
-								data[key]['name']= name ;
-								(function(_data){$('#checkbox_'+_i+'_quad').click(function(){update_utility(_i, _data)});})(data[key]);
+								data[num][key]['type']='quad';
+								data[num][key]['name']= name ;
+								(function(_data){$('#checkbox_'+_i+'_quad').click(function(){update_utility(_i, _data)});})(data[num][key]);
 							}}
 							else if (key == 'lin'){
 								if (choice == 'linear') {
 								functions='<label style="color:#D9B504"><input type="radio" name="radio_'+_i+'" id="checkbox_'+_i+'_lin"> Linear (' + Math.round(data[key]['r2'] * 100) / 100 + ')</label><br/>';
 								$('#functions_' + _i).append(functions);
-								data[key]['type']='lin';
-								data[key]['name']= name ;
-								(function(_data){$('#checkbox_'+_i+'_lin').click(function(){update_utility(_i, _data)});})(data[key]);
+								data[num][key]['type']='lin';
+								data[num][key]['name']= name ;
+								(function(_data){$('#checkbox_'+_i+'_lin').click(function(){update_utility(_i, _data)});})(data[num][key]);
 							}}
 							else if (key == 'expo-power'){
 								if (choice == 'exponential-power') {
 								functions='<label style="color:#26C4EC"><input type="radio" name="radio_'+_i+'" id="checkbox_'+_i+'_expo-power"> Expo-Power (' + Math.round(data[key]['r2'] * 100) / 100 + ')</label><br/>';
 								$('#functions_' + _i).append(functions);
-								data[key]['type']='expo-power';
-								data[key]['name']= name ;
-								(function(_data){$('#checkbox_'+_i+'_expo-power').click(function(){update_utility(_i, _data)});})(data[key]);
+								data[num][key]['type']='expo-power';
+								data[num][key]['name']= name ;
+								(function(_data){$('#checkbox_'+_i+'_expo-power').click(function(){update_utility(_i, _data)});})(data[num][key]);
 							}}
 						}
 					})
