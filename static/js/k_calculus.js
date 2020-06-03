@@ -913,7 +913,7 @@ function list(){
 							var functions = "";
 							if (key == 'exp') {
 								if (choice == 'exponential') {
-								functions= '<label style="color:#401539"><input type="radio" name="radio_'+_i+'" id="checkbox_'+_i+'_exp"> Exponential (' + Math.round(data[key]['r2'] * 100) / 100 + ')</label><br/>';
+								functions= '<label style="color:#401539"><input type="radio" name="radio_'+_i+'" id="checkbox_'+_i+'_exp"> Exponential (' + Math.round(data['data'][num][key]['r2'] * 100) / 100 + ')</label><br/>';
 								$('#functions_' + _i).append(functions);
 								data['data'][num][key]['type']='exp';
 								data['data'][num][key]['name']= name ;
@@ -922,7 +922,7 @@ function list(){
 							}}
 							else if (key == 'log'){
 								if (choice == 'logarithmic') {
-								functions='<label style="color:#D9585A"><input type="radio" name="radio_'+_i+'" id="checkbox_'+_i+'_log"> Logarithmic (' + Math.round(data[key]['r2'] * 100) / 100 + ')</label><br/>';
+								functions='<label style="color:#D9585A"><input type="radio" name="radio_'+_i+'" id="checkbox_'+_i+'_log"> Logarithmic (' + Math.round(data['data'][num][key]['r2'] * 100) / 100 + ')</label><br/>';
 								$('#functions_' + _i).append(functions);
 								data['data'][num][key]['type']='log';
 								data['data'][num][key]['name']= name ;
@@ -930,7 +930,7 @@ function list(){
 							}}
 							else if (key == 'pow'){
 								if (choice == 'power') {
-								functions='<label style="color:#6DA63C"><input type="radio" name="radio_'+_i+'" id="checkbox_'+_i+'_pow"> Power (' + Math.round(data[key]['r2'] * 100) / 100 + ')</label><br/>';
+								functions='<label style="color:#6DA63C"><input type="radio" name="radio_'+_i+'" id="checkbox_'+_i+'_pow"> Power (' + Math.round(data['data'][num][key]['r2'] * 100) / 100 + ')</label><br/>';
 								$('#functions_' + _i).append(functions);
 								data['data'][num][key]['type']='pow';
 								data['data'][num][key]['name']= name ;
@@ -938,7 +938,7 @@ function list(){
 							}}
 							else if (key == 'quad'){
 								if (choice == 'quadratic') {
-								functions='<label style="color:#458C8C"><input type="radio" name="radio_'+_i+'" id="checkbox_'+_i+'_quad"> Quadratic (' + Math.round(data[key]['r2'] * 100) / 100 + ')</label><br/>';
+								functions='<label style="color:#458C8C"><input type="radio" name="radio_'+_i+'" id="checkbox_'+_i+'_quad"> Quadratic (' + Math.round(data['data'][num][key]['r2'] * 100) / 100 + ')</label><br/>';
 								$('#functions_' + _i).append(functions);
 								data['data'][num][key]['type']='quad';
 								data['data'][num][key]['name']= name ;
@@ -946,7 +946,7 @@ function list(){
 							}}
 							else if (key == 'lin'){
 								if (choice == 'linear') {
-								functions='<label style="color:#D9B504"><input type="radio" name="radio_'+_i+'" id="checkbox_'+_i+'_lin"> Linear (' + Math.round(data[key]['r2'] * 100) / 100 + ')</label><br/>';
+								functions='<label style="color:#D9B504"><input type="radio" name="radio_'+_i+'" id="checkbox_'+_i+'_lin"> Linear (' + Math.round(data['data'][num][key]['r2'] * 100) / 100 + ')</label><br/>';
 								$('#functions_' + _i).append(functions);
 								data['data'][num][key]['type']='lin';
 								data['data'][num][key]['name']= name ;
@@ -954,7 +954,7 @@ function list(){
 							}}
 							else if (key == 'expo-power'){
 								if (choice == 'exponential-power') {
-								functions='<label style="color:#26C4EC"><input type="radio" name="radio_'+_i+'" id="checkbox_'+_i+'_expo-power"> Expo-Power (' + Math.round(data[key]['r2'] * 100) / 100 + ')</label><br/>';
+								functions='<label style="color:#26C4EC"><input type="radio" name="radio_'+_i+'" id="checkbox_'+_i+'_expo-power"> Expo-Power (' + Math.round(data['data'][num][key]['r2'] * 100) / 100 + ')</label><br/>';
 								$('#functions_' + _i).append(functions);
 								data['data'][num][key]['type']='expo-power';
 								data['data'][num][key]['name']= name ;
