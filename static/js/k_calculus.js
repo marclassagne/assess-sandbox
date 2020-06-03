@@ -43,6 +43,7 @@ function update_method_button(type){
 $(function() {
 	$("#not_enough_attributes").hide();
 	$('#utility_function').hide();
+	$("#K_computation").show();
 	var counter = number_attributes_checked();
 	
 	if (counter < 2) {
