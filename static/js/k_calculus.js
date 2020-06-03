@@ -955,8 +955,12 @@ function list(){
 						}
 					})
 				});
-			} 
-			
+			 } else {
+				if(points.length == 0 && monAttribut.checked)
+					$('#test2').append("Please assess a utility function for this attribute");
+				else if(!monAttribut.checked)
+					$('#test2').append("The attribute is inactive");
+			 }
 		};
 		})(i);
 	}
