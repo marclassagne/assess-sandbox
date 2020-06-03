@@ -44,6 +44,7 @@ $(function() {
 	$("#not_enough_attributes").hide();
 	$('#utility_function').hide();
 	$('#button_generate_list').show();
+	$('#k_list').show();
 	
 	update_method_button("multiplicative"); //update the active methode for k_kalculus
 	update_k_list(0);
@@ -61,7 +62,7 @@ $(function() {
 
 	$("#update").click(function () {
 		var assess_session = JSON.parse(localStorage.getItem("assess_session"));
-		
+		$('#k_list').hide;
 		// we delete the general utility functions
 		assess_session.k_calculus[0].GU=null;
 		assess_session.k_calculus[1].GU=null;
@@ -76,7 +77,8 @@ $(function() {
 		update_k_list(0);
 		show_list();
 		ki_calculated();
-		$("#update_box").hide("slow");
+		window.location.reload();
+		
 	});
 
 	
@@ -255,6 +257,7 @@ function update_k_list(number){
 					} else if(number==1){ //multilinear
 						if (_i == ma_list.length - 1) {
 							k_multilinear_calculate_last_one(_i);
+							
 						} else {
 							k_multilinear_answer(_i);
 						};
@@ -518,6 +521,7 @@ function k_multilinear_calculate_last_one(i){
 	$("#k_value_"+i).hide( "fast",function(){
 		update_k_list(1);
 		show_list();
+		
 	});
 }
 
@@ -649,6 +653,7 @@ function k_multiplicative_answer(i) {
 							$("#k_value_" + i).hide("fast", function () {
 								update_k_list(0);
 								show_list();
+								
 							});
 
 						}
@@ -728,13 +733,19 @@ function ki_calculated() {
 	}
 	$("#button_generate_list").show();
 	GK_calculated();
+	
+	
 
 }
 
 $(function(){
 	$("#button_calculate_k").click(function() {
 		if (get_Active_Method() == 0){
+			
+			
 			K_Calculate_Multiplicative();
+			
+
 		}
 	});
 });
@@ -810,8 +821,8 @@ function K_Calculate_Multiplicative() {
 $(function(){
 	var k_utility_multiplicative=[];
 	var k_utility_multilinear=[];
-			list();
-			
+	list();
+	
 	
 });
 function list(){
@@ -1052,7 +1063,7 @@ $(function(){
 			{
 				if(k_utility_multiplicative[i]==null)
 				{
-					alert("Wrong");
+					alert("You must reset your relative attributes");
 					return;
 				}
 			}
@@ -1090,7 +1101,7 @@ $(function(){
 			{
 				if(k_utility_multilinear[i]==null)
 				{
-					alert("Wrong");
+					alert("You must reset your relative attributes");
 					return;
 				}
 			}
