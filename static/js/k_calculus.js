@@ -650,6 +650,7 @@ function k_multiplicative_answer(i) {
 							$("#k_value_" + i).hide("fast", function () {
 								update_k_list(0);
 								show_list();
+								window.location.reload();
 							});
 
 						}
@@ -736,7 +737,7 @@ function ki_calculated() {
 $(function(){
 	$("#button_calculate_k").click(function() {
 		if (get_Active_Method() == 0){
-			window.location.reload();
+			
 			
 			K_Calculate_Multiplicative();
 
