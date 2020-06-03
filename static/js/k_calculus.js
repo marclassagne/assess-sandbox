@@ -829,6 +829,7 @@ function list(){
 		var monAttribut=assess_session.attributes[maList[i].ID_attribute];
 			
 		
+		(function(_i) {
 		
 		
 				
@@ -859,7 +860,7 @@ function list(){
 				
 							var nvxdico = { "type" :'quali', "a": list_points[k], "name" : name };
 				
-							update_utility(i, nvxdico);
+							update_utility(_i, nvxdico);
 						};
 					};
 				};
@@ -913,7 +914,7 @@ function list(){
 								$('#test2').append(6);
 								data['data'][num][key]['type']='exp';
 								data['data'][num][key]['name']= name ;
-								update_utility(i,data['data'][num][key]);
+								update_utility(_i,data['data'][num][key]);
 
 							}}
 							else if (key == 'log'){
@@ -921,7 +922,7 @@ function list(){
 								$('#test2').append(5);
 								data['data'][num][key]['type']='log';
 								data['data'][num][key]['name']= name ;
-								update_utility(i,data['data'][num][key]);
+								update_utility(_i,data['data'][num][key]);
 								
 							}}
 							else if (key == 'pow'){
@@ -929,28 +930,28 @@ function list(){
 								$('#test2').append(4);
 								data['data'][num][key]['type']='pow';
 								data['data'][num][key]['name']= name ;
-								update_utility(i,data['data'][num][key]);
+								update_utility(_i,data['data'][num][key]);
 							}}
 							else if (key == 'quad'){
 								if (choice == 'quadratic') {
 								$('#test2').append(3);
 								data['data'][num][key]['type']='quad';
 								data['data'][num][key]['name']= name ;
-								update_utility(i,data['data'][num][key]);
+								update_utility(_i,data['data'][num][key]);
 							}}
 							else if (key == 'lin'){
 								if (choice == 'linear') {
 								$('#test2').append(2);
 								data['data'][num][key]['type']='lin';
 								data['data'][num][key]['name']= name ;
-								update_utility(i,data['data'][num][key]);
+								update_utility(_i,data['data'][num][key]);
 							}}
 							else if (key == 'expo-power'){
 								if (choice == 'exponential-power') {
 								$('#test2').append(1);
 								data['data'][num][key]['type']='expo-power';
 								data['data'][num][key]['name']= name ;
-								update_utility(i,data['data'][num][key]);
+								update_utility(_i,data['data'][num][key]);
 							}}
 						};
 					});
@@ -958,7 +959,7 @@ function list(){
 			
 			 };
 		};
-		
+		})(i);
 	};
 };
 
