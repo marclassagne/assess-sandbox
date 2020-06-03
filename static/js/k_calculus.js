@@ -804,8 +804,7 @@ function K_Calculate_Multiplicative() {
 //###########   Choose utility function corresponding to attribute     ##################
 //#######################################################################################
 
-var k_utility_multilinear=[],
-	k_utility_multiplicative=[];
+
 
 $(function(){
 	
