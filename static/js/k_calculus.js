@@ -826,7 +826,7 @@ function list(){
 	
 	for (var i=0; i < maList.length; i++){
 
-		var monAttribut=assess_session.attributes[maList[i].ID_attribute],
+		var monAttribut=assess_session.attributes[maList[i].ID_attribute];
 			
 		
 		
@@ -904,7 +904,7 @@ function list(){
 					}), function (data2) {
 						
 						
-						$('#test2').append(2);
+						
 						for (var key in data['data'][num]) {
 							
 							
