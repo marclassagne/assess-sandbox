@@ -352,7 +352,7 @@ def convert_to_text(data, x):
     elif data['type'] == "expo-power":
         return "(" + str(round(data['a'], 8)) + "+exp(" + str(round(-data['b'], 8)) + "*pow(" + x + "," + str(round(data['c'], 8)) + "))"
     elif data['type'] == "quali":
-        return "(" + str(round(data['a'], 8))+ ")"
+        return + x +
 
 
 def convert_to_text_excel(data, x):
@@ -369,7 +369,7 @@ def convert_to_text_excel(data, x):
     elif data['type'] == "expo-power":
         return "(" + str(round(data['a'], 8)) + "+EXP(" + str(round(-data['b'], 8)) + "*" + x + "^" + str(round(data['c'], 8)) + ")"
     elif data['type'] == "quali":
-        return "(" + str(round(data['a'], 8))+ ")"
+        return + x +
 
 def convert_to_text_latex(data, x):
     if data['type'] == "exp":
@@ -385,4 +385,4 @@ def convert_to_text_latex(data, x):
     elif data['type'] == "expo-power":
         return "(" + str(round(data['a'], 2)) + "+exp(" + str(round(-data['b'], 2)) + "*" + x + "^{" + str(round(data['c'], 2)) + "})"
     elif data['type'] == "quali":
-        return "(" + str(round(data['a'], 2))+ ")"
+        return + x +
