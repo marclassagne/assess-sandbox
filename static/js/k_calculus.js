@@ -255,6 +255,7 @@ function update_k_list(number){
 					} else if(number==1){ //multilinear
 						if (_i == ma_list.length - 1) {
 							k_multilinear_calculate_last_one(_i);
+							window.location.reload();
 						} else {
 							k_multilinear_answer(_i);
 						};
@@ -650,7 +651,7 @@ function k_multiplicative_answer(i) {
 							$("#k_value_" + i).hide("fast", function () {
 								update_k_list(0);
 								show_list();
-								window.location.reload();
+								
 							});
 
 						}
@@ -730,6 +731,7 @@ function ki_calculated() {
 	}
 	$("#button_generate_list").show();
 	GK_calculated();
+	window.location.reload();
 	
 
 }
