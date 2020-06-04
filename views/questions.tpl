@@ -1115,12 +1115,16 @@
 				$('#tableau_des_choix').append('<table id="NEWcurves_choice" class="table"><thead><tr><th></th><th> Functions </th></tr></thead></table>');
 				$('#tableau_checkbox').append('<table id="checkbox_curves_choice" class="table"><thead><tr><th></th><th> Functions </th></tr></thead></table>');
 				var LISTE=['logarithmic','exponential','power','linear'];
+				var dicobool ={}
+				for (h in LISTE){
+					dicobool[h]['checked']=True;
+					};
 				if (data['data'][0]['quad'] !== undefined) {
 					LISTE = ['logarithmic','exponential','power','linear','quadratic'];
 					};
 				for (var i = 0; i < LISTE.length; i++) {
 					$('#NEWcurves_choice').append('<tr><td><input type="radio" class="ice" name="select2" value=' +LISTE[i]+ '></td><td>' + LISTE[i] + '</td><tr>');
-					$('#checkbox_curves_choice').append('<tr><td><input type="checkbox" class="check'+i+'" name="check'+i+'" value=' +LISTE[i]+ ' id = "check'+i+'" ></td><td>' + LISTE[i] + '</td><tr>');
+					$('#checkbox_curves_choice').append('<tr><td><input type="checkbox" class="check'+i+'"  value=' +LISTE[i]+ ' id = "check'+i+'"" name="check'+i+'"  '+(dicobool[LISTE[i]].checked ? "checked" : "")+' ></td><td>' + LISTE[i] + '</td><tr>');
 				}
 				$('#charts').append('<table id="curves_choice" class="table"><thead><tr><th></th><th>Points used</th><th>Available regressions: r2</th></tr></thead></table>');
 				if (data['data'][0]['quad'] == undefined) {
@@ -1138,171 +1142,36 @@
 				};
 				var L =[0,0,0,0,0];
 				var U = ['logarithmic','exponential','power','linear','quadratic'];
-				$('#check'+4).change(function() {
-					var assess_session = JSON.parse(localStorage.getItem("assess_session"));
-					var num = assess_session.attributes[indice].numero;
-					var choice = assess_session.attributes[indice].fonction;
-					var checked = $('#check'+4).prop("checked");
-					if (num!=10000){
-						L[4]=0;
-						if (!checked) {
+				
+				for (var i = 0; i < LISTE.length; i++) {
+				
+					$('#checkbox_' + i).click(function() {
 						
-							L[4]=1;
-							var H=[];
-							for (var i = 0; i < U.length; i++) {
-								if(L[i]==1){
-									H.append(U[i]);
+						var checked = $('#checkbox_' + i).prop("checked");
+						var H =[];
+							if (checked==True){
+								checked=False;
+								dicobool[LISTE[i]].checked=False; }
+							else(checked==False){
+								checked=True;
+								dicobool[LISTE[i]].checked=True; };
+							if (checked==True){
+								L[i]=1;
+							}else{ 
+								L[i]=0
+							};
+							for (var j = 0; j < L.length; j++) {
+								if (L[j] == 1){
+									H.append(U[i])
 								};
 							};
-							$('#fonctions_choisies').show().empty();
-							addGraph(num, data['data'], val_min, val_max,choice);
-						}else{
-							var H=[];
-							L[4]=0;
-							for (var i = 0; i < U.length; i++) {
-								if(L[i]==1){
-									H.append(U[i]);
-								};
-							};
-							
 							$('#fonctions_choisies').show().empty();
 							addGraph2(num, data['data'], val_min, val_max,U);
-						};
-						
-					};
-				});
-				$('#check'+3).change(function() {
-					var assess_session = JSON.parse(localStorage.getItem("assess_session"));
-					var num = assess_session.attributes[indice].numero;
-					var choice = assess_session.attributes[indice].fonction;
-					var checked = $('#check'+3).prop("checked");
-					if (num!=10000){
-						L[3]=0;
-						if (!checked) {
-						
-							L[3]=1;
-							var H=[];
-							for (var i = 0; i < U.length; i++) {
-								if(L[i]==1){
-									H.append(U[i]);
-								};
-							};
-							$('#fonctions_choisies').show().empty();
-							addGraph(num, data['data'], val_min, val_max,choice);
-						}else{
-							var H=[];
-							L[3]=0;
-							for (var i = 0; i < U.length; i++) {
-								if(L[i]==1){
-									H.append(U[i]);
-								};
-							};
 							
-							$('#fonctions_choisies').show().empty();
-							addGraph2(num, data['data'], val_min, val_max,U);
-						};
-						
-					};
-				});
-				$('#check'+2).change(function() {
-					var assess_session = JSON.parse(localStorage.getItem("assess_session"));
-					var num = assess_session.attributes[indice].numero;
-					var choice = assess_session.attributes[indice].fonction;
-					var checked = $('#check'+2).prop("checked");
-					if (num!=10000){
-						L[2]=0;
-						if (!checked) {
-						
-							L[2]=1;
-							var H=[];
-							for (var i = 0; i < U.length; i++) {
-								if(L[i]==1){
-									H.append(U[i]);
-								};
-							};
-							$('#fonctions_choisies').show().empty();
-							addGraph(num, data['data'], val_min, val_max,choice);
-						}else{
-							var H=[];
-							L[2]=0;
-							for (var i = 0; i < U.length; i++) {
-								if(L[i]==1){
-									H.append(U[i]);
-								};
-							};
-							
-							$('#fonctions_choisies').show().empty();
-							addGraph2(num, data['data'], val_min, val_max,U);
-						};
-						
-					};
-				});
-				$('#check'+1).change(function() {
-					var assess_session = JSON.parse(localStorage.getItem("assess_session"));
-					var num = assess_session.attributes[indice].numero;
-					var choice = assess_session.attributes[indice].fonction;
-					var checked = $('#check'+1).prop("checked");
-					if (num!=10000){
-						L[1]=0;
-						if (!checked) {
-						
-							L[1]=1;
-							var H=[];
-							for (var i = 0; i < U.length; i++) {
-								if(L[i]==1){
-									H.append(U[i]);
-								};
-							};
-							$('#fonctions_choisies').show().empty();
-							addGraph(num, data['data'], val_min, val_max,choice);
-						}else{
-							var H=[];
-							L[1]=0;
-							for (var i = 0; i < U.length; i++) {
-								if(L[i]==1){
-									H.append(U[i]);
-								};
-							};
-							
-							$('#fonctions_choisies').show().empty();
-							addGraph2(num, data['data'], val_min, val_max,U);
-						};
-						
-					};
-				});
-				$('#check'+0).change(function() {
-					var assess_session = JSON.parse(localStorage.getItem("assess_session"));
-					var num = assess_session.attributes[indice].numero;
-					var choice = assess_session.attributes[indice].fonction;
-					var checked = $('#check'+0).prop("checked");
-					if (num!=10000){
-						L[0]=0;
-						if (!checked) {
-						
-							L[0]=1;
-							var H=[];
-							for (var i = 0; i < U.length; i++) {
-								if(L[i]==1){
-									H.append(U[i]);
-								};
-							};
-							$('#fonctions_choisies').show().empty();
-							addGraph(num, data['data'], val_min, val_max,choice);
-						}else{
-							var H=[];
-							L[0]=0;
-							for (var i = 0; i < U.length; i++) {
-								if(L[i]==1){
-									H.append(U[i]);
-								};
-							};
-							
-							$('#fonctions_choisies').show().empty();
-							addGraph2(num, data['data'], val_min, val_max,U);
-						};
-						
-					};
-				});
+								
+					});
+				};
+				
 				
 				
 				
