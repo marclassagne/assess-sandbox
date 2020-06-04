@@ -1139,11 +1139,11 @@
 			
 				$('.check').on('click', function() {
 					L=[];
-					var check = ($('input[name=check'+i']').is(':checked') ? "true" : "false");
+					
 					for (var i = 0; i < LISTE.length; i++) {
-						if (check=="true"){
+						
 							L.append(LISTE[i]);
-						};
+						
 					};
 					if (L.length!=0){
 						$('#fonctions_choisies').show().empty();
