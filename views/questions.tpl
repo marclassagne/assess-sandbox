@@ -49,27 +49,6 @@
 	</table>
 </div>
 
-<div id="tableau_fonctions" >
-	<table class="table">
-		<thead>
-			<tr>
-				
-				<th>Your utility function</th>
-				<th>All utility functions</th>
-			</tr>
-		</thead>
-		<tbody id="tableau_fct">
-			
-					<tr>
-						
-						<td id="main_graph1"></td>
-						<td id="main_graph2"></td>
-					</tr>
-						
-		</tbody>
-	</table>
-</div>
-
 <div id="main_graph" class="col-lg-5"></div>
 <div id="functions" class="col-lg-7"></div>
 %include('header_end.tpl')
@@ -87,7 +66,6 @@
 		$('#main_graph').hide();
 		$('#functions').hide();
 		$('#nouveaubloc').hide();
-		$('#tableau_fonctions').hide();
 		$('#choix_fonction').hide();
 		$('#attribute_name').hide();
 		$('#charts_quali').hide();
@@ -1113,7 +1091,6 @@
 			$.post('ajax', JSON.stringify(json_2_send), function(data) {
 				$('#charts').show().empty();
 				$('#nouveaubloc').show().empty();
-				$('#tableau_fonctions').show();
 				$('#attribute_name').show().empty();
 				
 				if (val_min<0){
