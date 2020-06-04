@@ -1138,7 +1138,7 @@
 				};
 				
 				$(".check").on('click',function(){
-					L=[];
+					var L=[];
 					var assess_session = JSON.parse(localStorage.getItem("assess_session"));
 					var num = assess_session.attributes[indice].numero;
 					if (num!=10000){
