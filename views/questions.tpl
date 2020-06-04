@@ -1093,7 +1093,7 @@
 				$('#charts').show().empty();
 				$('#nouveaubloc').show().empty();
 				$('#attribute_name').show().empty();
-				$('#fonctions_choisies').hide;
+				$('#fonctions_choisies').hide();
 				
 				if (val_min<0){
 					for (i in data['data']){
@@ -1138,16 +1138,17 @@
 				};
 			
 				$('.check').on('click', function() {
-					L=[]
+					L=[];
 					for (var i = 0; i < LISTE.length; i++) {
 						if (document.getElementById('check'+i).checked){
 							L.append(LISTE[i]);
-						}
-					}
+						};
+					};
 					if (L.length!=0){
 						$('#fonctions_choisies').show().empty();
 						addGraph2(num, data['data'], val_min, val_max,L);
-					
+					};
+				});
 				
 				$('.ice').on('click', function() {
 			
