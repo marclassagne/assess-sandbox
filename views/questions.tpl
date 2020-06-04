@@ -1136,7 +1136,7 @@
 						$('#curves_choice').append('<tr><td><input type="radio" class="hoice" name="select" value=' + i + '></td><td>' + data['data'][i]['points'] + '</td><td>' + regressions_text + '</td></tr>');
 					}
 				};
-			
+				addGraph2(num, data['data'], val_min, val_max,LISTE);
 				function doalert(checkboxElem) {
 					L=[];
 					
