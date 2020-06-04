@@ -1139,11 +1139,11 @@
 			
 				$('.check').on('click', function() {
 					L=[];
-					
+					var itschecked = document.querySelector('input[id="check'+i+'"]');
 					for (var i = 0; i < LISTE.length; i++) {
-						
+						if (itschecked.checked){
 							L.append(LISTE[i]);
-						
+						};
 					};
 					if (L.length!=0){
 						$('#fonctions_choisies').show().empty();
