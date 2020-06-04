@@ -1115,13 +1115,13 @@
 				$('#tableau_des_choix').append('<table id="NEWcurves_choice" class="table"><thead><tr><th></th><th> Functions </th></tr></thead></table>');
 				$('#tableau_checkbox').append('<table id="checkbox_curves_choice" class="table"><thead><tr><th></th><th> Functions </th></tr></thead></table>');
 				var LISTE=['logarithmic','exponential','power','linear'];
-				var dicobool ={};
-				for (h in LISTE){
-					dicobool[h]['checked']=False;
-					};
+				var dicobool ={'logarithmic':{'checked':False},'exponential':{'checked':False},'power':{'checked':False},'linear':{'checked':False} };
 				if (data['data'][0]['quad'] !== undefined) {
 					LISTE = ['logarithmic','exponential','power','linear','quadratic'];
+					dicobool ={'logarithmic':{'checked':False},'exponential':{'checked':False},'power':{'checked':False},'linear':{'checked':False},'quadratic': {'checked':False} };
 					};
+				
+				
 				for (var i = 0; i < LISTE.length; i++) {
 					$('#NEWcurves_choice').append('<tr><td><input type="radio" class="ice" name="select2" value=' +LISTE[i]+ '></td><td>' + LISTE[i] + '</td><tr>');
 					$('#checkbox_curves_choice').append('<tr><td><input type="checkbox" class="check'+i+'"  value=' +LISTE[i]+ ' id = "check'+i+'"" name="check'+i+'"  '+(dicobool[LISTE[i]].checked ? "checked" : "")+' ></td><td>' + LISTE[i] + '</td><tr>');
