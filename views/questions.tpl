@@ -1111,12 +1111,14 @@
 				localStorage.setItem("assess_session", JSON.stringify(assess_session));
 				$('#nouveaubloc').append('<table id="show_function" class="table"><thead><tr><th>Choose a function here</th><th>The utility function you chose</th><th>see the functions here</th><th>The utility functions you want to see</th></tr></thead><tbody><tr><td id ="tableau_des_choix"></td><td id = "fonction_choisie"></td><td id ="tableau_checkbox"></td><td id ="fonctions_choisies"></td></tr></tbody></table>');
 				$('#tableau_des_choix').append('<table id="NEWcurves_choice" class="table"><thead><tr><th></th><th> Functions </th></tr></thead></table>');
+				$('#tableau_checkbox').append('<table id="checkbox_curves_choice" class="table"><thead><tr><th></th><th> Functions </th></tr></thead></table>');
 				LISTE=['logarithmic','exponential','power','linear'];
 					if (data['data'][0]['quad'] !== undefined) {
 						LISTE = ['logarithmic','exponential','power','linear','quadratic'];
 						};
 				for (var i = 0; i < LISTE.length; i++) {
 					$('#NEWcurves_choice').append('<tr><td><input type="radio" class="ice" name="select2" value=' +LISTE[i]+ '></td><td>' + LISTE[i] + '</td><tr>');
+					$('#checkbox_curves_choice').append('<tr><td><input type="checkbox" class="check" name="check" value=' +LISTE[i]+ '></td><td>' + LISTE[i] + '</td><tr>');
 				}
 				$('#charts').append('<table id="curves_choice" class="table"><thead><tr><th></th><th>Points used</th><th>Available regressions: r2</th></tr></thead></table>');
 				if (data['data'][0]['quad'] == undefined) {
