@@ -1120,7 +1120,7 @@
 						};
 				for (var i = 0; i < LISTE.length; i++) {
 					$('#NEWcurves_choice').append('<tr><td><input type="radio" class="ice" name="select2" value=' +LISTE[i]+ '></td><td>' + LISTE[i] + '</td><tr>');
-					$('#checkbox_curves_choice').append('<tr><td><input type="checkbox" class="check'+i+'" name="check" value=' +LISTE[i]+ ' id = "check'+i+'"></td><td>' + LISTE[i] + '</td><tr>');
+					$('#checkbox_curves_choice').append('<tr><td><input type="checkbox" class="check" name="check'+i+'" value=' +LISTE[i]+ ' id = "check'+i+'"></td><td>' + LISTE[i] + '</td><tr>');
 				}
 				$('#charts').append('<table id="curves_choice" class="table"><thead><tr><th></th><th>Points used</th><th>Available regressions: r2</th></tr></thead></table>');
 				if (data['data'][0]['quad'] == undefined) {
