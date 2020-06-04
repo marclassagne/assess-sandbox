@@ -1137,7 +1137,7 @@
 					}
 				};
 				
-				$(".check").on('click','input[type=checkbox]',function(){
+				$(".check").on('click',function(){
 					L=[];
 					var assess_session = JSON.parse(localStorage.getItem("assess_session"));
 					var num = assess_session.attributes[indice].numero;
@@ -1147,10 +1147,10 @@
 								L.append(LISTE[i]);
 						};
 					
-						if (L.length!=0){
+						
 							$('#fonctions_choisies').show().empty();
 							addGraph2(num, data['data'], val_min, val_max,LISTE);
-						};
+						
 					};
 				});
 				
