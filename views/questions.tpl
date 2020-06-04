@@ -206,21 +206,21 @@
 					$('#graph_choisi'+ j).append(3);
 					
 					$.post('ajax', JSON.stringify(json_2_send), function (data) {
-					$.post('ajax', JSON.stringify({
-							"type": "svgg",
-							"data": data['data'][num],
-							"min": val_min,
-							"max": val_max,
-							"liste_cord": data['data'][num]['coord'],
-							"width": 3,
-							"choice":choice
-						}), function (data2) {
-							$('#graph_choisi'+ j).append('<div>'+ data2 +'</div>');
-							$('#graph_choisi'+ j).append(4);
+						$.post('ajax', JSON.stringify({
+								"type": "svgg",
+								"data": data['data'][num],
+								"min": val_min,
+								"max": val_max,
+								"liste_cord": data['data'][num]['coord'],
+								"width": 3,
+								"choice":choice
+							}), function (data2) {
+								$('#graph_choisi'+ j).append(data2);
+								$('#graph_choisi'+ j).append(4);
 							
 							
 					
-						});
+							});
 						});
 					};
 				};
