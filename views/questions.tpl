@@ -1115,7 +1115,7 @@
 				$('#tableau_des_choix').append('<table id="NEWcurves_choice" class="table"><thead><tr><th></th><th> Functions </th></tr></thead></table>');
 				$('#tableau_checkbox').append('<table id="checkbox_curves_choice" class="table"><thead><tr><th></th><th> Functions </th></tr></thead></table>');
 				var LISTE=['logarithmic','exponential','power','linear'];
-				var dicobool ={}
+				var dicobool ={};
 				for (h in LISTE){
 					dicobool[h]['checked']=False;
 					};
@@ -1149,20 +1149,20 @@
 						
 						var checked = $('#checkbox_' + i).prop("checked");
 						var H =[];
-							if (checked==True){
+							if (checked){
 								checked=False;
 								dicobool[LISTE[i]].checked=False; }
-							else(checked==False){
+							else{
 								checked=True;
 								dicobool[LISTE[i]].checked=True; };
-							if (checked==True){
+							if (checked){
 								L[i]=1;
 							}else{ 
-								L[i]=0
+								L[i]=0;
 							};
 							for (var j = 0; j < L.length; j++) {
 								if (L[j] == 1){
-									H.append(U[i])
+									H.append(U[i]);
 								};
 							};
 							$('#fonctions_choisies').show().empty();
