@@ -215,7 +215,7 @@
 								"min": val_min,
 								"max": val_max,
 								"liste_cord": data['data'][num]['coord'],
-								"width": 2.2,
+								"width": 2.4,
 								"choice":choice
 							}), function (data2) {
 								$('#graph_choisi'+ _i).append(data2);
@@ -1057,7 +1057,7 @@
 					"min": min,
 					"max": max,
 					"liste_cord": data[i]['coord'],
-					"width": 3,
+					"width": 2.4,
 					"choice":choice,
 				}), function(data2) {
 					$('#graph_choisi' + indice).append('<div>' + data2 + '</div>');
