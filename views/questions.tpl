@@ -1137,6 +1137,7 @@
 					}
 				};
 				var L =[0,0,0,0,0];
+				var U = ['logarithmic','exponential','power','linear','quadratic'];
 				for (var j = 0; j < LISTE.length; j++) {
 				(function(_i) {	
 				$('#check'+_i).click(function() {
@@ -1149,14 +1150,14 @@
 							L[_i]=1;
 						};
 						var H=[];
-						for (var i = 0; i < LISTE.length; i++) {
+						for (var i = 0; i < U.length; i++) {
 							if(L[i]==1){
-								H.append(LISTE[i]);
+								H.append(U[i]);
 							};
 						};
 							
 						$('#fonctions_choisies').show().empty();
-						addGraph2(num, data['data'], val_min, val_max,LISTE);
+						addGraph2(num, data['data'], val_min, val_max,U);
 						
 					};
 				});
