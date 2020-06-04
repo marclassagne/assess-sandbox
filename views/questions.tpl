@@ -1137,31 +1137,31 @@
 					}
 				};
 				var L =[0,0,0,0,0];
-				for (var j = 0; j < LISTE.length; j++) {
-				$('#check'+j).change(function() {
+				
+				$('#check'+0).change(function() {
 					var assess_session = JSON.parse(localStorage.getItem("assess_session"));
 					var num = assess_session.attributes[indice].numero;
 					if (num!=10000){
 						if(this.checked){
 						
-							L[j]=1;
+							L[0]=1;
 						};
 						if(!this.checked){
-							L[j]=0;
+							L[0]=0;
 						};
 						var H=[];
 						for (var i = 0; i < LISTE.length; i++) {
-							if(L[i]==0){
+							if(L[i]==1){
 								H.append(LISTE[i]);
 							};
 						};
 							
 						$('#fonctions_choisies').show().empty();
-						addGraph2(num, data['data'], val_min, val_max,LISTE);
+						addGraph2(num, data['data'], val_min, val_max,H);
 						
 					};
 				});
-				};
+				
 				$('.ice').on('click', function() {
 			
 					$('#choix_fonction').show();
