@@ -172,11 +172,13 @@
 		};
 		
 		
-		for (var j = 0; j < assess_session.attributes.length; j++) {
-			if (assess_session.attributes[j].type == "Quantitative"){
-				if (assess_session.attributes[j].checked){
-					var monAttribut = assess_session.attributes[j]
-					$('#graph_choisi'+ j).append(2);
+		for (var _i = 0; _i < assess_session.attributes.length; _i++) {
+		
+		
+			if (assess_session.attributes[_i].type == "Quantitative"){
+				if (assess_session.attributes[_i].checked){
+					var monAttribut = assess_session.attributes[_i]
+					$('#graph_choisi'+ _i).append(2);
 					var json_2_send = {"type": "calc_util_multi", "points":[]},
 						val_max=monAttribut.val_max,
 						val_min=monAttribut.val_min,
@@ -204,7 +206,7 @@
 					}
 				
 					json_2_send["points"] = points;
-					$('#graph_choisi'+ j).append(3);
+					$('#graph_choisi'+ _i).append(3);
 					
 					$.post('ajax', JSON.stringify(json_2_send), function (data) {
 						$.post('ajax', JSON.stringify({
@@ -216,8 +218,8 @@
 								"width": 3,
 								"choice":choice
 							}), function (data2) {
-								$('#graph_choisi'+ j).append(data2);
-								$('#graph_choisi'+ j).append(4);
+								$('#graph_choisi'+ _i).append(data2);
+								$('#graph_choisi'+ _i).append(4);
 							
 							
 					
