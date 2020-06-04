@@ -1046,7 +1046,7 @@
 					"width": 5,
 					
 				}), function(data2) {
-					$('#main_graph2').append(data2);
+					$('#fonctions_choisies').append(data2);
 				});
 			}
 			function addGraph3(i, data, min, max, choice) {
