@@ -170,6 +170,57 @@
 			})(i);
 			
 		};
+		
+		
+		for (var j = 0; j < assess_session.attributes.length; j++) {
+			if (assess_session.attributes[j].type == "Quantitative"){
+				if (assess_session.attributes[j].checked){
+				
+					var json_2_send = {"type": "calc_util_multi", "points":[]},
+						val_max=monAttribut.val_max,
+						val_min=monAttribut.val_min,
+						mode = monAttribut.mode,
+						points_dict = monAttribut.questionnaire.points,
+						points=[],
+			    			choice= monAttribut.fonction,
+						num=monAttribut.numero;
+				
+					for (key in points_dict) {
+						points.push([parseFloat(key), parseFloat(points_dict[key])]);
+					};
+			
+					if (points.length > 0 && monAttribut.checked) {
+						points.push([val_min, (mode == "Normal" ? 0 : 1)]);
+						points.push([val_max, (mode == "Normal" ? 1 : 0)]);
+				
+				
+					if (val_min<0) {
+						for (j in points) {
+							points[j][0]-=val_min;
+						
+						};
+					}
+				
+					json_2_send["points"] = points;
+				
+					
+					$.post('ajax', JSON.stringify({
+						"type": "svgg",
+						"data": data['data'][num],
+						"min": min,
+						"max": max,
+						"liste_cord": data['data][num]['coord'],
+						"width": 5,
+						"choice":choice,
+					}), function(data2) {
+						$('#graph_choisi'+ j).append(data2);
+					});
+					};
+				};
+			};
+		};
+	
+		
 		for (var j=0; j < assess_session.attributes.length; j++){
 			if (assess_session.attributes[j].type == "Quantitative"){
 				if (assess_session.attributes[j].checked){
@@ -1116,9 +1167,10 @@
 				assess_session.attributes[indice].numero = 10000;
 				assess_session.attributes[indice].fonction = '';
 				
+				
+				
 				localStorage.setItem("assess_session", JSON.stringify(assess_session));
 				
-				console.log(JSON.stringify(json_2_send));
 				$('#nouveaubloc').append('<table id="NEWcurves_choice" class="table"><thead><tr><th></th><th> Functions </th></tr></thead></table>');
 				LISTE=['logarithmic','exponential','power','linear'];
 					if (data['data'][0]['quad'] !== undefined) {
