@@ -1147,7 +1147,7 @@
 							L[0]=1;
 						};
 						if(!this.checked){
-							L[0]=0;
+							L[0]=1;
 						};
 						var H=[];
 						for (var i = 0; i < LISTE.length; i++) {
