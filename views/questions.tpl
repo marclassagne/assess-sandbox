@@ -170,56 +170,69 @@
 			})(i);
 			
 		};
-		for (var j=0; j < assess_session.attributes.length; j++){
-			if (assess_session.attributes[j].type == "Quantitative"){
-				if (assess_session.attributes[j].checked){
-					$('#u_' + assess_session.attributes[j].name).hide();
-				};
-			};
-		};
-		var c = 0;
-		var h = 0;
-		var e = 0;
-		for (var j=0; j < assess_session.attributes.length; j++){
-			if (assess_session.attributes[j].type == "Quantitative"){
-				if (assess_session.attributes[j].checked){
-					c += 1;
-					h += assess_session.attributes[j].questionnaire.number;
-				};
-			};
-		};
-		h=h/3;
 		
-		for (var j=0; j < assess_session.attributes.length; j++){
-			var l = 0;
-			if (assess_session.attributes[j].type == "Qualitative"){
-			
-				if (assess_session.attributes[j].checked){
+		
+		for (var i = 0; i < assess_session.attributes.length; i++) {
+		
+		(function(_i) {
+			if (assess_session.attributes[_i].type == "Quantitative"){
+				if (assess_session.attributes[_i].checked){
+					var monAttribut = assess_session.attributes[_i]
 					
-					c += 1;
-					l += assess_session.attributes[j].questionnaire.number;
-					var y = Object.keys(assess_session.attributes[j].questionnaire.points).length;
-					if (y!=0){
-						
-						e += l/y;
-					};
+					var json_2_send = {"type": "calc_util_multi", "points":[]},
+						val_max=monAttribut.val_max,
+						val_min=monAttribut.val_min,
+						mode = monAttribut.mode,
+						points_dict = monAttribut.questionnaire.points,
+						points=[],
+			    			choice= monAttribut.fonction,
+						num=monAttribut.numero;
 				
-				};
-			
-			};
-		};
-		
-		
-		if ( c == e+h ){
-			for (var j=0; j < assess_session.attributes.length; j++){
-				if (assess_session.attributes[j].type == "Quantitative"){
-					if (assess_session.attributes[j].checked){
-						$('#u_' + assess_session.attributes[j].name).show();
+					for (key in points_dict) {
+						points.push([parseFloat(key), parseFloat(points_dict[key])]);
+						
 					};
+					
+					if (points.length > 0 && monAttribut.checked) {
+						points.push([val_min, (mode == "Normal" ? 0 : 1)]);
+						points.push([val_max, (mode == "Normal" ? 1 : 0)]);
+				
+					if (points.length == 5){
+					if (val_min<0) {
+						for (j in points) {
+							points[j][0]-=val_min;
+						
+						};
+					}
+				
+					json_2_send["points"] = points;
+					
+					
+					$.post('ajax', JSON.stringify(json_2_send), function (data) {
+						$.post('ajax', JSON.stringify({
+								"type": "svgg",
+								"data": data['data'][num],
+								"min": val_min,
+								"max": val_max,
+								"liste_cord": data['data'][num]['coord'],
+								"width": 3,
+								"choice":choice
+							}), function (data2) {
+								$('#graph_choisi'+ _i).append(data2);
+								
+							
+							
+					
+							});
+						});
+					}; };
 				};
 			};
-			
+			})(i);
 		};
+	
+		
+		
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////////// CLICK ON THE ANSWER BUTTON ////////////////////////////////////////////////////////////////
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
