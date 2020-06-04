@@ -1171,6 +1171,37 @@
 						
 					};
 				});
+				$('#check'+_i).change(function() {
+					var assess_session = JSON.parse(localStorage.getItem("assess_session"));
+					var num = assess_session.attributes[indice].numero;
+					if (num!=10000){
+						L[_i]=0;
+						if (!this.checked) {
+						
+							L[_i]=1;
+							var H=[];
+							for (var i = 0; i < U.length; i++) {
+								if(L[i]==1){
+									H.append(U[i]);
+								};
+							};
+							$('#fonctions_choisies').show().empty();
+							addGraph2(num, data['data'], val_min, val_max,U);
+						}else{
+							var H=[];
+							L[_i]=0;
+							for (var i = 0; i < U.length; i++) {
+								if(L[i]==1){
+									H.append(U[i]);
+								};
+							};
+							
+							$('#fonctions_choisies').show().empty();
+							addGraph2(num, data['data'], val_min, val_max,U);
+						};
+						
+					};
+				});
 				})(j);
 				};
 				
