@@ -172,9 +172,9 @@
 		};
 		
 		
-		for (var _i = 0; _i < assess_session.attributes.length; _i++) {
+		for (var i = 0; i < assess_session.attributes.length; i++) {
 		
-		
+		(function(_i) {
 			if (assess_session.attributes[_i].type == "Quantitative"){
 				if (assess_session.attributes[_i].checked){
 					var monAttribut = assess_session.attributes[_i]
@@ -228,6 +228,7 @@
 					}; };
 				};
 			};
+			})(i);
 		};
 	
 		
