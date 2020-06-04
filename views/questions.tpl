@@ -1120,7 +1120,7 @@
 						};
 				for (var i = 0; i < LISTE.length; i++) {
 					$('#NEWcurves_choice').append('<tr><td><input type="radio" class="ice" name="select2" value=' +LISTE[i]+ '></td><td>' + LISTE[i] + '</td><tr>');
-					$('#checkbox_curves_choice').append('<tr><td><input type="checkbox" class="check" name="check'+i+'" value=' +LISTE[i]+ ' id = "check'+i+'" ></td><td>' + LISTE[i] + '</td><tr>');
+					$('#checkbox_curves_choice').append('<tr><td><input type="checkbox" class="check'+i+'" name="check'+i+'" value=' +LISTE[i]+ ' id = "check'+i+'" ></td><td>' + LISTE[i] + '</td><tr>');
 				}
 				$('#charts').append('<table id="curves_choice" class="table"><thead><tr><th></th><th>Points used</th><th>Available regressions: r2</th></tr></thead></table>');
 				if (data['data'][0]['quad'] == undefined) {
@@ -1138,17 +1138,20 @@
 				};
 				var L =[0,0,0,0,0];
 				
-				$('#check'+0).click(function() {
+				$('#check'+0).change(function() {
 					var assess_session = JSON.parse(localStorage.getItem("assess_session"));
 					var num = assess_session.attributes[indice].numero;
 					if (num!=10000){
-						if(this.checked != true){
+						if(this.checked){
 						
 							L[0]=1;
 						};
+						if(!this.checked){
+							L[0]=0;
+						};
 						var H=[];
 						for (var i = 0; i < LISTE.length; i++) {
-							if(L[i]==0){
+							if(L[i]==1){
 								H.append(LISTE[i]);
 							};
 						};
