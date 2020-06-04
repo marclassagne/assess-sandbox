@@ -232,56 +232,7 @@
 		};
 	
 		
-		for (var j=0; j < assess_session.attributes.length; j++){
-			if (assess_session.attributes[j].type == "Quantitative"){
-				if (assess_session.attributes[j].checked){
-					$('#u_' + assess_session.attributes[j].name).hide();
-				};
-			};
-		};
-		var c = 0;
-		var h = 0;
-		var e = 0;
-		for (var j=0; j < assess_session.attributes.length; j++){
-			if (assess_session.attributes[j].type == "Quantitative"){
-				if (assess_session.attributes[j].checked){
-					c += 1;
-					h += assess_session.attributes[j].questionnaire.number;
-				};
-			};
-		};
-		h=h/3;
 		
-		for (var j=0; j < assess_session.attributes.length; j++){
-			var l = 0;
-			if (assess_session.attributes[j].type == "Qualitative"){
-			
-				if (assess_session.attributes[j].checked){
-					
-					c += 1;
-					l += assess_session.attributes[j].questionnaire.number;
-					var y = Object.keys(assess_session.attributes[j].questionnaire.points).length;
-					if (y!=0){
-						
-						e += l/y;
-					};
-				
-				};
-			
-			};
-		};
-		
-		
-		if ( c == e+h ){
-			for (var j=0; j < assess_session.attributes.length; j++){
-				if (assess_session.attributes[j].type == "Quantitative"){
-					if (assess_session.attributes[j].checked){
-						$('#u_' + assess_session.attributes[j].name).show();
-					};
-				};
-			};
-			
-		};
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////////// CLICK ON THE ANSWER BUTTON ////////////////////////////////////////////////////////////////
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
