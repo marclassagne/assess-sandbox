@@ -1013,7 +1013,7 @@
 					$('#fonction_choisie').append(data2);
 				});
 			}
-			function addGraph2(i, data, min, max) {
+			function addGraph2(i, data, min, max,liste) {
 				console.log("addgraph");
 				$.post('ajax', JSON.stringify({
 					"type": "svg",
@@ -1022,6 +1022,7 @@
 					"max": max,
 					"liste_cord": data[i]['coord'],
 					"width": 4,
+					"liste":liste
 					
 				}), function(data2) {
 					$('#fonctions_choisies').append(data2);
@@ -1092,6 +1093,7 @@
 				$('#charts').show().empty();
 				$('#nouveaubloc').show().empty();
 				$('#attribute_name').show().empty();
+				$('#fonctions_choisies').hide;
 				
 				if (val_min<0){
 					for (i in data['data']){
@@ -1118,7 +1120,7 @@
 						};
 				for (var i = 0; i < LISTE.length; i++) {
 					$('#NEWcurves_choice').append('<tr><td><input type="radio" class="ice" name="select2" value=' +LISTE[i]+ '></td><td>' + LISTE[i] + '</td><tr>');
-					$('#checkbox_curves_choice').append('<tr><td><input type="checkbox" class="check" name="check" value=' +LISTE[i]+ '></td><td>' + LISTE[i] + '</td><tr>');
+					$('#checkbox_curves_choice').append('<tr><td><input type="checkbox" class="check" name="check" value=' +LISTE[i]+ ' id = "check'+i+'"></td><td>' + LISTE[i] + '</td><tr>');
 				}
 				$('#charts').append('<table id="curves_choice" class="table"><thead><tr><th></th><th>Points used</th><th>Available regressions: r2</th></tr></thead></table>');
 				if (data['data'][0]['quad'] == undefined) {
@@ -1135,10 +1137,17 @@
 					}
 				};
 			
-				
-				
-				
-				
+				$('.check').on('click', function() {
+					L=[]
+					for (var i = 0; i < LISTE.length; i++) {
+						if (document.getElementById('check'+i).checked){
+							L.append(LISTE[i]);
+						}
+					}
+					if (L.length!=0){
+						$('#fonctions_choisies').show().empty();
+						addGraph2(num, data['data'], val_min, val_max,L);
+					
 				
 				$('.ice').on('click', function() {
 			
@@ -1154,13 +1163,13 @@
 						$('#main_graph').show().empty();
 						$('#functions').show().empty();
 						$('#fonction_choisie').show().empty();
-						$('#fonctions_choisies').show().empty();
+						
 						$('#graph_choisi'+indice).show().empty();
 						
 						var h =data['data'];
 						assess_session.attributes[indice].pts = h[num];
 						addGraph(num, data['data'], val_min, val_max, choice);
-						addGraph2(num, data['data'], val_min, val_max);
+						
 						addGraph3(num, data['data'], val_min, val_max, choice);
 						addFunctions(num, data['data'],val_min,choice);
 						};
@@ -1180,13 +1189,13 @@
 						$('#main_graph').show().empty();
 						$('#functions').show().empty();
 						$('#fonction_choisie').show().empty();
-						$('#fonctions_choisies').show().empty();
+						
 						$('#graph_choisi'+indice).show().empty();
 						
 						var h =data['data'];
 						assess_session.attributes[indice].pts = h[Number(this.value)];
 						addGraph(Number(this.value), data['data'], val_min, val_max, choice);
-						addGraph2(Number(this.value), data['data'], val_min, val_max);
+						
 						addGraph3(Number(this.value), data['data'], val_min, val_max, choice);
 						addFunctions(Number(this.value), data['data'],val_min,choice);
 						};
