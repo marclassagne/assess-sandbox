@@ -190,12 +190,12 @@
 						points.push([parseFloat(key), parseFloat(points_dict[key])]);
 						$('#graph_choisi'+ j).append('alpha');
 					};
-					if (points_dict.length == 5){
+					
 					if (points.length > 0 && monAttribut.checked) {
 						points.push([val_min, (mode == "Normal" ? 0 : 1)]);
 						points.push([val_max, (mode == "Normal" ? 1 : 0)]);
 				
-				
+					if (points_dict.length == 5){
 					if (val_min<0) {
 						for (j in points) {
 							points[j][0]-=val_min;
