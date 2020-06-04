@@ -1156,7 +1156,7 @@
 						};
 							
 						$('#fonctions_choisies').show().empty();
-						addGraph2(num, data['data'], val_min, val_max,H);
+						addGraph2(num, data['data'], val_min, val_max,LISTE);
 						
 					};
 				});
