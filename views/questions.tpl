@@ -1152,15 +1152,14 @@
 						
 						var checked = $('#checkbox_' + i).prop("checked");
 						var H =[];
-							if (checked){
-								checked=False;
-								dicobool[LISTE[i]].checked=False; }
-							else{
+							if (!checked){
 								checked=True;
-								dicobool[LISTE[i]].checked=True; };
-							if (checked){
+								dicobool.fonction[i].checked=True;
 								L[i]=1;
-							}else{ 
+							};
+							else{
+								checked=False;
+								dicobool.fonction[i].checked=False;
 								L[i]=0;
 							};
 							for (var j = 0; j < L.length; j++) {
