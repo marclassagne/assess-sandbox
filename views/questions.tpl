@@ -1136,7 +1136,7 @@
 						$('#curves_choice').append('<tr><td><input type="radio" class="hoice" name="select" value=' + i + '></td><td>' + data['data'][i]['points'] + '</td><td>' + regressions_text + '</td></tr>');
 					}
 				};
-				addGraph2(num, data['data'], val_min, val_max,LISTE);
+				
 				function doalert(checkboxElem) {
 					L=[];
 					
@@ -1164,13 +1164,13 @@
 						$('#main_graph').show().empty();
 						$('#functions').show().empty();
 						$('#fonction_choisie').show().empty();
-						
+						$('#fonctions_choisies').show().empty();
 						$('#graph_choisi'+indice).show().empty();
 						
 						var h =data['data'];
 						assess_session.attributes[indice].pts = h[num];
 						addGraph(num, data['data'], val_min, val_max, choice);
-						
+						addGraph2(num, data['data'], val_min, val_max, LISTE);
 						addGraph3(num, data['data'], val_min, val_max, choice);
 						addFunctions(num, data['data'],val_min,choice);
 						};
@@ -1190,13 +1190,13 @@
 						$('#main_graph').show().empty();
 						$('#functions').show().empty();
 						$('#fonction_choisie').show().empty();
-						
+						$('#fonctions_choisies').show().empty();
 						$('#graph_choisi'+indice).show().empty();
 						
 						var h =data['data'];
 						assess_session.attributes[indice].pts = h[Number(this.value)];
 						addGraph(Number(this.value), data['data'], val_min, val_max, choice);
-						
+						addGraph2(num, data['data'], val_min, val_max, LISTE);
 						addGraph3(Number(this.value), data['data'], val_min, val_max, choice);
 						addFunctions(Number(this.value), data['data'],val_min,choice);
 						};
