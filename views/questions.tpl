@@ -1138,18 +1138,16 @@
 				};
 				var L =[0,0,0,0,0];
 				var U = ['logarithmic','exponential','power','linear','quadratic'];
-				for (var j = 0; j < LISTE.length; j++) {
-				(function(_i) {	
-				$('#check'+_i).change(function() {
+				$('#check'+4).change(function() {
 					var assess_session = JSON.parse(localStorage.getItem("assess_session"));
 					var num = assess_session.attributes[indice].numero;
 					var choice = assess_session.attributes[indice].fonction;
 					var checked = $('#check'+_i).prop("checked");
 					if (num!=10000){
-						L[_i]=0;
+						L[4]=0;
 						if (!checked) {
 						
-							L[_i]=1;
+							L[4]=1;
 							var H=[];
 							for (var i = 0; i < U.length; i++) {
 								if(L[i]==1){
@@ -1160,7 +1158,139 @@
 							addGraph(num, data['data'], val_min, val_max,choice);
 						}else{
 							var H=[];
-							L[_i]=0;
+							L[4]=0;
+							for (var i = 0; i < U.length; i++) {
+								if(L[i]==1){
+									H.append(U[i]);
+								};
+							};
+							
+							$('#fonctions_choisies').show().empty();
+							addGraph2(num, data['data'], val_min, val_max,U);
+						};
+						
+					};
+				});
+				$('#check'+3).change(function() {
+					var assess_session = JSON.parse(localStorage.getItem("assess_session"));
+					var num = assess_session.attributes[indice].numero;
+					var choice = assess_session.attributes[indice].fonction;
+					var checked = $('#check'+_i).prop("checked");
+					if (num!=10000){
+						L[3]=0;
+						if (!checked) {
+						
+							L[3]=1;
+							var H=[];
+							for (var i = 0; i < U.length; i++) {
+								if(L[i]==1){
+									H.append(U[i]);
+								};
+							};
+							$('#fonctions_choisies').show().empty();
+							addGraph(num, data['data'], val_min, val_max,choice);
+						}else{
+							var H=[];
+							L[3]=0;
+							for (var i = 0; i < U.length; i++) {
+								if(L[i]==1){
+									H.append(U[i]);
+								};
+							};
+							
+							$('#fonctions_choisies').show().empty();
+							addGraph2(num, data['data'], val_min, val_max,U);
+						};
+						
+					};
+				});
+				$('#check'+2).change(function() {
+					var assess_session = JSON.parse(localStorage.getItem("assess_session"));
+					var num = assess_session.attributes[indice].numero;
+					var choice = assess_session.attributes[indice].fonction;
+					var checked = $('#check'+_i).prop("checked");
+					if (num!=10000){
+						L[2]=0;
+						if (!checked) {
+						
+							L[2]=1;
+							var H=[];
+							for (var i = 0; i < U.length; i++) {
+								if(L[i]==1){
+									H.append(U[i]);
+								};
+							};
+							$('#fonctions_choisies').show().empty();
+							addGraph(num, data['data'], val_min, val_max,choice);
+						}else{
+							var H=[];
+							L[2]=0;
+							for (var i = 0; i < U.length; i++) {
+								if(L[i]==1){
+									H.append(U[i]);
+								};
+							};
+							
+							$('#fonctions_choisies').show().empty();
+							addGraph2(num, data['data'], val_min, val_max,U);
+						};
+						
+					};
+				});
+				$('#check'+1).change(function() {
+					var assess_session = JSON.parse(localStorage.getItem("assess_session"));
+					var num = assess_session.attributes[indice].numero;
+					var choice = assess_session.attributes[indice].fonction;
+					var checked = $('#check'+_i).prop("checked");
+					if (num!=10000){
+						L[1]=0;
+						if (!checked) {
+						
+							L[1]=1;
+							var H=[];
+							for (var i = 0; i < U.length; i++) {
+								if(L[i]==1){
+									H.append(U[i]);
+								};
+							};
+							$('#fonctions_choisies').show().empty();
+							addGraph(num, data['data'], val_min, val_max,choice);
+						}else{
+							var H=[];
+							L[1]=0;
+							for (var i = 0; i < U.length; i++) {
+								if(L[i]==1){
+									H.append(U[i]);
+								};
+							};
+							
+							$('#fonctions_choisies').show().empty();
+							addGraph2(num, data['data'], val_min, val_max,U);
+						};
+						
+					};
+				});
+				$('#check'+0).change(function() {
+					var assess_session = JSON.parse(localStorage.getItem("assess_session"));
+					var num = assess_session.attributes[indice].numero;
+					var choice = assess_session.attributes[indice].fonction;
+					var checked = $('#check'+_i).prop("checked");
+					if (num!=10000){
+						L[0]=0;
+						if (!checked) {
+						
+							L[0]=1;
+							var H=[];
+							for (var i = 0; i < U.length; i++) {
+								if(L[i]==1){
+									H.append(U[i]);
+								};
+							};
+							$('#fonctions_choisies').show().empty();
+							addGraph(num, data['data'], val_min, val_max,choice);
+						}else{
+							var H=[];
+							L[0]=0;
 							for (var i = 0; i < U.length; i++) {
 								if(L[i]==1){
 									H.append(U[i]);
@@ -1174,8 +1304,7 @@
 					};
 				});
 				
-				})(j);
-				};
+				
 				
 				$('.ice').on('click', function() {
 			
