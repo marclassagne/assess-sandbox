@@ -175,7 +175,8 @@
 		for (var j = 0; j < assess_session.attributes.length; j++) {
 			if (assess_session.attributes[j].type == "Quantitative"){
 				if (assess_session.attributes[j].checked){
-				
+					var monAttribut = assess_session.attributes[j]
+
 					var json_2_send = {"type": "calc_util_multi", "points":[]},
 						val_max=monAttribut.val_max,
 						val_min=monAttribut.val_min,
