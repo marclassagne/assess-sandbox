@@ -1115,7 +1115,7 @@
 				$('#tableau_des_choix').append('<table id="NEWcurves_choice" class="table"><thead><tr><th></th><th> Functions </th></tr></thead></table>');
 				$('#tableau_checkbox').append('<table id="checkbox_curves_choice" class="table"><thead><tr><th></th><th> Functions </th></tr></thead></table>');
 				var LISTE=['logarithmic','exponential','power','linear'];
-				var dicobool ={fonction:[]};
+				var dicobool ={'fonction':[]};
 				if (data['data'][0]['quad'] !== undefined) {
 					LISTE = ['logarithmic','exponential','power','linear','quadratic'];
 				};
