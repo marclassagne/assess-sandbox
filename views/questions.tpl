@@ -1132,7 +1132,7 @@
 				
 				
 				localStorage.setItem("assess_session", JSON.stringify(assess_session));
-				$('#nouveaubloc').append('<table id="show_function" class="table"><thead><tr><th></th><th>The utility function you chose</th></tr></thead><tbody><tr><td id ="tableau_des_choix"></td><td id = "fonction_choisie"></td></tr></tbody></table>');
+				$('#nouveaubloc').append('<table id="show_function" class="table"><thead><tr><th>Choose a function here</th><th>The utility function you chose</th><th>see the functions here</th><th>The utility functions you want to see</th></tr></thead><tbody><tr><td id ="tableau_des_choix"></td><td id = "fonction_choisie"></td><td id ="tableau_checkbox"></td><td id ="fonctions_choisies"></td></tr></tbody></table>');
 				$('#tableau_des_choix').append('<table id="NEWcurves_choice" class="table"><thead><tr><th></th><th> Functions </th></tr></thead></table>');
 				LISTE=['logarithmic','exponential','power','linear'];
 					if (data['data'][0]['quad'] !== undefined) {
@@ -1174,8 +1174,8 @@
 					if (num!=10000){
 						$('#main_graph').show().empty();
 						$('#functions').show().empty();
-						$('#main_graph1').show().empty();
-						$('#main_graph2').show().empty();
+						$('#fonction_choisie').show().empty();
+						$('#fonctions_choisies').show().empty();
 						$('#graph_choisi'+indice).show().empty();
 						
 						var h =data['data'];
@@ -1200,8 +1200,8 @@
 					if (choice != ''){
 						$('#main_graph').show().empty();
 						$('#functions').show().empty();
-						$('#main_graph1').show().empty();
-						$('#main_graph2').show().empty();
+						$('#fonction_choisie').show().empty();
+						$('#fonctions_choisies').show().empty();
 						$('#graph_choisi'+indice).show().empty();
 						
 						var h =data['data'];
@@ -1228,8 +1228,8 @@
 					
 					$('#select').show();
 					
-					$('#main_graph1').empty();
-					$('#main_graph2').empty();
+					$('#fonction_choisie').empty();
+					$('#fonctions_choisies').empty();
 					
 					
 					
@@ -1305,8 +1305,8 @@
 					
 					$('#charts_quali').empty();
 					$('#charts_quali').hide();
-					$('#main_graph1').empty();
-					$('#main_graph2').empty();
+					$('#fonction_choisie').empty();
+					$('#fonctions_choisies').empty();
 					
 					
 					
