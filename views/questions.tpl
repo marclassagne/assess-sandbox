@@ -1043,7 +1043,7 @@
 					"min": min,
 					"max": max,
 					"liste_cord": data[i]['coord'],
-					"width": 5,
+					"width": 4,
 					
 				}), function(data2) {
 					$('#fonctions_choisies').append(data2);
