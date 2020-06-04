@@ -1140,37 +1140,6 @@
 						$('#curves_choice').append('<tr><td><input type="radio" class="hoice" name="select" value=' + i + '></td><td>' + data['data'][i]['points'] + '</td><td>' + regressions_text + '</td></tr>');
 					}
 				};
-				var L =[0,0,0,0,0];
-				var U = ['logarithmic','exponential','power','linear','quadratic'];
-				
-				for (var i = 0; i < LISTE.length; i++) {
-				
-					$('#checkbox_' + i).click(function() {
-						
-						var checked = $('#checkbox_' + i).prop("checked");
-						var H =[];
-							if (checked){
-								checked=False;
-								dicobool[LISTE[i]].checked=False; }
-							else{
-								checked=True;
-								dicobool[LISTE[i]].checked=True; };
-							if (checked){
-								L[i]=1;
-							}else{ 
-								L[i]=0;
-							};
-							for (var j = 0; j < L.length; j++) {
-								if (L[j] == 1){
-									H.append(U[i]);
-								};
-							};
-							$('#fonctions_choisies').show().empty();
-							addGraph2(num, data['data'], val_min, val_max,U);
-							
-								
-					});
-				};
 				
 				
 				
