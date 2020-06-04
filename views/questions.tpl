@@ -188,8 +188,9 @@
 				
 					for (key in points_dict) {
 						points.push([parseFloat(key), parseFloat(points_dict[key])]);
+						$('#graph_choisi'+ j).append('alpha');
 					};
-			
+					if (points_dict.length == 5){
 					if (points.length > 0 && monAttribut.checked) {
 						points.push([val_min, (mode == "Normal" ? 0 : 1)]);
 						points.push([val_max, (mode == "Normal" ? 1 : 0)]);
@@ -222,7 +223,7 @@
 					
 							});
 						});
-					};
+					}; };
 				};
 			};
 		};
