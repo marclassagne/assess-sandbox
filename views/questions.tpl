@@ -1144,10 +1144,10 @@
 					var assess_session = JSON.parse(localStorage.getItem("assess_session"));
 					var num = assess_session.attributes[indice].numero;
 					var choice = assess_session.attributes[indice].fonction;
-					checked = $('#check'+_i).prop("checked")
+					var checked = $('#check'+_i).prop("checked");
 					if (num!=10000){
 						L[_i]=0;
-						if (this.checked) {
+						if (!checked) {
 						
 							L[_i]=1;
 							var H=[];
