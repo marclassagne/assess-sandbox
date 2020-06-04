@@ -1093,7 +1093,7 @@
 				$('#charts').show().empty();
 				$('#nouveaubloc').show().empty();
 				$('#attribute_name').show().empty();
-				$('#fonctions_choisies').hide();
+			
 				
 				if (val_min<0){
 					for (i in data['data']){
