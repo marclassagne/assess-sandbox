@@ -1115,9 +1115,9 @@
 				$('#tableau_des_choix').append('<table id="NEWcurves_choice" class="table"><thead><tr><th></th><th> Functions </th></tr></thead></table>');
 				$('#tableau_checkbox').append('<table id="checkbox_curves_choice" class="table"><thead><tr><th></th><th> Functions </th></tr></thead></table>');
 				LISTE=['logarithmic','exponential','power','linear'];
-					if (data['data'][0]['quad'] !== undefined) {
-						LISTE = ['logarithmic','exponential','power','linear','quadratic'];
-						};
+				if (data['data'][0]['quad'] !== undefined) {
+					LISTE = ['logarithmic','exponential','power','linear','quadratic'];
+					};
 				for (var i = 0; i < LISTE.length; i++) {
 					$('#NEWcurves_choice').append('<tr><td><input type="radio" class="ice" name="select2" value=' +LISTE[i]+ '></td><td>' + LISTE[i] + '</td><tr>');
 					$('#checkbox_curves_choice').append('<tr><td><input type="checkbox" class="check'+i+'" name="check'+i+'" value=' +LISTE[i]+ ' id = "check'+i+'" ></td><td>' + LISTE[i] + '</td><tr>');
@@ -1137,17 +1137,17 @@
 					}
 				};
 				var L =[0,0,0,0,0];
-				
-				$('#check'+0).change(function() {
+				for (var j = 0; j < LISTE.length; j++) {
+				$('#check'+j).change(function() {
 					var assess_session = JSON.parse(localStorage.getItem("assess_session"));
 					var num = assess_session.attributes[indice].numero;
 					if (num!=10000){
 						if(this.checked){
 						
-							L[0]=1;
+							L[j]=1;
 						};
 						if(!this.checked){
-							L[0]=0;
+							L[j]=0;
 						};
 						var H=[];
 						for (var i = 0; i < LISTE.length; i++) {
@@ -1161,7 +1161,7 @@
 						
 					};
 				});
-				
+				};
 				$('.ice').on('click', function() {
 			
 					$('#choix_fonction').show();
