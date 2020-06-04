@@ -1117,7 +1117,7 @@
 				var LISTE=['logarithmic','exponential','power','linear'];
 				var dicobool ={}
 				for (h in LISTE){
-					dicobool[h]['checked']=True;
+					dicobool[h]['checked']=False;
 					};
 				if (data['data'][0]['quad'] !== undefined) {
 					LISTE = ['logarithmic','exponential','power','linear','quadratic'];
