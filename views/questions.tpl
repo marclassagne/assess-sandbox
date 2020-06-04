@@ -176,7 +176,7 @@
 			if (assess_session.attributes[j].type == "Quantitative"){
 				if (assess_session.attributes[j].checked){
 					var monAttribut = assess_session.attributes[j]
-
+					$('#graph_choisi'+ j).append(2);
 					var json_2_send = {"type": "calc_util_multi", "points":[]},
 						val_max=monAttribut.val_max,
 						val_min=monAttribut.val_min,
@@ -203,7 +203,7 @@
 					}
 				
 					json_2_send["points"] = points;
-				
+					$('#graph_choisi'+ j).append(3);
 					
 					$.post('ajax', JSON.stringify(json_2_send), function (data) {
 					$.post('ajax', JSON.stringify({
@@ -216,6 +216,7 @@
 							"choice":choice
 						}), function (data2) {
 							$('#graph_choisi'+ j).append(data2);
+							$('#graph_choisi'+ j).append(4);
 							
 							
 					
