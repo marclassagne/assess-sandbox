@@ -1147,7 +1147,7 @@
 						if ($(this).is(':checked')) {
 						
 							L[_i]=1;
-						
+						};
 						var H=[];
 						for (var i = 0; i < LISTE.length; i++) {
 							if(L[i]==1){
