@@ -1132,7 +1132,7 @@
 				
 				
 				localStorage.setItem("assess_session", JSON.stringify(assess_session));
-				$('#nouveaubloc').append('<table id="show_function" class="table"><thead><tr><th> <div id ="tableau_des_choix"></div> Choose a function </th><th> The utility function you chose </th></tr></thead></table>');
+				$('#nouveaubloc').append('<table id="show_function" class="table"><thead><tr><th> <div id ="tableau_des_choix"></div></th><th> The utility function you chose </th></tr></thead></table>');
 				$('#tableau_des_choix').append('<table id="NEWcurves_choice" class="table"><thead><tr><th></th><th> Functions </th></tr></thead></table>');
 				LISTE=['logarithmic','exponential','power','linear'];
 					if (data['data'][0]['quad'] !== undefined) {
