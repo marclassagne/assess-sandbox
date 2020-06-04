@@ -27,7 +27,7 @@
 <div id= "retour_quali" > <button type="button" class="btn btn-default comeback_quali" id = "update"> Go to main page </button> 
 </div>
 <div id= "attribute_name"></div>
-<div id ="nouveaubloc"><h6>Choose a function</h6></div>
+<div id ="nouveaubloc"></div>
 <div id="choix_fonction">
 	<table class="table">
 		<thead>
@@ -1132,7 +1132,7 @@
 				
 				
 				localStorage.setItem("assess_session", JSON.stringify(assess_session));
-				$('#nouveaubloc').append('<table id="show_function" class="table"><thead><tr><th><div id ="tableau_des_choix"></div></th><th>The utility function you chose <div id ="fonction_choisie"></div> </th></tr></thead></table>');
+				$('#nouveaubloc').append('<table id="show_function" class="table"><thead><tr><th></th><th>The utility function you chose</th></tr></thead><tbody><tr><td id ="tableau_des_choix"></td><td id = "fonction_choisie"></td></tr></tbody></table>');
 				$('#tableau_des_choix').append('<table id="NEWcurves_choice" class="table"><thead><tr><th></th><th> Functions </th></tr></thead></table>');
 				LISTE=['logarithmic','exponential','power','linear'];
 					if (data['data'][0]['quad'] !== undefined) {
