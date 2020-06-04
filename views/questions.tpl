@@ -1139,17 +1139,15 @@
 				var L =[0,0,0,0,0];
 				for (var j = 0; j < LISTE.length; j++) {
 				(function(_i) {	
-				$('#check'+_i).change(function() {
+				$('#check'+_i).click(function() {
 					var assess_session = JSON.parse(localStorage.getItem("assess_session"));
 					var num = assess_session.attributes[indice].numero;
 					if (num!=10000){
-						if(this.checked){
+						L[_i]=0;
+						if ($(this).is(':checked')) {
 						
 							L[_i]=1;
-						};
-						if(!this.checked){
-							L[_i]=0;
-						};
+						
 						var H=[];
 						for (var i = 0; i < LISTE.length; i++) {
 							if(L[i]==1){
