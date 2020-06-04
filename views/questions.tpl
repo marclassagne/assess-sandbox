@@ -1137,6 +1137,7 @@
 					}
 				};
 				var L =[0,0,0,0,0];
+				
 				$('#check'+0).change(function() {
 					var assess_session = JSON.parse(localStorage.getItem("assess_session"));
 					var num = assess_session.attributes[indice].numero;
@@ -1154,7 +1155,7 @@
 							
 						$('#fonctions_choisies').show().empty();
 						addGraph2(num, data['data'], val_min, val_max,H);
-						};
+						
 					};
 				});
 				
