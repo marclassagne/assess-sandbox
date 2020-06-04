@@ -1124,7 +1124,7 @@
 				
 				for (var i = 0; i < LISTE.length; i++) {
 					$('#NEWcurves_choice').append('<tr><td><input type="radio" class="ice" name="select2" value=' +LISTE[i]+ '></td><td>' + LISTE[i] + '</td><tr>');
-					$('#checkbox_curves_choice').append('<tr><td><input type="checkbox" class="check'+i+'"  value=' +LISTE[i]+ ' id = "check'+i+'"" name="check'+i+'"  '+(dicobool[i].checked ? "checked" : "")+' ></td><td>' + LISTE[i] + '</td><tr>');
+					$('#checkbox_curves_choice').append('<tr><td><input type="checkbox" class="check'+i+'"  value=' +LISTE[i]+ ' id = "check'+i+'"" name="check'+i+'"  ></td><td>' + LISTE[i] + '</td><tr>');
 				}
 				$('#charts').append('<table id="curves_choice" class="table"><thead><tr><th></th><th>Points used</th><th>Available regressions: r2</th></tr></thead></table>');
 				if (data['data'][0]['quad'] == undefined) {
@@ -1142,6 +1142,37 @@
 				};
 				
 				
+				var L =[0,0,0,0,0];
+				var U = ['logarithmic','exponential','power','linear','quadratic'];
+				
+				for (var i = 0; i < LISTE.length; i++) {
+				
+					$('#checkbox_' + i).click(function() {
+						
+						var checked = $('#checkbox_' + i).prop("checked");
+						var H =[];
+							if (checked){
+								checked=False;
+								dicobool[LISTE[i]].checked=False; }
+							else{
+								checked=True;
+								dicobool[LISTE[i]].checked=True; };
+							if (checked){
+								L[i]=1;
+							}else{ 
+								L[i]=0;
+							};
+							for (var j = 0; j < L.length; j++) {
+								if (L[j] == 1){
+									H.append(U[i]);
+								};
+							};
+							$('#fonctions_choisies').show().empty();
+							addGraph2(num, data['data'], val_min, val_max,U);
+							
+								
+					});
+				};
 				
 				
 				$('.ice').on('click', function() {
