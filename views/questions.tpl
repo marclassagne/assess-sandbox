@@ -1140,12 +1140,12 @@
 				var U = ['logarithmic','exponential','power','linear','quadratic'];
 				for (var j = 0; j < LISTE.length; j++) {
 				(function(_i) {	
-				$('#check'+_i).click(function() {
+				$('#check'+_i).change(function() {
 					var assess_session = JSON.parse(localStorage.getItem("assess_session"));
 					var num = assess_session.attributes[indice].numero;
 					if (num!=10000){
 						L[_i]=0;
-						if ($('#check'+_i).is(':checked')) {
+						if (this.checked) {
 						
 							L[_i]=1;
 							var H=[];
