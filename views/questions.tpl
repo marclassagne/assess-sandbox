@@ -1142,7 +1142,7 @@
 					var assess_session = JSON.parse(localStorage.getItem("assess_session"));
 					var num = assess_session.attributes[indice].numero;
 					var choice = assess_session.attributes[indice].fonction;
-					var checked = $('#check'+_i).prop("checked");
+					var checked = $('#check'+4).prop("checked");
 					if (num!=10000){
 						L[4]=0;
 						if (!checked) {
@@ -1175,7 +1175,7 @@
 					var assess_session = JSON.parse(localStorage.getItem("assess_session"));
 					var num = assess_session.attributes[indice].numero;
 					var choice = assess_session.attributes[indice].fonction;
-					var checked = $('#check'+_i).prop("checked");
+					var checked = $('#check'+3).prop("checked");
 					if (num!=10000){
 						L[3]=0;
 						if (!checked) {
@@ -1208,7 +1208,7 @@
 					var assess_session = JSON.parse(localStorage.getItem("assess_session"));
 					var num = assess_session.attributes[indice].numero;
 					var choice = assess_session.attributes[indice].fonction;
-					var checked = $('#check'+_i).prop("checked");
+					var checked = $('#check'+2).prop("checked");
 					if (num!=10000){
 						L[2]=0;
 						if (!checked) {
@@ -1241,7 +1241,7 @@
 					var assess_session = JSON.parse(localStorage.getItem("assess_session"));
 					var num = assess_session.attributes[indice].numero;
 					var choice = assess_session.attributes[indice].fonction;
-					var checked = $('#check'+_i).prop("checked");
+					var checked = $('#check'+1).prop("checked");
 					if (num!=10000){
 						L[1]=0;
 						if (!checked) {
@@ -1274,7 +1274,7 @@
 					var assess_session = JSON.parse(localStorage.getItem("assess_session"));
 					var num = assess_session.attributes[indice].numero;
 					var choice = assess_session.attributes[indice].fonction;
-					var checked = $('#check'+_i).prop("checked");
+					var checked = $('#check'+0).prop("checked");
 					if (num!=10000){
 						L[0]=0;
 						if (!checked) {
