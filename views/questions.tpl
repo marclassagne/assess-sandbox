@@ -195,7 +195,7 @@
 						points.push([val_min, (mode == "Normal" ? 0 : 1)]);
 						points.push([val_max, (mode == "Normal" ? 1 : 0)]);
 				
-					if (points_dict.length == 5){
+					if (points_dict.length == 3){
 					if (val_min<0) {
 						for (j in points) {
 							points[j][0]-=val_min;
