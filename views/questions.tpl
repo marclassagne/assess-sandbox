@@ -1151,7 +1151,7 @@
 						};
 						var H=[];
 						for (var i = 0; i < LISTE.length; i++) {
-							if(L[i]==1){
+							if(L[i]==0){
 								H.append(LISTE[i]);
 							};
 						};
