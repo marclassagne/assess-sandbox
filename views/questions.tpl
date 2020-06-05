@@ -1114,7 +1114,7 @@
 				document.getElementById('check_exp').checked = true;
 				document.getElementById('check_pow').checked = true;
 				document.getElementById('check_lin').checked = true;
-				if (LiSTE.length==5){
+				if (LISTE.length==5){
 					document.getElementById('check_quad').checked = true;
 				};
 				
@@ -1225,7 +1225,7 @@
 					document.getElementById('check_exp').checked = true;
 					document.getElementById('check_pow').checked = true;
 					document.getElementById('check_lin').checked = true;
-					if (LiSTE.length==5){
+					if (LISTE.length==5){
 						document.getElementById('check_quad').checked = true;
 					};
 					L=[1,1,1,1,1];
