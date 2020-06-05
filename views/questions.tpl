@@ -1111,11 +1111,11 @@
 				U = ['logarithmic','exponential','power','linear','quadratic'];
 				
 				
-				$('.check_log').change(function() {
+				$('#check_log').click(function() {
 						
 						
 							var H =[];
-							if (!this.checked){
+							if ($(this).is(':checked')) {
 								L[0]=1;
 							};
 							else{
