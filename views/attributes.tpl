@@ -444,7 +444,7 @@ $(function() {
 					},
 						'fonction':'',
 						'numero': 0,
-						'pts':[]
+						'pts':[1,1,1,1,1]
 				});
 			} else {
 				if (confirm("Are you sure you want to edit the attribute? All assessements will be deleted") == true) {
@@ -470,7 +470,7 @@ $(function() {
 									},
 						'fonction':'',
 						'numero': 0,
-						'pts':[]
+						'pts':[1,1,1,1,1]
 					};
 				}	
 				edit_mode=false;
@@ -538,7 +538,7 @@ $(function() {
 					},
 						'fonction':'',
 						'numero': 0,
-						'pts':[]
+						'pts':[1,1,1,1,1]
 				});
 			} else {
 				if (confirm("Are you sure you want to edit this attribute? All assessements will be deleted") == true) {
@@ -560,7 +560,7 @@ $(function() {
 						},
 						'fonction':'',
 						'numero': 0,
-						'pts':[]
+						'pts':[1,1,1,1,1]
 					};
 				}
 				edit_mode=false;
