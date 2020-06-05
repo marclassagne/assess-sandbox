@@ -1112,8 +1112,7 @@
 				document.getElementById('check_pow').checked = true;
 				document.getElementById('check_lin').checked = true;
 				assess_session.attributes[indice].pts = [1,1,1,1,1];
-				$('#fonctions_choisies').show().empty();
-				addGraph2(num, data['data'], val_min, val_max,LISTE);
+				
 				
 				
 				$("input[type=checkbox][name=check_log]").change(function() {
@@ -1190,6 +1189,8 @@
 					
 					var choice = assess_session.attributes[indice].fonction;
 					assess_session.attributes[indice].numero = Number(this.value);
+					$('#fonctions_choisies').show().empty();
+					addGraph2(Number(this.value), data['data'], val_min, val_max,LISTE);
 					if (choice != ''){
 						$('#main_graph').show().empty();
 						$('#functions').show().empty();
