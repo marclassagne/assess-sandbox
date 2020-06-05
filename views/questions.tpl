@@ -1363,7 +1363,7 @@
 					});
 					
 			if (LISTE.length==5){
-				$("input[type=checkbox][name=check_exp]").change(function() {
+				$("input[type=checkbox][name=check_quad]").change(function() {
 								
 								var assess_session = JSON.parse(localStorage.getItem("assess_session"));
 								var num = assess_session.attributes[indice].numero;
@@ -1371,7 +1371,7 @@
 								
 								
 								
-							var checked = document.getElementById('check_exp').checked;
+							var checked = document.getElementById('check_quad').checked;
 							if(checked) {
 								
 								L[4]=1;
