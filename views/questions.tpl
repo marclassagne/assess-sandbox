@@ -1115,7 +1115,7 @@
 				document.getElementById('check_pow').checked = true;
 				document.getElementById('check_lin').checked = true;
 				assess_session.attributes[indice].pts = [1,1,1,1,1];
-				
+				localStorage.setItem("assess_session", JSON.stringify(assess_session));
 				
 				
 				$("input[type=checkbox][name=check_log]").change(function() {
