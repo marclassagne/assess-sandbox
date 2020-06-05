@@ -24,10 +24,12 @@
 <div id="charts_quali">
 	<h2>Select your choice </h2>
 </div>
+
 <div id= "retour_quali" > <button type="button" class="btn btn-default comeback_quali" id = "update"> Go to main page </button> 
 </div>
 <div id= "attribute_name"></div>
-<div id ="nouveaubloc"><h6>Choose a function</h6></div>
+<div id ="nouveaubloc"></div>
+
 <div id="choix_fonction">
 	<table class="table">
 		<thead>
@@ -48,28 +50,6 @@
 		</tbody>
 	</table>
 </div>
-
-<div id="tableau_fonctions" >
-	<table class="table">
-		<thead>
-			<tr>
-				
-				<th>Your utility function</th>
-				<th>All utility functions</th>
-			</tr>
-		</thead>
-		<tbody id="tableau_fct">
-			
-					<tr>
-						
-						<td id="main_graph1"></td>
-						<td id="main_graph2"></td>
-					</tr>
-						
-		</tbody>
-	</table>
-</div>
-
 <div id="main_graph" class="col-lg-5"></div>
 <div id="functions" class="col-lg-7"></div>
 %include('header_end.tpl')
@@ -87,11 +67,11 @@
 		$('#main_graph').hide();
 		$('#functions').hide();
 		$('#nouveaubloc').hide();
-		$('#tableau_fonctions').hide();
 		$('#choix_fonction').hide();
 		$('#attribute_name').hide();
 		$('#charts_quali').hide();
 		$('#retour_quali').hide();
+		
 		
 		var assess_session = JSON.parse(localStorage.getItem("assess_session")),
 			settings = assess_session.settings;
@@ -426,18 +406,14 @@
 			//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 			else if (method == 'CE_Constant_Prob') {
 				(function() {
-
 					// VARIABLES
 					var min_interval = (assess_session.attributes[indice].questionnaire.number==2 ? parseFloat(Object.keys(assess_session.attributes[indice].questionnaire.points)[0]) : parseFloat(val_min)),  
 					    max_interval = (assess_session.attributes[indice].questionnaire.number==1 ? parseFloat(Object.keys(assess_session.attributes[indice].questionnaire.points)[0]) : parseFloat(val_max)); 
 					
 					var L = [0.75 * (max_interval - min_interval) + min_interval, 0.25 * (max_interval - min_interval) + min_interval];
 					var gain = Math.round(random_proba(L[0], L[1]));
-
 					// INTERFACE
-
 					var arbre_ce = new Arbre('ce', '#trees', settings.display, "CE");
-
 					// SETUP ARBRE GAUCHE
 					arbre_ce.questions_proba_haut = settings.proba_ce;
 					arbre_ce.questions_val_max = String(max_interval) + ' ' + unit;
@@ -445,10 +421,8 @@
 					arbre_ce.questions_val_mean = String(gain) + ' ' + unit;
 					arbre_ce.display();
 					arbre_ce.update();
-
 					// we add the choice button
 					$('#trees').append('<div class=choice style="text-align: center;"><p>Which option do you prefer?</p><button type="button" class="btn btn-default" id="gain">Certain gain</button><button type="button" class="btn btn-default" id="lottery">Lottery</button></div>')
-
 					function utility_finder(gain) {
 						var points = assess_session.attributes[indice].questionnaire.points;
 						if (gain == val_min) {
@@ -463,13 +437,11 @@
 							};
 						};
 					};
-
 					function treat_answer(data) {
 						min_interval = data.interval[0];
 						max_interval = data.interval[1];
 						gain = data.gain;
 						
-
 						if (max_interval - min_interval <= 0.05 * parseFloat(arbre_ce.questions_val_max) - parseFloat(arbre_ce.questions_val_min) || max_interval - min_interval < 2) {
 							$('.choice').hide();
 							arbre_ce.questions_val_mean = gain + ' ' + unit;
@@ -480,7 +452,6 @@
 							arbre_ce.update();
 						}
 					}
-
 					function ask_final_value(val) {
 						$('.lottery_a').hide();
 						$('.lottery_b').hide();
@@ -491,7 +462,6 @@
 							'</p><button type="button" class="btn btn-default final_validation">Validate</button></div>'
 						);
 			
-
 						// when the user validate
 						$('.final_validation').click(function() {
 							var final_gain = parseFloat($('#final_proba').val());
@@ -507,7 +477,6 @@
 								console.log( point_cepv)
 								console.log( number_cepv)
 								if ( point_cepv == number_cepv ){
-
 									assess_session.attributes[indice].questionnaire.number += 1;
 								}
 								
@@ -518,9 +487,6 @@
 							}
 						});
 					}
-
-
-
 					// HANDLE USERS ACTIONS
 					$('#lottery').click(function() {
 						$.post('ajax', '{"type":"question", "method": "CE_Constant_Prob", "gain": ' + String(gain) + ', "min_interval": ' + min_interval + ', "max_interval": ' + max_interval + ' ,"choice": "0" , "mode": "' + String(mode) + '"}', function(data) {
@@ -530,7 +496,6 @@
 							console.log("lottery");
 						});
 					});
-
 					$('#gain').click(function() {
 						$.post('ajax', '{"type":"question","method": "CE_Constant_Prob", "gain": ' + String(gain) + ', "min_interval": ' + min_interval + ', "max_interval": ' + max_interval + ' ,"choice": "1" , "mode": "' + String(mode) + '"}', function(data) {
 							treat_answer(data);
@@ -541,13 +506,11 @@
 					});
 				})()
 			}
-
 			//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 			///////////////////////////////////////////////////////////////// CEPV METHOD ////////////////////////////////////////////////////////////////
 			//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 			else if (method == 'CE_Variable_Prob') {
 				(function() {
-
 					// VARIABLES
 					var min_interval = val_min;
 					var max_interval = val_max;
@@ -558,14 +521,11 @@
 					} else if (Object.keys(assess_session.attributes[indice].questionnaire.points).length == 2) {
 		                 		p = 0.75;
 					}
-
 					var L = [0.75 * (max_interval - min_interval) + min_interval, 0.25 * (max_interval - min_interval) + min_interval];
 					var gain = Math.round(random_proba(L[0], L[1]));
                                       
 					// INTERFACE
-
 					var arbre_cepv = new Arbre('cepv', '#trees', settings.display, "CE_PV");
-
 					// SETUP ARBRE GAUCHE
 					arbre_cepv.questions_proba_haut = p;
 					arbre_cepv.questions_val_max = max_interval + ' ' + unit;
@@ -573,7 +533,6 @@
 					arbre_cepv.questions_val_mean = gain + ' ' + unit;
 					arbre_cepv.display();
 					arbre_cepv.update();
-
 					// we add the choice button
                                         $('#trees').append('<div class=choice style="text-align: center;"><p>Which option do you prefer?</p><button type="button" class="btn btn-default" id="gain">Certain gain</button><button type="button" class="btn btn-default" id="lottery">Lottery</button></div>')
 					
@@ -592,13 +551,10 @@
 						};
 						
 					}
-
-
 					function treat_answer(data) {
 						min_interval = data.interval[0];
 						max_interval = data.interval[1];
 						gain = data.gain;
-
 						if (max_interval - min_interval <= 0.05 * parseFloat(arbre_cepv.questions_val_max) - parseFloat(arbre_cepv.questions_val_min) || max_interval - min_interval < 2) {
 							$('#gain').hide();
 							$('#lottery').hide();
@@ -610,7 +566,6 @@
 							arbre_cepv.update();
 						}
 					}
-
 					function ask_final_value(val) {
 						$('.lottery_a').hide();
 						$('.lottery_b').hide();
@@ -620,7 +575,6 @@
 						 <= <input type="text" class="form-control" id="final_proba" placeholder="Probability" value="' + val + '" style="width: 100px; display: inline-block"> <= ' + max_interval +
 							'</p><button type="button" class="btn btn-default final_validation">Validate</button></div>'
 						);
-
 						// when the user validate
 						$('.final_validation').click(function() {
 							var final_gain = parseFloat($('#final_proba').val());
@@ -630,14 +584,12 @@
 							if (final_gain <= parseFloat(arbre_cepv.questions_val_max) && final_gain >= parseFloat(arbre_cepv.questions_val_min)) {
 								// we save it
 								assess_session.attributes[indice].questionnaire.points[String(final_gain)]=parseFloat(final_utility);
-
 								console.log(assess_session.attributes[indice].questionnaire.points)
 								var  point_cepv= Object.keys(assess_session.attributes[indice].questionnaire.points).length-1
 								var  number_cepv = assess_session.attributes[indice].questionnaire.number
 								console.log( point_cepv)
 								console.log( number_cepv)
 								if ( point_cepv == number_cepv ){
-
 									assess_session.attributes[indice].questionnaire.number += 1;
 								}
 								console.log( point_cepv)
@@ -647,16 +599,10 @@
 								// we reload the page
 								window.location.reload();
 							}
-
 								
-
 						});
 						console.log( assess_session.attributes[indice].questionnaire.number )
-
 					}
-
-
-
 					// HANDLE USERS ACTIONS
 					$('#lottery').click(function() {
 						$.post('ajax', '{"type":"question", "method": "CE_Constant_Prob", "gain": ' + String(gain) + ', "min_interval": ' + min_interval + ', "max_interval": ' + max_interval + ' ,"choice": "0" , "mode": "' + String(mode) + '"}', function(data) {
@@ -664,7 +610,6 @@
 							console.log(data);
 						});
 					});
-
 					$('#gain').click(function() {
 						$.post('ajax', '{"type":"question","method": "CE_Constant_Prob", "gain": ' + String(gain) + ', "min_interval": ' + min_interval + ', "max_interval": ' + max_interval + ' ,"choice": "1" , "mode": "' + String(mode) + '"}', function(data) {
 							treat_answer(data);
@@ -1029,13 +974,13 @@
 					"min": min,
 					"max": max,
 					"liste_cord": data[i]['coord'],
-					"width": 5,
+					"width": 4,
 					"choice":choice,
 				}), function(data2) {
-					$('#main_graph1').append(data2);
+					$('#fonction_choisie').append(data2);
 				});
 			}
-			function addGraph2(i, data, min, max) {
+			function addGraph2(i, data, min, max,liste) {
 				console.log("addgraph");
 				$.post('ajax', JSON.stringify({
 					"type": "svg",
@@ -1043,10 +988,11 @@
 					"min": min,
 					"max": max,
 					"liste_cord": data[i]['coord'],
-					"width": 5,
+					"width": 4,
+					"liste":liste
 					
 				}), function(data2) {
-					$('#main_graph2').append(data2);
+					$('#fonctions_choisies').append(data2);
 				});
 			}
 			function addGraph3(i, data, min, max, choice) {
@@ -1113,8 +1059,9 @@
 			$.post('ajax', JSON.stringify(json_2_send), function(data) {
 				$('#charts').show().empty();
 				$('#nouveaubloc').show().empty();
-				$('#tableau_fonctions').show();
 				$('#attribute_name').show().empty();
+				
+			
 				
 				if (val_min<0){
 					for (i in data['data']){
@@ -1129,16 +1076,19 @@
 				assess_session.attributes[indice].numero = 10000;
 				assess_session.attributes[indice].fonction = '';
 				
-				localStorage.setItem("assess_session", JSON.stringify(assess_session));
 				
-				console.log(JSON.stringify(json_2_send));
-				$('#nouveaubloc').append('<table id="NEWcurves_choice" class="table"><thead><tr><th></th><th> Functions </th></tr></thead></table>');
+				
+				localStorage.setItem("assess_session", JSON.stringify(assess_session));
+				$('#nouveaubloc').append('<table id="show_function" class="table"><thead><tr><th>Choose a function here</th><th>The utility function you chose</th><th>see the functions here</th><th>The utility functions you want to see</th></tr></thead><tbody><tr><td id ="tableau_des_choix"></td><td id = "fonction_choisie"></td><td id ="tableau_checkbox"></td><td id ="fonctions_choisies"></td></tr></tbody></table>');
+				$('#tableau_des_choix').append('<table id="NEWcurves_choice" class="table"><thead><tr><th></th><th> Functions </th></tr></thead></table>');
+				$('#tableau_checkbox').append('<table id="checkbox_curves_choice" class="table"><thead><tr><th></th><th> Functions </th></tr></thead></table>');
 				LISTE=['logarithmic','exponential','power','linear'];
 					if (data['data'][0]['quad'] !== undefined) {
 						LISTE = ['logarithmic','exponential','power','linear','quadratic'];
 						};
 				for (var i = 0; i < LISTE.length; i++) {
 					$('#NEWcurves_choice').append('<tr><td><input type="radio" class="ice" name="select2" value=' +LISTE[i]+ '></td><td>' + LISTE[i] + '</td><tr>');
+					
 				}
 				$('#charts').append('<table id="curves_choice" class="table"><thead><tr><th></th><th>Points used</th><th>Available regressions: r2</th></tr></thead></table>');
 				if (data['data'][0]['quad'] == undefined) {
@@ -1154,10 +1104,322 @@
 						$('#curves_choice').append('<tr><td><input type="radio" class="hoice" name="select" value=' + i + '></td><td>' + data['data'][i]['points'] + '</td><td>' + regressions_text + '</td></tr>');
 					}
 				};
+				$('#checkbox_curves_choice').append('<tr><td><input type="checkbox" class="check_log" id="check_log" name="check_log"></td><td>' + LISTE[0] + '</td><tr>');
+				$('#checkbox_curves_choice').append('<tr><td><input type="checkbox" class="check_exp" id="check_exp" name="check_exp"></td><td>' + LISTE[1] + '</td><tr>');
+				$('#checkbox_curves_choice').append('<tr><td><input type="checkbox" class="check_pow" id="check_pow" name="check_pow"></td><td>' + LISTE[2] + '</td><tr>');
+				$('#checkbox_curves_choice').append('<tr><td><input type="checkbox" class="check_lin" id="check_lin" name="check_lin"></td><td>' + LISTE[3] + '</td><tr>');
+				if (LISTE.length==5){
+					$('#checkbox_curves_choice').append('<tr><td><input type="checkbox" class="check_quad" id="check_quad" name="check_quad"></td><td>' + LISTE[4] + '</td><tr>');
+				};
+				document.getElementById('check_log').checked = true;
+				document.getElementById('check_exp').checked = true;
+				document.getElementById('check_pow').checked = true;
+				document.getElementById('check_lin').checked = true;
+				if (LISTE.length==5){
+					document.getElementById('check_quad').checked = true;
+				};
+				
+				var L=[1,1,1,1,1];
+				
+				
+				$("input[type=checkbox][name=check_log]").change(function() {
+								
+								var assess_session = JSON.parse(localStorage.getItem("assess_session"));
+								var num = assess_session.attributes[indice].numero;
+								
+								
+								
+								
+							var checked = document.getElementById('check_log').checked;
+							if(checked) {
+								
+								L[0]=1;
+								var R=['logarithmic'];
+								if (L[1] == 1){
+									R.push('exponential');
+								};
+								if (L[2] == 1){
+									R.push('power');
+								};
+								if (L[3] == 1){
+									R.push('linear');
+								};
+								if (LISTE.length==5){
+									if (L[4] == 1){
+										R.push('quadratic');
+									};
+								};
+								
+								$('#fonctions_choisies').show().empty();
+								addGraph2(num, data['data'], val_min, val_max,R);
+								
+							};
+							if(!checked) {
+								L[0]=0;
+								var R=[];
+								
+								if (L[1] == 1){
+									R.push('exponential');
+								};
+								if (L[2] == 1){
+									R.push('power');
+								};
+								if (L[3] == 1){
+									R.push('linear');
+								};
+								if (LISTE.length==5){
+									if (L[4] == 1){
+										R.push('quadratic');
+									};
+								};
+								
+								$('#fonctions_choisies').show().empty();
+								addGraph2(num, data['data'], val_min, val_max,R);
+								
+							};
+							
+							localStorage.setItem("assess_session", JSON.stringify(assess_session));
+							
+								
+					});
+				
+				$("input[type=checkbox][name=check_exp]").change(function() {
+								
+								var assess_session = JSON.parse(localStorage.getItem("assess_session"));
+								var num = assess_session.attributes[indice].numero;
+								
+								
+								
+								
+							var checked = document.getElementById('check_exp').checked;
+							if(checked) {
+								
+								L[1]=1;
+								var R=['exponential'];
+								if (L[0] == 1){
+									R.push('logarithmic');
+								};
+								if (L[2] == 1){
+									R.push('power');
+								};
+								if (L[3] == 1){
+									R.push('linear');
+								};
+								if (LISTE.length==5){
+									if (L[4] == 1){
+										R.push('quadratic');
+									};
+								};
+								
+								$('#fonctions_choisies').show().empty();
+								addGraph2(num, data['data'], val_min, val_max,R);
+								
+							};
+							if(!checked) {
+								L[1]=0;
+								var R=[];
+								
+								if (L[0] == 1){
+									R.push('logarithmic');
+								};
+								if (L[2] == 1){
+									R.push('power');
+								};
+								if (L[3] == 1){
+									R.push('linear');
+								};
+								if (LISTE.length==5){
+									if (L[4] == 1){
+										R.push('quadratic');
+									};
+								};
+								
+								$('#fonctions_choisies').show().empty();
+								addGraph2(num, data['data'], val_min, val_max,R);
+								
+							};
+							
+							localStorage.setItem("assess_session", JSON.stringify(assess_session));
+							
+								
+					});
+				$("input[type=checkbox][name=check_pow]").change(function() {
+								
+								var assess_session = JSON.parse(localStorage.getItem("assess_session"));
+								var num = assess_session.attributes[indice].numero;
+								
+								
+								
+								
+							var checked = document.getElementById('check_pow').checked;
+							if(checked) {
+								
+								L[2]=1;
+								var R=['power'];
+								if (L[0] == 1){
+									R.push('logarithmic');
+								};
+								if (L[1] == 1){
+									R.push('exponential');
+								};
+								if (L[3] == 1){
+									R.push('linear');
+								};
+								if (LISTE.length==5){
+									if (L[4] == 1){
+										R.push('quadratic');
+									};
+								};
+								
+								$('#fonctions_choisies').show().empty();
+								addGraph2(num, data['data'], val_min, val_max,R);
+								
+							};
+							if(!checked) {
+								L[2]=0;
+								var R=[];
+								
+								if (L[0] == 1){
+									R.push('logarithmic');
+								};
+								if (L[1] == 1){
+									R.push('exponential');
+								};
+								if (L[3] == 1){
+									R.push('linear');
+								};
+								if (LISTE.length==5){
+									if (L[4] == 1){
+										R.push('quadratic');
+									};
+								};
+								
+								$('#fonctions_choisies').show().empty();
+								addGraph2(num, data['data'], val_min, val_max,R);
+								
+							};
+							
+							localStorage.setItem("assess_session", JSON.stringify(assess_session));
+							
+								
+					});
+				$("input[type=checkbox][name=check_lin]").change(function() {
+								
+								var assess_session = JSON.parse(localStorage.getItem("assess_session"));
+								var num = assess_session.attributes[indice].numero;
+								
+								
+								
+								
+							var checked = document.getElementById('check_lin').checked;
+							if(checked) {
+								
+								L[3]=1;
+								var R=['linear'];
+								if (L[0] == 1){
+									R.push('logarithmic');
+								};
+								if (L[2] == 1){
+									R.push('power');
+								};
+								if (L[1] == 1){
+									R.push('exponential');
+								};
+								if (LISTE.length==5){
+									if (L[4] == 1){
+										R.push('quadratic');
+									};
+								};
+								
+								$('#fonctions_choisies').show().empty();
+								addGraph2(num, data['data'], val_min, val_max,R);
+								
+							};
+							if(!checked) {
+								L[3]=0;
+								var R=[];
+								
+								if (L[0] == 1){
+									R.push('logarithmic');
+								};
+								if (L[2] == 1){
+									R.push('power');
+								};
+								if (L[1] == 1){
+									R.push('exponential');
+								};
+								if (LISTE.length==5){
+									if (L[4] == 1){
+										R.push('quadratic');
+									};
+								};
+								
+								$('#fonctions_choisies').show().empty();
+								addGraph2(num, data['data'], val_min, val_max,R);
+								
+							};
+							
+							localStorage.setItem("assess_session", JSON.stringify(assess_session));
+							
+								
+					});
+					
 			
-				
-				
-				
+				if (LISTE.length==5){
+				$("input[type=checkbox][name=check_quad]").change(function() {
+					var assess_session = JSON.parse(localStorage.getItem("assess_session"));
+					var num = assess_session.attributes[indice].numero;
+					var checked = document.getElementById('check_quad').checked;
+							if(checked) {
+								
+								L[4]=1;
+								var R=['quadratic'];
+								if (L[0] == 1){
+									R.push('logarithmic');
+								};
+								if (L[2] == 1){
+									R.push('power');
+								};
+								if (L[3] == 1){
+									R.push('linear');
+								};
+								
+								if (L[1] == 1){
+									R.push('exponential');
+								};
+								
+								$('#fonctions_choisies').show().empty();
+								addGraph2(num, data['data'], val_min, val_max,R);
+								
+							};
+							if(!checked) {
+								L[4]=0;
+								var R=[];
+								
+								if (L[0] == 1){
+									R.push('logarithmic');
+								};
+								if (L[2] == 1){
+									R.push('power');
+								};
+								if (L[3] == 1){
+									R.push('linear');
+								};
+								if (L[1] == 1){
+									R.push('exponential');
+								};
+								
+								$('#fonctions_choisies').show().empty();
+								addGraph2(num, data['data'], val_min, val_max,R);
+								
+							};
+							
+							localStorage.setItem("assess_session", JSON.stringify(assess_session));			
+								
+							
+								
+					});
+				};
 				
 				
 				$('.ice').on('click', function() {
@@ -1173,14 +1435,14 @@
 					if (num!=10000){
 						$('#main_graph').show().empty();
 						$('#functions').show().empty();
-						$('#main_graph1').show().empty();
-						$('#main_graph2').show().empty();
+						$('#fonction_choisie').show().empty();
+					
 						$('#graph_choisi'+indice).show().empty();
 						
 						var h =data['data'];
 						assess_session.attributes[indice].pts = h[num];
 						addGraph(num, data['data'], val_min, val_max, choice);
-						addGraph2(num, data['data'], val_min, val_max);
+						
 						addGraph3(num, data['data'], val_min, val_max, choice);
 						addFunctions(num, data['data'],val_min,choice);
 						};
@@ -1196,17 +1458,27 @@
 					
 					var choice = assess_session.attributes[indice].fonction;
 					assess_session.attributes[indice].numero = Number(this.value);
+					$('#fonctions_choisies').show().empty();
+					document.getElementById('check_log').checked = true;
+					document.getElementById('check_exp').checked = true;
+					document.getElementById('check_pow').checked = true;
+					document.getElementById('check_lin').checked = true;
+					if (LISTE.length==5){
+						document.getElementById('check_quad').checked = true;
+					};
+					L=[1,1,1,1,1];
+					addGraph2(Number(this.value), data['data'], val_min, val_max,LISTE);
 					if (choice != ''){
 						$('#main_graph').show().empty();
 						$('#functions').show().empty();
-						$('#main_graph1').show().empty();
-						$('#main_graph2').show().empty();
+						$('#fonction_choisie').show().empty();
+						
 						$('#graph_choisi'+indice).show().empty();
 						
 						var h =data['data'];
 						assess_session.attributes[indice].pts = h[Number(this.value)];
 						addGraph(Number(this.value), data['data'], val_min, val_max, choice);
-						addGraph2(Number(this.value), data['data'], val_min, val_max);
+						
 						addGraph3(Number(this.value), data['data'], val_min, val_max, choice);
 						addFunctions(Number(this.value), data['data'],val_min,choice);
 						};
@@ -1227,8 +1499,8 @@
 					
 					$('#select').show();
 					
-					$('#main_graph1').empty();
-					$('#main_graph2').empty();
+					$('#fonction_choisie').empty();
+					$('#fonctions_choisies').empty();
 					
 					
 					
@@ -1304,8 +1576,8 @@
 					
 					$('#charts_quali').empty();
 					$('#charts_quali').hide();
-					$('#main_graph1').empty();
-					$('#main_graph2').empty();
+					$('#fonction_choisie').empty();
+					$('#fonctions_choisies').empty();
 					
 					
 					
