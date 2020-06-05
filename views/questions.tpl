@@ -1107,6 +1107,8 @@
 				if (LISTE.length==5){
 					$('#checkbox_curves_choice').append('<tr><td><input type="checkbox" class="check_quad" id="check_quad" name="check_quad"></td><td>' + LISTE[4] + '</td><tr>');
 				};
+				document.getElementById('check_log').checked = true;
+				
 				L =[0,0,0,0,0];
 				U = ['logarithmic','exponential','power','linear','quadratic'];
 				
