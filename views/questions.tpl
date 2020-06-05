@@ -1058,6 +1058,7 @@
 				$('#charts').show().empty();
 				$('#nouveaubloc').show().empty();
 				$('#attribute_name').show().empty();
+				$("#test2").show();
 			
 				
 				if (val_min<0){
@@ -1122,7 +1123,7 @@
 								var num = assess_session.attributes[indice].numero;
 								var L =  assess_session.attributes[indice].pts;
 								var R=['logarithmic'];
-								$("#test2").append(L(0));
+								$("#test2").append(U[0]);
 							var checked = document.getElementById('check_log').checked;
 							if(checked) {
 								
