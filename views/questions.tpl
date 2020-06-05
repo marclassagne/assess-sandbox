@@ -1111,14 +1111,14 @@
 				U = ['logarithmic','exponential','power','linear','quadratic'];
 				
 				
-				$('#check_log').click(function() {
-						
-						
+				$("input[type=checkbox][name=check_log]").change(function() {
+							var assess_session = JSON.parse(localStorage.getItem("assess_session"));
+							var num = assess_session.attributes[indice].numero;
 							var H =[];
-							if ($(this).is(':checked')) {
+							if(this.checked) {
 								L[0]=1;
-							};
-							else{
+							
+							}else if(!this.checked) {
 								
 								L[0]=0;
 							};
