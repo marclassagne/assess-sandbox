@@ -1114,8 +1114,7 @@
 				assess_session.attributes[indice].pts = [1,1,1,1,1];
 				$('#fonctions_choisies').show().empty();
 				addGraph2(num, data['data'], val_min, val_max,LISTE);
-				localStorage.setItem("assess_session", JSON.stringify(assess_session));
-				var assess_session = JSON.parse(localStorage.getItem("assess_session"));
+				
 				
 				$("input[type=checkbox][name=check_log]").change(function() {
 							var U = ['logarithmic','exponential','power','linear','quadratic'];
