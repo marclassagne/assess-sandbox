@@ -1155,7 +1155,7 @@
 									R.append('linear');
 								};
 								$('#fonctions_choisies').show().empty();
-								addGraph2(num, data['data'], val_min, val_max,U);
+								addGraph2(num, data['data'], val_min, val_max,R);
 								
 							};
 							assess_session.attributes[indice].pts = L;
