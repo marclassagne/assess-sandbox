@@ -1108,32 +1108,6 @@
 					$('#checkbox_curves_choice').append('<tr><td><input type="checkbox" class="check_quad"  value=' +LISTE[4]+ ' name="check_quad"></td><td>' + LISTE[4] + '</td><tr>');
 				};
 				
-				var L =[0,0,0,0,0];
-				var U = ['logarithmic','exponential','power','linear','quadratic'];
-				
-				
-				
-					$("input[class='check_log']").change(function() {
-						
-						
-							var H =[];
-							if (!this.checked){
-								L[0]=1;
-							};
-							else{
-								
-								L[0]=0;
-							};
-							for (var j = 0; j < L.length; j++) {
-								if (L[j] == 1){
-									H.append(U[j]);
-								};
-							};
-							$('#fonctions_choisies').show().empty();
-							addGraph2(num, data['data'], val_min, val_max,U);
-							
-								
-					});
 				
 				
 				
