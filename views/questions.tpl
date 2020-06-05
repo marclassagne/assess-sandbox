@@ -1124,12 +1124,12 @@
 								var num = assess_session.attributes[indice].numero;
 								var L =  assess_session.attributes[indice].pts;
 								var R=['logarithmic'];
-								L[0]=6;
+								
 								$("#test2").append(L[0]);
 							var checked = document.getElementById('check_log').checked;
 							if(checked) {
 								
-								L[0]=1;
+								
 								var R=['logarithmic'];
 								if (L[1] == 1){
 									R.push('exponential');
@@ -1148,7 +1148,7 @@
 							if(!checked) {
 								
 								var R=[];
-								L[0]=0;
+								
 								if (L[1] == 1){
 									R.push('exponential');
 								};
