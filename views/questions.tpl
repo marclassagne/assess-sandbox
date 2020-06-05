@@ -1141,7 +1141,7 @@
 								
 							};
 							if(!checked) {
-								var H=[];
+								var V=[];
 								
 								if (L[1] == 1){
 									H.append('exponential');
@@ -1154,7 +1154,7 @@
 								};
 								
 								$('#fonctions_choisies').show().empty();
-								addGraph2(num, data['data'], val_min, val_max,H);
+								addGraph2(num, data['data'], val_min, val_max,V);
 							};
 							assess_session.attributes[indice].pts = L;
 							localStorage.setItem("assess_session", JSON.stringify(assess_session));
