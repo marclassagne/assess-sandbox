@@ -1143,7 +1143,7 @@
 								if (L[3] == 1){
 									R.push('linear');
 								};
-								if (LiSTE.length==5){
+								if (LISTE.length==5){
 									if (L[4] == 1){
 										R.push('quadratic');
 									};
@@ -1165,7 +1165,7 @@
 								if (L[3] == 1){
 									R.push('linear');
 								};
-								if (LiSTE.length==5){
+								if (LISTE.length==5){
 									if (L[4] == 1){
 										R.push('quadratic');
 									};
