@@ -1173,7 +1173,7 @@
 							
 								
 					});
-				};
+				
 				
 				
 				$('.ice').on('click', function() {
