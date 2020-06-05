@@ -34,7 +34,7 @@ def generate_svg_plot(dictionary, min, max, liste_cord, width,liste):
     if min >= 0 :
         for func in dictionary.keys():
             if func == 'exp':
-		for k in range(len(liste)-1):
+		for k in range(len(liste)):
 			if liste[k]=='exponential':
                			a = dictionary[func]['a']
                 		b = dictionary[func]['b']
@@ -43,7 +43,7 @@ def generate_svg_plot(dictionary, min, max, liste_cord, width,liste):
                          		label="Exp Fitted Curve")
 
             elif func == 'quad':
-		for k in range(len(liste)-1):
+		for k in range(len(liste)):
 			if liste[k]=='quadratic':
                 		a = dictionary[func]['a']
                 		b = dictionary[func]['b']
@@ -52,7 +52,7 @@ def generate_svg_plot(dictionary, min, max, liste_cord, width,liste):
                          		label="Quad Fitted Curve")
 
             elif func == 'pow':
-		for k in range(len(liste)-1):
+		for k in range(len(liste)):
 			if liste[k]=='power':
                 		a = dictionary[func]['a']
                 		b = dictionary[func]['b']
@@ -61,7 +61,7 @@ def generate_svg_plot(dictionary, min, max, liste_cord, width,liste):
                          		label="Pow Fitted Curve")
 
             elif func == 'log':
-		for k in range(len(liste)-1):
+		for k in range(len(liste)):
 			if liste[k]=='logarithmic':
                 		a = dictionary[func]['a']
                 		b = dictionary[func]['b']
@@ -71,14 +71,14 @@ def generate_svg_plot(dictionary, min, max, liste_cord, width,liste):
                          		'#D9585A', label="Log Fitted Curve")
 
             elif func == 'lin':
-		for k in range(len(liste)-1):
+		for k in range(len(liste)):
 			if liste[k]=='linear':
                 		a = dictionary[func]['a']
                 		b = dictionary[func]['b']
                 		plt.plot(x, funclin(x, a, b), '#D9B504', label="Lin Fitted Curve")
 
             elif func =='expo-power':
-		for k in range(len(liste)-1):
+		for k in range(len(liste)):
 			if liste[k]=='exponential-power':
                 		a = dictionary[func]['a']
                 		b = dictionary[func]['b']
@@ -89,7 +89,7 @@ def generate_svg_plot(dictionary, min, max, liste_cord, width,liste):
     else: 
         for func in dictionary.keys():
             if func == 'exp':
-		for k in range(len(liste)-1):
+		for k in range(len(liste)):
 			if liste[k]=='exponential':
                		 a = dictionary[func]['a']
                		 b = dictionary[func]['b']
@@ -98,7 +98,7 @@ def generate_svg_plot(dictionary, min, max, liste_cord, width,liste):
                          		label="Exp Fitted Curve")
 
             elif func == 'quad':
-		for k in range(len(liste)-1):
+		for k in range(len(liste)):
 			if liste[k]=='quadratic':
                 		a = dictionary[func]['a']
                 		b = dictionary[func]['b']
@@ -107,7 +107,7 @@ def generate_svg_plot(dictionary, min, max, liste_cord, width,liste):
                          		label="Quad Fitted Curve")
 
             elif func == 'pow':
-		for k in range(len(liste)-1):
+		for k in range(len(liste)):
 			if liste[k]=='power':
                 		a = dictionary[func]['a']
                 		b = dictionary[func]['b']
@@ -116,7 +116,7 @@ def generate_svg_plot(dictionary, min, max, liste_cord, width,liste):
                          		label="Pow Fitted Curve")
 
             elif func == 'log':
-		for k in range(len(liste)-1):
+		for k in range(len(liste)):
 			if liste[k]=='logarithmic':
                 		a = dictionary[func]['a']
                 		b = dictionary[func]['b']
@@ -126,14 +126,14 @@ def generate_svg_plot(dictionary, min, max, liste_cord, width,liste):
                          		'#D9585A', label="Log Fitted Curve")
 
             elif func == 'lin':
-		for k in range(len(liste)-1):
+		for k in range(len(liste)):
 			if liste[k]=='linear':
                 		a = dictionary[func]['a']
                 		b = dictionary[func]['b']
                 		plt.plot(x, funclin(xneg, a, b), '#D9B504', label="Lin Fitted Curve")
 
             elif func =='expo-power':
-		for k in range(len(liste)-1):
+		for k in range(len(liste)):
 			if liste[k]=='exponential-power':
                 		a = dictionary[func]['a']
                 		b = dictionary[func]['b']
