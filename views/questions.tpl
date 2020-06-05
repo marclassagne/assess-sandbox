@@ -1209,6 +1209,12 @@
 					var choice = assess_session.attributes[indice].fonction;
 					assess_session.attributes[indice].numero = Number(this.value);
 					$('#fonctions_choisies').show().empty();
+					document.getElementById('check_log').checked = true;
+					document.getElementById('check_exp').checked = true;
+					document.getElementById('check_pow').checked = true;
+					document.getElementById('check_lin').checked = true;
+				
+					L=[1,1,1,1,1];
 					addGraph2(Number(this.value), data['data'], val_min, val_max,LISTE);
 					if (choice != ''){
 						$('#main_graph').show().empty();
