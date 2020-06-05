@@ -1124,23 +1124,25 @@
 								var num = assess_session.attributes[indice].numero;
 								var L =  assess_session.attributes[indice].pts;
 								var R=['logarithmic'];
+								L[0]=6;
 								$("#test2").append(L[0]);
 							var checked = document.getElementById('check_log').checked;
 							if(checked) {
 								
 								L[0]=1;
+								var R=['logarithmic'];
 								if (L[1] == 1){
-									R.append('exponential');
+									R.push('exponential');
 								};
 								if (L[2] == 1){
-									R.append('power');
+									R.push('power');
 								};
 								if (L[3] == 1){
-									R.append('linear');
+									R.push('linear');
 								};
 								
 								$('#fonctions_choisies').show().empty();
-								addGraph2(num, data['data'], val_min, val_max,U);
+								addGraph2(num, data['data'], val_min, val_max,R);
 								
 							};
 							if(!checked) {
@@ -1148,13 +1150,13 @@
 								var R=[];
 								L[0]=0;
 								if (L[1] == 1){
-									R.append('exponential');
+									R.push('exponential');
 								};
 								if (L[2] == 1){
-									R.append('power');
+									R.push('power');
 								};
 								if (L[3] == 1){
-									R.append('linear');
+									R.push('linear');
 								};
 								$('#fonctions_choisies').show().empty();
 								addGraph2(num, data['data'], val_min, val_max,R);
