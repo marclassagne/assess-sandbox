@@ -1132,7 +1132,7 @@
 							var checked = document.getElementById('check_log').checked;
 							if(checked) {
 								
-								
+								L[0]=1;
 								var R=['logarithmic'];
 								if (L[1] == 1){
 									R.push('exponential');
@@ -1153,7 +1153,7 @@
 								
 							};
 							if(!checked) {
-								
+								L[0]=0;
 								var R=[];
 								
 								if (L[1] == 1){
