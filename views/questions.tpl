@@ -28,6 +28,7 @@
 </div>
 <div id= "attribute_name"></div>
 <div id ="nouveaubloc"></div>
+<div id ="test2"></div>
 <div id="choix_fonction">
 	<table class="table">
 		<thead>
