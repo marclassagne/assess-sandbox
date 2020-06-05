@@ -1124,28 +1124,37 @@
 							
 							var checked = document.getElementById('check_log').checked;
 							if(checked) {
-								L[0]=1;
-								for (var j = 0; j < L.length; j++) {
-									if (L[j] == 0){
-										U.remove(U[j]);
-									};
+								
+								var H=['logarithmic'];
+								if (L[1] == 1){
+									H.append('exponential');
 								};
-								var M = U;
+								if (L[2] == 1){
+									H.append('power');
+								};
+								if (L[3] == 1){
+									H.append('linear');
+								};
+								
 								$('#fonctions_choisies').show().empty();
-								addGraph2(num, data['data'], val_min, val_max,M);
+								addGraph2(num, data['data'], val_min, val_max,H);
 								
 							};
 							if(!checked) {
+								var H=[];
 								
-								L[0]=0;
-								for (var j = 0; j < L.length; j++) {
-									if (L[j] == O){
-										U.remove(U[j]);
-									};
+								if (L[1] == 1){
+									H.append('exponential');
 								};
-								var M = U;
+								if (L[2] == 1){
+									H.append('power');
+								};
+								if (L[3] == 1){
+									H.append('linear');
+								};
+								
 								$('#fonctions_choisies').show().empty();
-								addGraph2(num, data['data'], val_min, val_max,M);
+								addGraph2(num, data['data'], val_min, val_max,H);
 							};
 							assess_session.attributes[indice].pts = L;
 							localStorage.setItem("assess_session", JSON.stringify(assess_session));
