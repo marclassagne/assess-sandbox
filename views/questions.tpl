@@ -1111,13 +1111,7 @@
 				if (LISTE.length==5){
 					$('#checkbox_curves_choice').append('<tr><td><input type="checkbox" class="check_quad" id="check_quad" name="check_quad"></td><td>' + LISTE[4] + '</td><tr>');
 				};
-				document.getElementById('check_log').checked = true;
-				document.getElementById('check_exp').checked = true;
-				document.getElementById('check_pow').checked = true;
-				document.getElementById('check_lin').checked = true;
-				if (LISTE.length==5){
-					document.getElementById('check_quad').checked = true;
-				};
+				
 				
 				var L=[1,1,1,1,1];
 				
