@@ -1100,12 +1100,12 @@
 						$('#curves_choice').append('<tr><td><input type="radio" class="hoice" name="select" value=' + i + '></td><td>' + data['data'][i]['points'] + '</td><td>' + regressions_text + '</td></tr>');
 					}
 				};
-				$('#checkbox_curves_choice').append('<tr><td><input type="checkbox" class="check_log"  name="check_log"></td><td>' + LISTE[0] + '</td><tr>');
-				$('#checkbox_curves_choice').append('<tr><td><input type="checkbox" class="check_exp"  name="check_exp"></td><td>' + LISTE[1] + '</td><tr>');
-				$('#checkbox_curves_choice').append('<tr><td><input type="checkbox" class="check_pow"  name="check_pow"></td><td>' + LISTE[2] + '</td><tr>');
-				$('#checkbox_curves_choice').append('<tr><td><input type="checkbox" class="check_lin"  name="check_lin"></td><td>' + LISTE[3] + '</td><tr>');
+				$('#checkbox_curves_choice').append('<tr><td><input type="checkbox" class="check_log" id="check_log" name="check_log"></td><td>' + LISTE[0] + '</td><tr>');
+				$('#checkbox_curves_choice').append('<tr><td><input type="checkbox" class="check_exp" id="check_exp" name="check_exp"></td><td>' + LISTE[1] + '</td><tr>');
+				$('#checkbox_curves_choice').append('<tr><td><input type="checkbox" class="check_pow" id="check_pow" name="check_pow"></td><td>' + LISTE[2] + '</td><tr>');
+				$('#checkbox_curves_choice').append('<tr><td><input type="checkbox" class="check_lin" id="check_lin" name="check_lin"></td><td>' + LISTE[3] + '</td><tr>');
 				if (LISTE.length==5){
-					$('#checkbox_curves_choice').append('<tr><td><input type="checkbox" class="check_quad" name="check_quad"></td><td>' + LISTE[4] + '</td><tr>');
+					$('#checkbox_curves_choice').append('<tr><td><input type="checkbox" class="check_quad" id="check_quad" name="check_quad"></td><td>' + LISTE[4] + '</td><tr>');
 				};
 				L =[0,0,0,0,0];
 				U = ['logarithmic','exponential','power','linear','quadratic'];
@@ -1115,7 +1115,7 @@
 							var assess_session = JSON.parse(localStorage.getItem("assess_session"));
 							var num = assess_session.attributes[indice].numero;
 							var H =[];
-							if(this.checked) {
+							if(document.getElementById(check_log).checked) {
 								L[0]=1;
 								for (var j = 0; j < L.length; j++) {
 									if (L[j] == 1){
@@ -1125,7 +1125,7 @@
 								$('#fonctions_choisies').show().empty();
 								addGraph2(num, data['data'], val_min, val_max,H);
 								
-							}else if(!this.checked) {
+							}else if(!document.getElementById(check_log).checked) {
 								
 								L[0]=0;
 								for (var j = 0; j < L.length; j++) {
