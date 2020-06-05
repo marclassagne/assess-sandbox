@@ -1126,13 +1126,14 @@
 								L[0]=1;
 								for (var j = 0; j < L.length; j++) {
 									if (L[j] == 1){
-										H.append(U[j]);
+										H.append('logarithmic');
 									};
 								};
 								$('#fonctions_choisies').show().empty();
 								addGraph2(num, data['data'], val_min, val_max,H);
 								
-							}else if(!checked) {
+							};
+							if(!checked) {
 								
 								L[0]=0;
 								for (var j = 0; j < L.length; j++) {
