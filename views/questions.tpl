@@ -1113,11 +1113,11 @@
 				
 				
 				
-					$('#check_log').change(function() {
+					$("input[class='check_log']").change(function() {
 						
 						
 							var H =[];
-							if (this.checked==False){
+							if (!this.checked){
 								L[0]=1;
 							};
 							else{
@@ -1126,7 +1126,7 @@
 							};
 							for (var j = 0; j < L.length; j++) {
 								if (L[j] == 1){
-									H.append(U[i]);
+									H.append(U[j]);
 								};
 							};
 							$('#fonctions_choisies').show().empty();
