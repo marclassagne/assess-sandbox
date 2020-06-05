@@ -1109,15 +1109,16 @@
 				};
 				document.getElementById('check_log').checked = true;
 				
-				L =[0,0,0,0,0];
-				U = ['logarithmic','exponential','power','linear','quadratic'];
+				L =[1,1,1,1,1];
+				
 				
 				
 				$("input[type=checkbox][name=check_log]").change(function() {
+							U = ['logarithmic','exponential','power','linear','quadratic'];
 							var assess_session = JSON.parse(localStorage.getItem("assess_session"));
 							var num = assess_session.attributes[indice].numero;
 							var H =[];
-							if(document.getElementById('check_log').checked) {
+							if(document.getElementById('check_log').checked==true) {
 								L[0]=1;
 								for (var j = 0; j < L.length; j++) {
 									if (L[j] == 1){
@@ -1127,7 +1128,7 @@
 								$('#fonctions_choisies').show().empty();
 								addGraph2(num, data['data'], val_min, val_max,H);
 								
-							}else if(!document.getElementById('check_log').checked) {
+							}else if(document.getElementById('check_log').checked==false) {
 								
 								L[0]=0;
 								for (var j = 0; j < L.length; j++) {
