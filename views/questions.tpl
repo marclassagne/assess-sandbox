@@ -1059,6 +1059,7 @@
 				$('#nouveaubloc').show().empty();
 				$('#attribute_name').show().empty();
 				$("#test2").show();
+				$("#test2").append('ça_m_énerve');
 			
 				
 				if (val_min<0){
