@@ -1130,8 +1130,9 @@
 										U.remove(U[j]);
 									};
 								};
+								var M = U
 								$('#fonctions_choisies').show().empty();
-								addGraph2(num, data['data'], val_min, val_max,U);
+								addGraph2(num, data['data'], val_min, val_max,M);
 								
 							};
 							if(!checked) {
@@ -1142,8 +1143,9 @@
 										U.remove(U[j]);
 									};
 								};
+								var M = U
 								$('#fonctions_choisies').show().empty();
-								addGraph2(num, data['data'], val_min, val_max,U);
+								addGraph2(num, data['data'], val_min, val_max,M);
 							};
 							assess_session.attributes[indice].pts = L;
 							localStorage.setItem("assess_session", JSON.stringify(assess_session));
