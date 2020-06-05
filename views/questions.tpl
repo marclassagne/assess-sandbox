@@ -24,6 +24,7 @@
 <div id="charts_quali">
 	<h2>Select your choice </h2>
 </div>
+
 <div id= "retour_quali" > <button type="button" class="btn btn-default comeback_quali" id = "update"> Go to main page </button> 
 </div>
 <div id= "attribute_name"></div>
@@ -70,6 +71,7 @@
 		$('#attribute_name').hide();
 		$('#charts_quali').hide();
 		$('#retour_quali').hide();
+		
 		
 		var assess_session = JSON.parse(localStorage.getItem("assess_session")),
 			settings = assess_session.settings;
@@ -1365,7 +1367,54 @@
 			
 				if (LISTE.length==5){
 				$("input[type=checkbox][name=check_quad]").change(function() {
+					var assess_session = JSON.parse(localStorage.getItem("assess_session"));
+					var num = assess_session.attributes[indice].numero;
+					var checked = document.getElementById('check_quad').checked;
+							if(checked) {
 								
+								L[4]=1;
+								var R=['quadratic'];
+								if (L[0] == 1){
+									R.push('logarithmic');
+								};
+								if (L[2] == 1){
+									R.push('power');
+								};
+								if (L[3] == 1){
+									R.push('linear');
+								};
+								
+								if (L[1] == 1){
+									R.push('exponential');
+								};
+								
+								$('#fonctions_choisies').show().empty();
+								addGraph2(num, data['data'], val_min, val_max,R);
+								
+							};
+							if(!checked) {
+								L[4]=0;
+								var R=[];
+								
+								if (L[0] == 1){
+									R.push('logarithmic');
+								};
+								if (L[2] == 1){
+									R.push('power');
+								};
+								if (L[3] == 1){
+									R.push('linear');
+								};
+								if (L[1] == 1){
+									R.push('exponential');
+								};
+								
+								$('#fonctions_choisies').show().empty();
+								addGraph2(num, data['data'], val_min, val_max,R);
+								
+							};
+							
+							localStorage.setItem("assess_session", JSON.stringify(assess_session));			
 								
 							
 								
