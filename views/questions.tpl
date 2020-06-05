@@ -1108,11 +1108,14 @@
 					$('#checkbox_curves_choice').append('<tr><td><input type="checkbox" class="check_quad" id="check_quad" name="check_quad"></td><td>' + LISTE[4] + '</td><tr>');
 				};
 				document.getElementById('check_log').checked = true;
-				
+				document.getElementById('check_exp').checked = true;
+				document.getElementById('check_pow').checked = true;
+				document.getElementById('check_lin').checked = true;
 				assess_session.attributes[indice].pts = [1,1,1,1,1];
-				
-				
-				
+				$('#fonctions_choisies').show().empty();
+				addGraph2(num, data['data'], val_min, val_max,LISTE);
+				localStorage.setItem("assess_session", JSON.stringify(assess_session));
+				var assess_session = JSON.parse(localStorage.getItem("assess_session"));
 				
 				$("input[type=checkbox][name=check_log]").change(function() {
 							var U = ['logarithmic','exponential','power','linear','quadratic'];
