@@ -1122,7 +1122,7 @@
 								var num = assess_session.attributes[indice].numero;
 								var L =  assess_session.attributes[indice].pts;
 								var R=['logarithmic'];
-								
+								$("#test2").append(L[0]);
 							var checked = document.getElementById('check_log').checked;
 							if(checked) {
 								
@@ -1143,7 +1143,7 @@
 							};
 							if(!checked) {
 								
-								R=[];
+								var R=[];
 								L[0]=0;
 								if (L[1] == 1){
 									R.append('exponential');
