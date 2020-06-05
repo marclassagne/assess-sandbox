@@ -1117,23 +1117,15 @@
 				
 				
 				$("input[type=checkbox][name=check_log]").change(function() {
-							
-							var checked = document.getElementById('check_log').checked;
-							if(checked) {
-								var U = ['logarithmic','exponential','power','linear','quadratic'];
+							var U = ['logarithmic','exponential','power','linear','quadratic'];
 								var assess_session = JSON.parse(localStorage.getItem("assess_session"));
 								var num = assess_session.attributes[indice].numero;
 								var L =  assess_session.attributes[indice].pts;
-								var H=[]
-								for (var i = 0; i < U.length; i++) {
-									if (L[i] == 1){
-										H.append(U[i]);
-									};
-								};
-								for (var i = 0; i < H.length; i++) {
-									$("test2").append(H[i]);
-								};
 								var R=['logarithmic'];
+								
+							var checked = document.getElementById('check_log').checked;
+							if(checked) {
+								
 								L[0]=1;
 								if (L[1] == 1){
 									R.append('exponential');
@@ -1147,25 +1139,11 @@
 								
 								$('#fonctions_choisies').show().empty();
 								addGraph2(num, data['data'], val_min, val_max,R);
-								assess_session.attributes[indice].pts = L;
-								localStorage.setItem("assess_session", JSON.stringify(assess_session));
 								
 							};
 							if(!checked) {
-								var U = ['logarithmic','exponential','power','linear','quadratic'];
-								var assess_session = JSON.parse(localStorage.getItem("assess_session"));
-								var num = assess_session.attributes[indice].numero;
-								var L =  assess_session.attributes[indice].pts;
-								var H=[]
-								for (var i = 0; i < U.length; i++) {
-									if (L[i] == 1){
-										H.append(U[i]);
-									};
-								};
-								for (var i = 0; i < H.length; i++) {
-									$("test2").append(H[i]);
-								};
-								var R=[];
+								
+								R=[];
 								L[0]=0;
 								if (L[1] == 1){
 									R.append('exponential');
@@ -1178,10 +1156,10 @@
 								};
 								$('#fonctions_choisies').show().empty();
 								addGraph2(num, data['data'], val_min, val_max,R);
-								assess_session.attributes[indice].pts = L;
-								localStorage.setItem("assess_session", JSON.stringify(assess_session));
+								
 							};
-							
+							assess_session.attributes[indice].pts = L;
+								localStorage.setItem("assess_session", JSON.stringify(assess_session));
 							
 								
 					});
