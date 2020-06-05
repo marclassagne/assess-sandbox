@@ -1120,29 +1120,30 @@
 							var assess_session = JSON.parse(localStorage.getItem("assess_session"));
 							var num = assess_session.attributes[indice].numero;
 							var L =  assess_session.attributes[indice].pts;
-							var H =[];
+							
+							
 							var checked = document.getElementById('check_log').checked
 							if(checked) {
 								L[0]=1;
 								for (var j = 0; j < L.length; j++) {
-									if (L[j] == 1){
-										H.append('logarithmic');
+									if (L[j] == 0){
+										U.remove(U[j]);
 									};
 								};
 								$('#fonctions_choisies').show().empty();
-								addGraph2(num, data['data'], val_min, val_max,H);
+								addGraph2(num, data['data'], val_min, val_max,U);
 								
 							};
 							if(!checked) {
 								
 								L[0]=0;
 								for (var j = 0; j < L.length; j++) {
-									if (L[j] == 1){
-										H.append(U[j]);
+									if (L[j] == O){
+										U.remove(U[j]);
 									};
 								};
 								$('#fonctions_choisies').show().empty();
-								addGraph2(num, data['data'], val_min, val_max,H);
+								addGraph2(num, data['data'], val_min, val_max,U);
 							};
 							assess_session.attributes[indice].pts = L;
 							localStorage.setItem("assess_session", JSON.stringify(assess_session));
