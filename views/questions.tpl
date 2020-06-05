@@ -1135,40 +1135,68 @@
 							
 							var checked = document.getElementById('check_log').checked;
 							if(checked) {
-								
-								var H=['logarithmic'];
+								var U = ['logarithmic','exponential','power','linear','quadratic'];
+								var assess_session = JSON.parse(localStorage.getItem("assess_session"));
+								var num = assess_session.attributes[indice].numero;
+								var L =  assess_session.attributes[indice].pts;
+								var H=[]
+								for (var i = 0; i < U.length; i++) {
+									if (L[i] == 1){
+										H.append(U[i]);
+									};
+								};
+								for (var i = 0; i < H.length; i++) {
+									$("test2").append(H[i]);
+								};
+								var R=['logarithmic'];
+								L[0]=1;
 								if (L[1] == 1){
-									H.append('exponential');
+									R.append('exponential');
 								};
 								if (L[2] == 1){
-									H.append('power');
+									R.append('power');
 								};
 								if (L[3] == 1){
-									H.append('linear');
+									R.append('linear');
 								};
 								
 								$('#fonctions_choisies').show().empty();
-								addGraph2(num, data['data'], val_min, val_max,H);
+								addGraph2(num, data['data'], val_min, val_max,R);
+								assess_session.attributes[indice].pts = L;
+								localStorage.setItem("assess_session", JSON.stringify(assess_session));
 								
 							};
 							if(!checked) {
-								var V=[];
-								
+								var U = ['logarithmic','exponential','power','linear','quadratic'];
+								var assess_session = JSON.parse(localStorage.getItem("assess_session"));
+								var num = assess_session.attributes[indice].numero;
+								var L =  assess_session.attributes[indice].pts;
+								var H=[]
+								for (var i = 0; i < U.length; i++) {
+									if (L[i] == 1){
+										H.append(U[i]);
+									};
+								};
+								for (var i = 0; i < H.length; i++) {
+									$("test2").append(H[i]);
+								};
+								var R=[];
+								L[0]=0;
 								if (L[1] == 1){
-									H.append('exponential');
+									R.append('exponential');
 								};
 								if (L[2] == 1){
-									H.append('power');
+									R.append('power');
 								};
 								if (L[3] == 1){
-									H.append('linear');
+									R.append('linear');
 								};
-								
 								$('#fonctions_choisies').show().empty();
-								addGraph2(num, data['data'], val_min, val_max,V);
+								addGraph2(num, data['data'], val_min, val_max,R);
+								assess_session.attributes[indice].pts = L;
+								localStorage.setItem("assess_session", JSON.stringify(assess_session));
 							};
-							assess_session.attributes[indice].pts = L;
-							localStorage.setItem("assess_session", JSON.stringify(assess_session));
+							
 							
 								
 					});
