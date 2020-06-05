@@ -1114,15 +1114,15 @@
 				document.getElementById('check_exp').checked = true;
 				document.getElementById('check_pow').checked = true;
 				document.getElementById('check_lin').checked = true;
-				assess_session.attributes[indice].pts = [1,1,1,1,1];
-				localStorage.setItem("assess_session", JSON.stringify(assess_session));
+				
+				var L=[1,1,1,1,1];
 				
 				
 				$("input[type=checkbox][name=check_log]").change(function() {
-							var U = ['logarithmic','exponential','power','linear','quadratic'];
+								var U = ['logarithmic','exponential','power','linear','quadratic'];
 								var assess_session = JSON.parse(localStorage.getItem("assess_session"));
 								var num = assess_session.attributes[indice].numero;
-								var L =  assess_session.attributes[indice].pts;
+								
 								var R=['logarithmic'];
 								
 								$("#test2").append(L[0]);
@@ -1162,8 +1162,8 @@
 								addGraph2(num, data['data'], val_min, val_max,R);
 								
 							};
-							assess_session.attributes[indice].pts = L;
-								localStorage.setItem("assess_session", JSON.stringify(assess_session));
+							
+							localStorage.setItem("assess_session", JSON.stringify(assess_session));
 							
 								
 					});
