@@ -1148,6 +1148,9 @@
 										R.push('quadratic');
 									};
 								};
+								if (L[3] == 1){
+									R.push('linear');
+								};
 								$('#fonctions_choisies').show().empty();
 								addGraph2(num, data['data'], val_min, val_max,R);
 								
@@ -1169,6 +1172,9 @@
 									if (L[4] == 1){
 										R.push('quadratic');
 									};
+								};
+								if (L[3] == 1){
+									R.push('linear');
 								};
 								$('#fonctions_choisies').show().empty();
 								addGraph2(num, data['data'], val_min, val_max,R);
