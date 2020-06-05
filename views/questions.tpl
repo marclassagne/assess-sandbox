@@ -1100,12 +1100,12 @@
 						$('#curves_choice').append('<tr><td><input type="radio" class="hoice" name="select" value=' + i + '></td><td>' + data['data'][i]['points'] + '</td><td>' + regressions_text + '</td></tr>');
 					}
 				};
-				$('#checkbox_curves_choice').append('<tr><td><input type="checkbox" class="check_log"  value=' +LISTE[0]+ ' name="check_log"></td><td>' + LISTE[0] + '</td><tr>');
-				$('#checkbox_curves_choice').append('<tr><td><input type="checkbox" class="check_exp"  value=' +LISTE[1]+ ' name="check_exp"></td><td>' + LISTE[1] + '</td><tr>');
-				$('#checkbox_curves_choice').append('<tr><td><input type="checkbox" class="check_pow"  value=' +LISTE[2]+ ' name="check_pow"></td><td>' + LISTE[2] + '</td><tr>');
-				$('#checkbox_curves_choice').append('<tr><td><input type="checkbox" class="check_lin"  value=' +LISTE[3]+ ' name="check_lin"></td><td>' + LISTE[3] + '</td><tr>');
+				$('#checkbox_curves_choice').append('<tr><td><input type="checkbox" class="check_log"  name="check_log"></td><td>' + LISTE[0] + '</td><tr>');
+				$('#checkbox_curves_choice').append('<tr><td><input type="checkbox" class="check_exp"  name="check_exp"></td><td>' + LISTE[1] + '</td><tr>');
+				$('#checkbox_curves_choice').append('<tr><td><input type="checkbox" class="check_pow"  name="check_pow"></td><td>' + LISTE[2] + '</td><tr>');
+				$('#checkbox_curves_choice').append('<tr><td><input type="checkbox" class="check_lin"  name="check_lin"></td><td>' + LISTE[3] + '</td><tr>');
 				if (LISTE.length==5){
-					$('#checkbox_curves_choice').append('<tr><td><input type="checkbox" class="check_quad"  value=' +LISTE[4]+ ' name="check_quad"></td><td>' + LISTE[4] + '</td><tr>');
+					$('#checkbox_curves_choice').append('<tr><td><input type="checkbox" class="check_quad" name="check_quad"></td><td>' + LISTE[4] + '</td><tr>');
 				};
 				L =[0,0,0,0,0];
 				U = ['logarithmic','exponential','power','linear','quadratic'];
@@ -1128,7 +1128,7 @@
 								};
 							};
 							$('#fonctions_choisies').show().empty();
-							addGraph2(num, data['data'], val_min, val_max,U);
+							addGraph2(num, data['data'], val_min, val_max,H);
 							
 								
 					});
