@@ -443,8 +443,8 @@ $(function() {
 						'utility': {}
 					},
 						'fonction':'',
-						'numero': 0,
-						'pts':[1,1,1,1,1]
+						'numero': 0
+						
 				});
 			} else {
 				if (confirm("Are you sure you want to edit the attribute? All assessements will be deleted") == true) {
@@ -469,8 +469,8 @@ $(function() {
 							'utility': {}
 									},
 						'fonction':'',
-						'numero': 0,
-						'pts':[1,1,1,1,1]
+						'numero': 0
+						
 					};
 				}	
 				edit_mode=false;
@@ -537,8 +537,8 @@ $(function() {
 						'utility': {}
 					},
 						'fonction':'',
-						'numero': 0,
-						'pts':[1,1,1,1,1]
+						'numero': 0
+						
 				});
 			} else {
 				if (confirm("Are you sure you want to edit this attribute? All assessements will be deleted") == true) {
@@ -559,8 +559,8 @@ $(function() {
 							'utility': {}
 						},
 						'fonction':'',
-						'numero': 0,
-						'pts':[1,1,1,1,1]
+						'numero': 0
+						
 					};
 				}
 				edit_mode=false;
