@@ -1112,7 +1112,7 @@
 				
 				
 				
-					$(.check_log).change(function() {
+					$('.check_log').change(function() {
 						
 						
 							var H =[];
