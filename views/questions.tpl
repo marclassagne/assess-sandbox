@@ -1114,6 +1114,9 @@
 				document.getElementById('check_exp').checked = true;
 				document.getElementById('check_pow').checked = true;
 				document.getElementById('check_lin').checked = true;
+				if (LiSTE.length==5){
+					document.getElementById('check_quad').checked = true;
+				};
 				
 				var L=[1,1,1,1,1];
 				
@@ -1140,7 +1143,11 @@
 								if (L[3] == 1){
 									R.push('linear');
 								};
-								
+								if (LiSTE.length==5){
+									if (L[4] == 1){
+										R.push('quadratic');
+									};
+								};
 								$('#fonctions_choisies').show().empty();
 								addGraph2(num, data['data'], val_min, val_max,R);
 								
@@ -1157,6 +1164,11 @@
 								};
 								if (L[3] == 1){
 									R.push('linear');
+								};
+								if (LiSTE.length==5){
+									if (L[4] == 1){
+										R.push('quadratic');
+									};
 								};
 								$('#fonctions_choisies').show().empty();
 								addGraph2(num, data['data'], val_min, val_max,R);
@@ -1213,7 +1225,9 @@
 					document.getElementById('check_exp').checked = true;
 					document.getElementById('check_pow').checked = true;
 					document.getElementById('check_lin').checked = true;
-				
+					if (LiSTE.length==5){
+						document.getElementById('check_quad').checked = true;
+					};
 					L=[1,1,1,1,1];
 					addGraph2(Number(this.value), data['data'], val_min, val_max,LISTE);
 					if (choice != ''){
