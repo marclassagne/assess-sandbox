@@ -1122,7 +1122,7 @@
 							var L =  assess_session.attributes[indice].pts;
 							
 							
-							var checked = document.getElementById('check_log').checked
+							var checked = document.getElementById('check_log').checked;
 							if(checked) {
 								L[0]=1;
 								for (var j = 0; j < L.length; j++) {
@@ -1130,7 +1130,7 @@
 										U.remove(U[j]);
 									};
 								};
-								var M = U
+								var M = U;
 								$('#fonctions_choisies').show().empty();
 								addGraph2(num, data['data'], val_min, val_max,M);
 								
@@ -1143,7 +1143,7 @@
 										U.remove(U[j]);
 									};
 								};
-								var M = U
+								var M = U;
 								$('#fonctions_choisies').show().empty();
 								addGraph2(num, data['data'], val_min, val_max,M);
 							};
