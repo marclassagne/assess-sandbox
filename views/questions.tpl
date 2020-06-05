@@ -1117,21 +1117,6 @@
 				
 				
 				$("input[type=checkbox][name=check_log]").change(function() {
-							var U = ['logarithmic','exponential','power','linear','quadratic'];
-							var assess_session = JSON.parse(localStorage.getItem("assess_session"));
-							var num = assess_session.attributes[indice].numero;
-							var L =  assess_session.attributes[indice].pts;
-							var H=[]
-							for (var i = 0; i < U.length; i++) {
-								if (L[i] == 1){
-									H.append(U[i]);
-								};
-							};
-							for (var i = 0; i < H.length; i++) {
-								$("test2").append(H[i]);
-							};
-							
-								
 							
 							var checked = document.getElementById('check_log').checked;
 							if(checked) {
