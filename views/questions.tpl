@@ -1117,18 +1117,26 @@
 							var H =[];
 							if(this.checked) {
 								L[0]=1;
-							
+								for (var j = 0; j < L.length; j++) {
+									if (L[j] == 1){
+										H.append(U[j]);
+									};
+								};
+								$('#fonctions_choisies').show().empty();
+								addGraph2(num, data['data'], val_min, val_max,H);
+								
 							}else if(!this.checked) {
 								
 								L[0]=0;
-							};
-							for (var j = 0; j < L.length; j++) {
-								if (L[j] == 1){
-									H.append(U[j]);
+								for (var j = 0; j < L.length; j++) {
+									if (L[j] == 1){
+										H.append(U[j]);
+									};
 								};
+								$('#fonctions_choisies').show().empty();
+								addGraph2(num, data['data'], val_min, val_max,H);
 							};
-							$('#fonctions_choisies').show().empty();
-							addGraph2(num, data['data'], val_min, val_max,H);
+							
 							
 								
 					});
