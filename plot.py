@@ -8,8 +8,9 @@ from functions import *
 
 def generate_svg_plot(dictionary, min_, max_, liste_cord, width,liste):
     
+    plot_all = False
     if liste == []:
-            liste = dictionary.keys()
+            plot_all = True
     # img
     imgdata = io.BytesIO()
 
@@ -36,113 +37,101 @@ def generate_svg_plot(dictionary, min_, max_, liste_cord, width,liste):
     if min_ >= 0 :
         for func in dictionary.keys():
             if func == 'exp':
-                for k in range(len(liste)):
-                    if liste[k]=='exponential':
-                                a = dictionary[func]['a']
-                                b = dictionary[func]['b']
-                                c = dictionary[func]['c']
-                                ax.plot(x, funcexp(x, a, b, c), '#401539',
-                                        label="Exp Fitted Curve")
+                if plot_all or 'exponential' in liste:
+                        a = dictionary[func]['a']
+                        b = dictionary[func]['b']
+                        c = dictionary[func]['c']
+                        ax.plot(x, funcexp(x, a, b, c), '#401539',
+                                label="Exp Fitted Curve")
 
             elif func == 'quad':
-                for k in range(len(liste)):
-                    if liste[k]=='quadratic':
-                                a = dictionary[func]['a']
-                                b = dictionary[func]['b']
-                                c = dictionary[func]['c']
-                                ax.plot(x, funcquad(x, a, b, c), '#458C8C',
-                                        label="Quad Fitted Curve")
+                if plot_all or 'quadratic' in liste::
+                        a = dictionary[func]['a']
+                        b = dictionary[func]['b']
+                        c = dictionary[func]['c']
+                        ax.plot(x, funcquad(x, a, b, c), '#458C8C',
+                                label="Quad Fitted Curve")
 
             elif func == 'pow':
-                for k in range(len(liste)):
-                    if liste[k]=='power':
-                                a = dictionary[func]['a']
-                                b = dictionary[func]['b']
-                                c = dictionary[func]['c']
-                                ax.plot(x, funcpuis(x, a, b, c), '#6DA63C',
-                                        label="Pow Fitted Curve")
+                if plot_all or 'power' in liste:
+                        a = dictionary[func]['a']
+                        b = dictionary[func]['b']
+                        c = dictionary[func]['c']
+                        ax.plot(x, funcpuis(x, a, b, c), '#6DA63C',
+                                label="Pow Fitted Curve")
 
             elif func == 'log':
-                for k in range(len(liste)):
-                    if liste[k]=='logarithmic':
-                                a = dictionary[func]['a']
-                                b = dictionary[func]['b']
-                                c = dictionary[func]['c']
-                                d = dictionary[func]['d']
-                                ax.plot(x, funclog(x, a, b, c, d),
-                                        '#D9585A', label="Log Fitted Curve")
+                if plot_all or 'logarithmic' in liste:
+                        a = dictionary[func]['a']
+                        b = dictionary[func]['b']
+                        c = dictionary[func]['c']
+                        d = dictionary[func]['d']
+                        ax.plot(x, funclog(x, a, b, c, d),
+                                '#D9585A', label="Log Fitted Curve")
 
             elif func == 'lin':
-                for k in range(len(liste)):
-                    if liste[k]=='linear':
-                                a = dictionary[func]['a']
-                                b = dictionary[func]['b']
-                                ax.plot(x, funclin(x, a, b), '#D9B504', label="Lin Fitted Curve")
+                if plot_all or 'linear' in liste:
+                        a = dictionary[func]['a']
+                        b = dictionary[func]['b']
+                        ax.plot(x, funclin(x, a, b), '#D9B504', label="Lin Fitted Curve")
 
             elif func =='expo-power':
-                for k in range(len(liste)):
-                    if liste[k]=='exponential-power':
-                                a = dictionary[func]['a']
-                                b = dictionary[func]['b']
-                                c = dictionary[func]['c']
-                                ax.plot(x, funcexpopower(x, a, b, c),
-                                        '#26C4EC', label="Expo-Power Fitted Curve")
+                if plot_all or 'exponential-power' in liste:
+                        a = dictionary[func]['a']
+                        b = dictionary[func]['b']
+                        c = dictionary[func]['c']
+                        ax.plot(x, funcexpopower(x, a, b, c),
+                                '#26C4EC', label="Expo-Power Fitted Curve")
 
     else: 
         plt.xlim(0,max_ - min_)
         for func in dictionary.keys():
             if func == 'exp':
-                for k in range(len(liste)):
-                    if liste[k]=='exponential':
-                            a = dictionary[func]['a']
-                            b = dictionary[func]['b']
-                            c = dictionary[func]['c']
-                            ax.plot(x, funcexp(xneg, a, b, c), '#401539',
-                                        label="Exp Fitted Curve")
+                if plot_all or 'exponential' in liste:
+                        a = dictionary[func]['a']
+                        b = dictionary[func]['b']
+                        c = dictionary[func]['c']
+                        ax.plot(x, funcexp(xneg, a, b, c), '#401539',
+                                label="Exp Fitted Curve")
 
             elif func == 'quad':
-                for k in range(len(liste)):
-                    if liste[k]=='quadratic':
-                                a = dictionary[func]['a']
-                                b = dictionary[func]['b']
-                                c = dictionary[func]['c']
-                                ax.plot(x, funcquad(xneg, a, b, c), '#458C8C',
-                                        label="Quad Fitted Curve")
+                if plot_all or 'quadratic' in liste::
+                        a = dictionary[func]['a']
+                        b = dictionary[func]['b']
+                        c = dictionary[func]['c']
+                        ax.plot(x, funcquad(xneg, a, b, c), '#458C8C',
+                                label="Quad Fitted Curve")
 
             elif func == 'pow':
-                for k in range(len(liste)):
-                    if liste[k]=='power':
-                                a = dictionary[func]['a']
-                                b = dictionary[func]['b']
-                                c = dictionary[func]['c']
-                                ax.plot(x, funcpuis(xneg, a, b, c), '#6DA63C',
-                                        label="Pow Fitted Curve")
+                if plot_all or 'power' in liste:
+                        a = dictionary[func]['a']
+                        b = dictionary[func]['b']
+                        c = dictionary[func]['c']
+                        ax.plot(x, funcpuis(xneg, a, b, c), '#6DA63C',
+                                label="Pow Fitted Curve")
 
             elif func == 'log':
-                for k in range(len(liste)):
-                    if liste[k]=='logarithmic':
-                                a = dictionary[func]['a']
-                                b = dictionary[func]['b']
-                                c = dictionary[func]['c']
-                                d = dictionary[func]['d']
-                                ax.plot(x, funclog(xneg, a, b, c, d),
-                                        '#D9585A', label="Log Fitted Curve")
+                if plot_all or 'logarithmic' in liste:
+                        a = dictionary[func]['a']
+                        b = dictionary[func]['b']
+                        c = dictionary[func]['c']
+                        d = dictionary[func]['d']
+                        ax.plot(x, funclog(xneg, a, b, c, d),
+                                '#D9585A', label="Log Fitted Curve")
 
             elif func == 'lin':
-                for k in range(len(liste)):
-                    if liste[k]=='linear':
-                                a = dictionary[func]['a']
-                                b = dictionary[func]['b']
-                                ax.plot(x, funclin(xneg, a, b), '#D9B504', label="Lin Fitted Curve")
+                if plot_all or 'linear' in liste:
+                        a = dictionary[func]['a']
+                        b = dictionary[func]['b']
+                        ax.plot(x, funclin(xneg, a, b), '#D9B504', label="Lin Fitted Curve")
 
             elif func =='expo-power':
-                for k in range(len(liste)):
-                    if liste[k]=='exponential-power':
-                                a = dictionary[func]['a']
-                                b = dictionary[func]['b']
-                                c = dictionary[func]['c']
-                                ax.plot(x, funcexpopower(xneg, a, b, c),
-                                        '#26C4EC', label="Expo-Power Fitted Curve")
+                if plot_all or 'exponential-power' in liste:
+                        a = dictionary[func]['a']
+                        b = dictionary[func]['b']
+                        c = dictionary[func]['c']
+                        ax.plot(x, funcexpopower(xneg, a, b, c),
+                                '#26C4EC', label="Expo-Power Fitted Curve")
 
 
     ax.scatter(x1, y1, c='k', label="Original Data")
@@ -150,6 +139,7 @@ def generate_svg_plot(dictionary, min_, max_, liste_cord, width,liste):
     plt.close()
 
     return imgdata.getvalue()
+
 def generate_svg_plot2(dictionary, min, max, liste_cord, width, choice):
 
     # img
