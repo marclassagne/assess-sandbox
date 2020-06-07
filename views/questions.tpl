@@ -171,7 +171,7 @@
 			})(i);
 			(function(_i) {
 				$('#excel_' + _i).click(function() {
-					var data_2_export = JSON.stringify({"attributes":[[assess_session.attributes[_i]]], "k_calculus":[]})
+					var data_2_export = JSON.stringify({"attributes":[assess_session.attributes[_i]], "k_calculus":[]})
 					$.post('ajax', '{"type":"export_xlsx", "data":'+ data_2_export+'}', function(data) {
 						document.location = "export_download/"+data;
 					});
