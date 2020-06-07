@@ -40,52 +40,52 @@ def generate_fichier(data):
         formatNom.set_bold()
         # ici on va mettre toutes les infos sur l'attribut
 
-        feuille.write(0, 0, 'Attribut', formatTitre)
+        feuille.write(0, 0, 'Attribute', formatTitre)
         feuille.write(0, 1, '', formatTitre)
+        feuille.write(0, 3, '', formatTitre)
+        feuille.write(0, 4,"Modality",formatTitre)
+        feuille.write(0, 5,"Utility value",formatTitre)
+        
+    
+        
         feuille.write(1, 0, 'Name', formatNom)
         feuille.write(2, 0, 'Type', formatNom)
         feuille.write(3, 0, 'Unit', formatNom)
-        feuille.write(4, 0, 'Val_min', formatNom)
-        feuille.write(5, 0, 'Val_max', formatNom)
-        feuille.write(6, 0, 'Method', formatNom)
-        feuille.write(7, 0, 'Mode', formatNom)
-        feuille.write(8, 0, 'Active', formatNom)
-        feuille.write(9, 0, 'Completed', formatNom)
+        feuille.write(4, 0, 'Method', formatNom)
+        feuille.write(5, 0, 'Mode', formatNom)
+        feuille.write(6, 0, 'Active', formatNom)
+        feuille.write(7, 0, 'Completed', formatNom)
 
         feuille.write(1, 1, monAttribut['name'])
         feuille.write(2, 1, monAttribut['type'])
         feuille.write(3, 1, monAttribut['unit'])
-        feuille.write(4, 1, monAttribut['val_min'])
-        feuille.write(5, 1, monAttribut['val_max'])
-        feuille.write(6, 1, monAttribut['method'])
-        feuille.write(7, 1, monAttribut['mode'])
-        feuille.write(8, 1, monAttribut['checked'])
-        feuille.write(9, 1, monAttribut['completed'])
-        feuille.write(10, 1, " ")
-        feuille.write(11, 1, " ")
-        feuille.write(12, 1, " ")
-        feuille.write(13, 1, " ")
-        feuille.write(14, 1, " ")
+        feuille.write(4, 1, monAttribut['method'])
+        feuille.write(5, 1, monAttribut['mode'])
+        feuille.write(6, 1, monAttribut['checked'])
+        feuille.write(7, 1, monAttribut['completed'])
+        
+        nb_intermediary = len(monAttribut['val_med'])
+        
+        
+        dic_points = monAttribut['questionnaire']['points']
+        dic_points[monAttribut['val_min']] = int(monAttribut['mode']!='Normal')
+        dic_points[monAttribut['val_max']] = int(monAttribut['mode']=='Normal')
 
-        feuille.write(0,9, 'Intermediary values', formatTitre)
+        feuille.write(1, 3, 'Val_min', formatNom)
+        feuille.write(1,4, monAttribut['val_min'])
+        feuille.write(1,5, dic_points[monAttribut['val_min']])
 
         
-        for i in range(len(monAttribut['val_med'])):
-            feuille.write(i+1,9,monAttribut['val_med'][i])
+        for i in range(nb_intermediary):
+            feuille.write(i+2,3,'Intermediary value ' + str(i+1), formatNom)
+            feuille.write(i+2,4,monAttribut['val_med'][i])
+            feuille.write(i+2,5,dic_points[monAttribut['val_med'][i]])
+        
+        feuille.write(nb_intermediary+2,3,'Val_max', formatNom)
+        feuille.write(nb_intermediary+2, 4, monAttribut['val_max'])
+        feuille.write(nb_intermediary+2, 5, dic_points[monAttribut['val_max']])
 
-        # ensuite on va mettre les points obtenus:
-        feuille.write(0, 2, 'Points', formatTitre)
-        feuille.write(0, 3, '', formatTitre)
-        feuille.write(1, 2, "Y")
-        feuille.write(1, 3, "X")
-        # on va maintenant les remplir
-        lignePoint = 0
-
-        for monPoint_X,monPoint_Y in monAttribut['questionnaire']['points'].items():
-            feuille.write(lignePoint + 2, 2, monPoint_Y)
-            feuille.write(lignePoint + 2, 3, monPoint_X)
-            lignePoint = lignePoint + 1
-
+        
         # Ensuite on s'occupe de la fonction d'utilité
         # on fait une regression à l'aide des points que l'on a dans le
         # questionnaire et on envoit tout ça dans la fonction regressions du
@@ -114,34 +114,33 @@ def generate_fichier(data):
         
         
 
-        
             
         ligne = 0
 
         for utility in utilities.keys():
 
-            feuille.write(ligne, 4, 'Utility Function', formatTitre)
-            feuille.write(ligne, 5, '', formatTitre)
-            feuille.write(ligne + 1, 4, "type", formatNom)
-            feuille.write(ligne + 2, 4, "a", formatNom)
-            feuille.write(ligne + 3, 4, "b", formatNom)
-            feuille.write(ligne + 4, 4, "c", formatNom)
-            feuille.write(ligne + 5, 4, "d", formatNom)
-            feuille.write(ligne + 6, 4, "r2", formatNom)
-            feuille.write(ligne + 7, 4, "DPL", formatNom)
+            feuille.write(ligne, 7, 'Utility Function', formatTitre)
+            feuille.write(ligne, 8, '', formatTitre)
+            feuille.write(ligne + 1, 7, "type", formatNom)
+            feuille.write(ligne + 2, 7, "a", formatNom)
+            feuille.write(ligne + 3, 7, "b", formatNom)
+            feuille.write(ligne + 4, 7, "c", formatNom)
+            feuille.write(ligne + 5, 7, "d", formatNom)
+            feuille.write(ligne + 6, 7, "r2", formatNom)
+            feuille.write(ligne + 7, 7, "DPL", formatNom)
 
             if utility == 'exp':
-                feuille.write(ligne + 1, 5, "exponential")
+                feuille.write(ligne + 1, 8, "exponential")
             elif utility == 'quad':
-                feuille.write(ligne + 1, 5, "quadratic")
+                feuille.write(ligne + 1, 8, "quadratic")
             elif utility == 'pow':
-                feuille.write(ligne + 1, 5, "power")
+                feuille.write(ligne + 1, 8, "power")
             elif utility == 'log':
-                feuille.write(ligne + 1, 5, "logarithm")
+                feuille.write(ligne + 1, 8, "logarithm")
             elif utility == 'lin':
-                feuille.write(ligne + 1, 5, "linear")
+                feuille.write(ligne + 1, 8, "linear")
             elif utility == 'expo-power':
-                feuille.write(ligne + 1, 5, "expo-power")
+                feuille.write(ligne + 1, 8, "expo-power")
 
             parameters=utilities[utility]
 
@@ -149,44 +148,44 @@ def generate_fichier(data):
             try:
                 # On remplit d'abord le dernier car pour les coefficients d ça
                 # s'arretera
-                feuille.write(ligne + 6, 5, parameters['r2'], formatCoeff)
+                feuille.write(ligne + 6, 8, parameters['r2'], formatCoeff)
                 feuille.write(
-                    ligne + 7, 5, convert_to_text(utility, parameters, "x"), formatCoeff)
-                feuille.write(ligne + 2, 5, parameters['a'], formatCoeff)
-                feuille.write(ligne + 3, 5, parameters['b'], formatCoeff)
-                feuille.write(ligne + 4, 5, parameters['c'], formatCoeff)
-                feuille.write(ligne + 5, 5, parameters['d'], formatCoeff)
+                    ligne + 7, 8, convert_to_text(utility, parameters, "x"), formatCoeff)
+                feuille.write(ligne + 2, 8, parameters['a'], formatCoeff)
+                feuille.write(ligne + 3, 8, parameters['b'], formatCoeff)
+                feuille.write(ligne + 4, 8, parameters['c'], formatCoeff)
+                feuille.write(ligne + 5, 8, parameters['d'], formatCoeff)
             except:
                 print(sys.exc_info())
                 pass
 
             feuille.set_column(5, 5, 20)
 
-            feuille.write(ligne + 0, 6, 'Calculated points', formatTitre)
-            feuille.write(ligne + 0, 7, '', formatTitre)
+            feuille.write(ligne + 0, 9, 'Calculated points', formatTitre)
+            feuille.write(ligne + 0, 10, '', formatTitre)
             # On va maintenant generer plusieurs points
             amplitude = (monAttribut['val_max'] -
                         monAttribut['val_min']) / 10.0
             for i in range(0, 11):
-                feuille.write(ligne + 1 + i, 6, monAttribut['val_min'] + i * amplitude)
+                feuille.write(ligne + 1 + i, 9, monAttribut['val_min'] + i * amplitude)
                 if utility == 'exp':
-                    feuille.write_formula(ligne + 1 + i, 7, funcexp_excel("G" + str(
-                        ligne + 2 + i), "$F$" + str(ligne + 3), "$F$" + str(ligne + 4), "$F$" + str(ligne + 5)))
+                    feuille.write_formula(ligne + 1 + i, 10, funcexp_excel("J" + str(
+                        ligne + 2 + i), "$I$" + str(ligne + 3), "$I$" + str(ligne + 4), "$I$" + str(ligne + 5)))
                 elif utility == 'quad':
-                    feuille.write_formula(ligne + 1 + i, 7, funcquad_excel("G" + str(
-                        ligne + 2 + i), "$F$" + str(ligne + 3), "$F$" + str(ligne + 4), "$F$" + str(ligne + 5)))
+                    feuille.write_formula(ligne + 1 + i, 10, funcquad_excel("J" + str(
+                        ligne + 2 + i), "$I$" + str(ligne + 3), "$I$" + str(ligne + 4), "$I$" + str(ligne + 5)))
                 elif utility == 'pow':
-                    feuille.write_formula(ligne + 1 + i, 7, funcpuis_excel("G" + str(
-                        ligne + 2 + i), "$F$" + str(ligne + 3), "$F$" + str(ligne + 4), "$F$" + str(ligne + 5)))
+                    feuille.write_formula(ligne + 1 + i, 10, funcpuis_excel("J" + str(
+                        ligne + 2 + i), "$I$" + str(ligne + 3), "$I$" + str(ligne + 4), "$I$" + str(ligne + 5)))
                 elif utility == 'log':
-                    feuille.write_formula(ligne + 1 + i, 7, funclog_excel("G" + str(ligne + 2 + i), "$F$" + str(
-                        ligne + 3), "$F$" + str(ligne + 4), "$F$" + str(ligne + 5), "$F$" + str(ligne + 6)))
+                    feuille.write_formula(ligne + 1 + i, 10, funclog_excel("J" + str(ligne + 2 + i), "$I$" + str(
+                        ligne + 3), "$I$" + str(ligne + 4), "$I$" + str(ligne + 5), "$I$" + str(ligne + 6)))
                 elif utility == 'lin':
-                    feuille.write_formula(ligne + 1 + i, 7, funclin_excel(
-                        "G" + str(ligne + 2 + i), "$F$" + str(ligne + 3), "$F$" + str(ligne + 4)))
+                    feuille.write_formula(ligne + 1 + i, 10, funclin_excel(
+                        "J" + str(ligne + 2 + i), "$I$" + str(ligne + 3), "$I$" + str(ligne + 4)))
                 elif utility == 'expo-power':
-                    feuille.write_formula(ligne + 1 + i, 7, funcexpopower_excel("G" + str(
-                        ligne + 2 + i), "$F$" + str(ligne + 3), "$F$" + str(ligne + 4), "$F$" + str(ligne + 5)))
+                    feuille.write_formula(ligne + 1 + i, 10, funcexpopower_excel("J" + str(
+                        ligne + 2 + i), "$I$" + str(ligne + 3), "$I$" + str(ligne + 4), "$I$" + str(ligne + 5)))
 
             # Ensuite on fait le Chart ! (le diagramme)
             chart5 = classeur.add_chart({'type': 'scatter',
@@ -195,8 +194,8 @@ def generate_fichier(data):
             # Configure the first series.
             chart5.add_series({
                             'name':       utility,
-                            'categories': '=\'' + monAttribut['name'] + '\'' + '!$G$' + str(ligne + 2) + ':$G$' + str(ligne + 12),
-                            'values':     '=\'' + monAttribut['name'] + '\'' + '!$H$' + str(ligne + 2) + ':$H$' + str(ligne + 12),
+                            'categories': '=\'' + monAttribut['name'] + '\'' + '!$J$' + str(ligne + 2) + ':$J$' + str(ligne + 12),
+                            'values':     '=\'' + monAttribut['name'] + '\'' + '!$K$' + str(ligne + 2) + ':$K$' + str(ligne + 12),
 
                             })
 
@@ -211,7 +210,7 @@ def generate_fichier(data):
             })
 
             # Insert the chart into the worksheet (with an offset).
-            feuille.insert_chart('I' + str(1 + ligne),
+            feuille.insert_chart('L' + str(1 + ligne),
                                 chart5, {'x_offset': 35, 'y_offset': 10})
 
             ligne += 15
@@ -387,52 +386,50 @@ def generate_fichier_with_specification(data):
         # ici on va mettre toutes les infos sur l'attribut
 
         # feuille.merge_range('A1:B1','Attribut')
-        feuille.write(0, 0, 'Attribut', formatTitre)
+        feuille.write(0, 0, 'Attribute', formatTitre)
         feuille.write(0, 1, '', formatTitre)
+        feuille.write(0, 3, '', formatTitre)
+        feuille.write(0, 4,"Modality",formatTitre)
+        feuille.write(0, 5,"Utility value",formatTitre)
+        
+    
+        
         feuille.write(1, 0, 'Name', formatNom)
         feuille.write(2, 0, 'Type', formatNom)
         feuille.write(3, 0, 'Unit', formatNom)
-        feuille.write(4, 0, 'Val_min', formatNom)
-        feuille.write(5, 0, 'Val_max', formatNom)
-        feuille.write(6, 0, 'Method', formatNom)
-        feuille.write(7, 0, 'Mode', formatNom)
-        feuille.write(8, 0, 'Active', formatNom)
+        feuille.write(4, 0, 'Method', formatNom)
+        feuille.write(5, 0, 'Mode', formatNom)
+        feuille.write(6, 0, 'Active', formatNom)
+        feuille.write(7, 0, 'Completed', formatNom)
 
         feuille.write(1, 1, monAttribut['name'])
         feuille.write(2, 1, monAttribut['type'])
         feuille.write(3, 1, monAttribut['unit'])
-        feuille.write(4, 1, monAttribut['val_min'])
-        feuille.write(5, 1, monAttribut['val_max'])
-        feuille.write(6, 1, monAttribut['method'])
-        feuille.write(7, 1, monAttribut['mode'])
-        feuille.write(8, 1, monAttribut['checked'])
-        feuille.write(9, 1, monAttribut['completed'])
-        feuille.write(10, 1, " ")
-        feuille.write(11, 1, " ")
-        feuille.write(12, 1, " ")
-        feuille.write(13, 1, " ")
-        feuille.write(14, 1, " ")
+        feuille.write(4, 1, monAttribut['method'])
+        feuille.write(5, 1, monAttribut['mode'])
+        feuille.write(6, 1, monAttribut['checked'])
+        feuille.write(7, 1, monAttribut['completed'])
+        
+        nb_intermediary = len(monAttribut['val_med'])
+        
+        
+        dic_points = monAttribut['questionnaire']['points']
+        dic_points[monAttribut['val_min']] = int(monAttribut['mode']!='Normal')
+        dic_points[monAttribut['val_max']] = int(monAttribut['mode']=='Normal')
 
-        feuille.write(0,9, 'Intermediary values', formatTitre)
+        feuille.write(1, 3, 'Val_min', formatNom)
+        feuille.write(1,4, monAttribut['val_min'])
+        feuille.write(1,5, dic_points[monAttribut['val_min']])
 
-        if monAttribut['type'] == 'Qualitative':
-            for i in range(len(monAttribut['val_med'])):
-                feuille.write(i+1,9,monAttribut['val_med'][i])
-
-        # ensuite on va mettre les points obtenus:
-        # feuille.merge_range('C1:D1','Points')
-        feuille.write(0, 2, 'Points', formatTitre)
-        feuille.write(0, 3, '', formatTitre)
-        feuille.write(1, 2, "Y")
-        feuille.write(1, 3, "X")
-        # on va maintenant les remplir
-        lignePoint = 0
-
-        for monPoint in monAttribut['questionnaire']['points']:
-            feuille.write(lignePoint + 2, 2, monPoint[0])
-            feuille.write(lignePoint + 2, 3, monPoint[1])
-            lignePoint = lignePoint + 1
-
+        
+        for i in range(nb_intermediary):
+            feuille.write(i+2,3,'Intermediary value ' + str(i+1), formatNom)
+            feuille.write(i+2,4,monAttribut['val_med'][i])
+            feuille.write(i+2,5,dic_points[monAttribut['val_med'][i]])
+        
+        feuille.write(nb_intermediary+2,3,'Val_max', formatNom)
+        feuille.write(nb_intermediary+2, 4, monAttribut['val_max'])
+        feuille.write(nb_intermediary+2, 5, dic_points[monAttribut['val_max']])
         # Ensuite on s'occupe de la fonction d'utilité
         #feuille.merge_range('E1:F1','Utility Function')
         # on fait une regression à l'aide des points que l'on a dans le
@@ -444,74 +441,74 @@ def generate_fichier_with_specification(data):
 
         for utility in utilities:
 
-            feuille.write(ligne, 4, 'Utility Function', formatTitre)
+            feuille.write(ligne, 7, 'Utility Function', formatTitre)
             feuille.write(ligne, 5, '', formatTitre)
-            feuille.write(ligne + 1, 4, "type", formatNom)
-            feuille.write(ligne + 2, 4, "a", formatNom)
-            feuille.write(ligne + 3, 4, "b", formatNom)
-            feuille.write(ligne + 4, 4, "c", formatNom)
-            feuille.write(ligne + 5, 4, "d", formatNom)
-            feuille.write(ligne + 6, 4, "r2", formatNom)
-            feuille.write(ligne + 7, 4, "DPL", formatNom)
+            feuille.write(ligne + 1, 7, "type", formatNom)
+            feuille.write(ligne + 2, 7, "a", formatNom)
+            feuille.write(ligne + 3, 7, "b", formatNom)
+            feuille.write(ligne + 4, 7, "c", formatNom)
+            feuille.write(ligne + 5, 7, "d", formatNom)
+            feuille.write(ligne + 6, 7, "r2", formatNom)
+            feuille.write(ligne + 7, 7, "DPL", formatNom)
 
             # Dans le cas ou la fonciton d'utilité est de type exp
             # on cherche quel est notre type de fonction d'utilite
 
             if utility['type'] == 'exp':
-                feuille.write(ligne + 1, 5, "exponential")
+                feuille.write(ligne + 1, 8, "exponential")
             if utility['type'] == 'quad':
-                feuille.write(ligne + 1, 5, "quadratic")
+                feuille.write(ligne + 1, 8, "quadratic")
             if utility['type'] == 'pow':
-                feuille.write(ligne + 1, 5, "power")
+                feuille.write(ligne + 1, 8, "power")
             if utility['type'] == 'log':
-                feuille.write(ligne + 1, 5, "logarithm")
+                feuille.write(ligne + 1, 8, "logarithm")
             if utility['type'] == 'lin':
-                feuille.write(ligne + 1, 5, "linear")
+                feuille.write(ligne + 1, 8, "linear")
             if utility['type'] == 'expo-power':
-                feuille.write(ligne + 1, 5, "expo-power")
+                feuille.write(ligne + 1, 8, "expo-power")
 
 
             # On rempli les coefficients
             try:
                 # On remplit d'abord le dernier car pour les coefficients d ça
                 # s'arretera
-                feuille.write(ligne + 6, 5, utility['r2'], formatCoeff)
+                feuille.write(ligne + 6, 8, utility['r2'], formatCoeff)
                 feuille.write(
-                    ligne + 7, 5, convert_to_text(utility, parameters, "x"), formatCoeff)
-                feuille.write(ligne + 2, 5, utility['a'], formatCoeff)
-                feuille.write(ligne + 3, 5, utility['b'], formatCoeff)
-                feuille.write(ligne + 4, 5, utility['c'], formatCoeff)
-                feuille.write(ligne + 5, 5, utility['d'], formatCoeff)
+                    ligne + 7, 8, convert_to_text(utility['type'], utility, "x"), formatCoeff)
+                feuille.write(ligne + 2, 8, utility['a'], formatCoeff)
+                feuille.write(ligne + 3, 8, utility['b'], formatCoeff)
+                feuille.write(ligne + 4, 8, utility['c'], formatCoeff)
+                feuille.write(ligne + 5, 8, utility['d'], formatCoeff)
             except:
                 pass
 
             feuille.set_column(5, 5, 20)
 
-            feuille.write(ligne + 0, 6, 'Calculated points', formatTitre)
-            feuille.write(ligne + 0, 7, '', formatTitre)
+            feuille.write(ligne + 0, 9, 'Calculated points', formatTitre)
+            feuille.write(ligne + 0, 10, '', formatTitre)
             # On va maintenant generer plusieurs points
             amplitude = (monAttribut['val_max'] -
                          monAttribut['val_min']) / 10.0
             for i in range(0, 11):
-                feuille.write(ligne + 1 + i, 6, i * amplitude)
+                feuille.write(ligne + 1 + i, 9, i * amplitude)
                 if utility['type'] == 'exp':
-                    feuille.write_formula(ligne + 1 + i, 7, funcexp_excel("G" + str(
-                        ligne + 2 + i), "$F$" + str(ligne + 3), "$F$" + str(ligne + 4), "$F$" + str(ligne + 5)))
+                    feuille.write_formula(ligne + 1 + i, 10, funcexp_excel("J" + str(
+                        ligne + 2 + i), "$I$" + str(ligne + 3), "$I$" + str(ligne + 4), "$I$" + str(ligne + 5)))
                 elif utility['type'] == 'quad':
-                    feuille.write_formula(ligne + 1 + i, 7, funcquad_excel("G" + str(
-                        ligne + 2 + i), "$F$" + str(ligne + 3), "$F$" + str(ligne + 4), "$F$" + str(ligne + 5)))
+                    feuille.write_formula(ligne + 1 + i, 10, funcquad_excel("J" + str(
+                        ligne + 2 + i), "$I$" + str(ligne + 3), "$I$" + str(ligne + 4), "$I$" + str(ligne + 5)))
                 elif utility['type'] == 'pow':
-                    feuille.write_formula(ligne + 1 + i, 7, funcpuis_excel("G" + str(
-                        ligne + 2 + i), "$F$" + str(ligne + 3), "$F$" + str(ligne + 4), "$F$" + str(ligne + 5)))
+                    feuille.write_formula(ligne + 1 + i, 10, funcpuis_excel("J" + str(
+                        ligne + 2 + i), "$I$" + str(ligne + 3), "$I$" + str(ligne + 4), "$I$" + str(ligne + 5)))
                 elif utility['type'] == 'log':
-                    feuille.write_formula(ligne + 1 + i, 7, funclog_excel("G" + str(ligne + 2 + i), "$F$" + str(
-                        ligne + 3), "$F$" + str(ligne + 4), "$F$" + str(ligne + 5), "$F$" + str(ligne + 6)))
+                    feuille.write_formula(ligne + 1 + i, 10, funclog_excel("J" + str(ligne + 2 + i), "$I$" + str(
+                        ligne + 3), "$I$" + str(ligne + 4), "$I$" + str(ligne + 5), "$I$" + str(ligne + 6)))
                 elif utility['type'] == 'lin':
-                    feuille.write_formula(ligne + 1 + i, 7, funclin_excel(
-                        "G" + str(ligne + 2 + i), "$F$" + str(ligne + 3), "$F$" + str(ligne + 4)))
+                    feuille.write_formula(ligne + 1 + i, 10, funclin_excel(
+                        "J" + str(ligne + 2 + i), "$I$" + str(ligne + 3), "$I$" + str(ligne + 4)))
                 elif utility['type'] == 'expo-power':
-                    feuille.write_formula(ligne + 1 + i, 7, funcexpopower_excel("G" + str(
-                        ligne + 2 + i), "$F$" + str(ligne + 3), "$F$" + str(ligne + 4), "$F$" + str(ligne + 5)))
+                    feuille.write_formula(ligne + 1 + i, 10, funcexpopower_excel("J" + str(
+                        ligne + 2 + i), "$I$" + str(ligne + 3), "$I$" + str(ligne + 4), "$I$" + str(ligne + 5)))
 
             # Ensuite on fait le Chart ! (le diagramme)
             chart5 = classeur.add_chart({'type': 'scatter',
@@ -520,8 +517,8 @@ def generate_fichier_with_specification(data):
             # Configure the first series.
             chart5.add_series({
                               'name':       utility['type'],
-                              'categories': '=' + monAttribut['name'] + '!$G$' + str(ligne + 2) + ':$G$' + str(ligne + 12),
-                              'values':     '=' + monAttribut['name'] + '!$H$' + str(ligne + 2) + ':$H$' + str(ligne + 12),
+                              'categories': '=' + monAttribut['name'] + '!$J$' + str(ligne + 2) + ':$J$' + str(ligne + 12),
+                              'values':     '=' + monAttribut['name'] + '!$K$' + str(ligne + 2) + ':$K$' + str(ligne + 12),
 
                               })
 
@@ -536,8 +533,8 @@ def generate_fichier_with_specification(data):
             })
 
             # Insert the chart into the worksheet (with an offset).
-            feuille.insert_chart('I' + str(1 + ligne),
-                                 chart5, {'x_offset': 25, 'y_offset': 10})
+            feuille.insert_chart('L' + str(1 + ligne),
+                                 chart5, {'x_offset': 35, 'y_offset': 10})
 
             ligne += 15
 
