@@ -86,7 +86,8 @@ function list()
 						"min": val_min,
 						"max": val_max,
 						"liste_cord": points,
-						"width": 3
+                                                "width": 3,
+                                                "liste": []}
 					}), function (data2) {
 
 						$('#charts_' + _i).append('<div>' + data2 + '</div>');

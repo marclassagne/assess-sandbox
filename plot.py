@@ -7,14 +7,16 @@ from functions import *
 
 
 def generate_svg_plot(dictionary, min_, max_, liste_cord, width,liste):
-
+    
+    if liste == []:
+            liste = dictionary.keys()
     # img
     imgdata = io.BytesIO()
 
     # creation des listes des abscisses et ordonnees
     lx = []
     ly = []
-
+    
     for coord in liste_cord:
         lx.append(float(coord[0]))
         ly.append(coord[1])
