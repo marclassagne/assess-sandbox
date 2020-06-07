@@ -149,7 +149,7 @@
 					text_table += '<td>Please assess all the medium values';
 				};
 			};
-			text_table += '<button type="button" class="btn btn-default btn-xs" id="excel_' + attribute.name + '">Export to Excel</button></td>';
+			text_table += '<button type="button" class="btn btn-default btn-xs" id="excel_' + i + '">export to Excel</button></td>';
 			
 			text_table += '<td><button type="button" id="deleteK' + i + '" class="btn btn-default btn-xs">Reset</button></td>';
 			$('#table_attributes').append(text_table);
@@ -167,6 +167,14 @@
 					localStorage.setItem("assess_session", JSON.stringify(assess_session));
 					//refresh the page
 					window.location.reload();
+				});
+			})(i);
+			(function(_i) {
+				$('#excel_' + _i).click(function() {
+					var data_2_export = localStorage['assess_session'];
+					$.post('ajax', '{"type":"export_xlsx", "data":'+data_2_export+'}', function(data) {
+						document.location = "export_download/"+data;
+					});
 				});
 			})(i);
 			
