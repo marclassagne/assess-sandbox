@@ -63,9 +63,7 @@ function list()
 		(function(_i) {
 			var json_2_send = {"type": "calc_util", "points":[]};
 			var obj = assess_session.attributes[_i].questionnaire.points;
-			var points = Object.keys(obj).map(function(key) {
-  return [key, obj[key]];
-  });
+			var points = Object.keys(obj).map(function(key) {return [key, obj[key]];});
 			var mode = assess_session.attributes[_i].mode;
 			var val_max=assess_session.attributes[_i].val_max;
 			var val_min=assess_session.attributes[_i].val_min;
@@ -87,7 +85,7 @@ function list()
 						"max": val_max,
 						"liste_cord": points,
                                                 "width": 3,
-                                                "liste": []}
+                                                "liste": []
 					}), function (data2) {
 
 						$('#charts_' + _i).append('<div>' + data2 + '</div>');
