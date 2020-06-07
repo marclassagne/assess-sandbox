@@ -165,7 +165,7 @@ def ajax():
         max_ = float(query['max'])
         liste_cord = query['liste_cord']
         width = query['width']
-	    liste = query['liste']
+        liste = query['liste']
         return plot.generate_svg_plot(dictionary, min_, max_, liste_cord, width,liste)
 
     elif query['type'] == "svgg":
@@ -174,7 +174,7 @@ def ajax():
         max = float(query['max'])
         liste_cord = query['liste_cord']
         width = query['width']
-	choice = query['choice']
+        choice = query['choice']
         return plot.generate_svg_plot2(dictionary, min, max, liste_cord, width, choice)
 	
     elif query['type'] == "svg_QUALI":
@@ -234,7 +234,7 @@ def do_upload():
             return {'get_url':  app.get_url, 'success': 'true', 'data': json.dumps(val['data']), 'data_fail': ''}
         else:
             return {'get_url':  app.get_url, 'success': 'false', 'data_fail': val['data'], 'data': ''}
-    except Exception, err:
+    except :
         return {'get_url':  app.get_url, 'success': 'false', 'data_fail': traceback.format_exc(), 'data': ''}
 
 
@@ -273,4 +273,4 @@ try:
     else:
         app.run(host='0.0.0.0', port=argv[1])
 except:
-    print "You need to specify an argument (local for local testing: $python website.py local)"
+    print("You need to specify an argument (local for local testing: $python website.py local)")
