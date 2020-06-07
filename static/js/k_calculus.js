@@ -42,7 +42,17 @@ function update_method_button(type){
 ///  Action from Update button
 $(function() {
 	$("#not_enough_attributes").hide();
-
+	$('#utility_function').hide();
+	$('#button_generate_list').show();
+	$('#k_list').show();
+	
+	update_method_button("multiplicative"); //update the active methode for k_kalculus
+	update_k_list(0);
+	show_list();
+	$("#K_computation").show();
+	$('#table_attributes').html("");
+	ki_calculated();
+	
 	var counter = number_attributes_checked();
 	
 	if (counter < 2) {
@@ -52,7 +62,7 @@ $(function() {
 
 	$("#update").click(function () {
 		var assess_session = JSON.parse(localStorage.getItem("assess_session"));
-		
+		$('#k_list').hide;
 		// we delete the general utility functions
 		assess_session.k_calculus[0].GU=null;
 		assess_session.k_calculus[1].GU=null;
@@ -67,16 +77,17 @@ $(function() {
 		update_k_list(0);
 		show_list();
 		ki_calculated();
-		$("#update_box").hide("slow");
+		window.location.reload();
+		
 	});
 
-	$("#update_box").ready(function () {
-		$("#update_box").hide();
+	
+		
 		var NAttri = number_attributes_checked(),
 			assess_session = JSON.parse(localStorage.getItem("assess_session")),
 			NK = assess_session.k_calculus[0].k.length;
 			
-		if (NAttri != NK) { //If we have different attribute number used and attribute number active we show the update box
+		
 			$("#update_box").show("slow");
 			
 		// 	  <span id="update_attributes_number"></span>
@@ -84,18 +95,18 @@ $(function() {
 		//    <span id="update_k_number"></span> 
 		//    <span id="update_k_number_plurial">are</span> used for the computation of the K<sub>i</sub> [...]
 
-			$("#update_attributes_number").html(NAttri);
+			$("#message_box").append(NAttri);
 			$("#update_attributes_plurial").html((NAttri>1 ? "attributes are activated" : "attribute is activated"));
-			$("#update_k_number").html(NK);
-			$("#update_k_number_plurial").html((NK>1 ? "are" : "is")); 
-		}
-	});
+			
+		
+	
 });
 
 /// Action from multiplicative/multilinear button
 $(function() {
 	///  ACTION FROM BUTTON MULTIPLICATIVE
 	$("#button_multiplicative").click(function () {
+		
 		update_method_button("multiplicative"); //update the active methode for k_kalculus
 		update_k_list(0);
 		show_list();
@@ -246,6 +257,7 @@ function update_k_list(number){
 					} else if(number==1){ //multilinear
 						if (_i == ma_list.length - 1) {
 							k_multilinear_calculate_last_one(_i);
+							
 						} else {
 							k_multilinear_answer(_i);
 						};
@@ -509,6 +521,7 @@ function k_multilinear_calculate_last_one(i){
 	$("#k_value_"+i).hide( "fast",function(){
 		update_k_list(1);
 		show_list();
+		
 	});
 }
 
@@ -640,6 +653,7 @@ function k_multiplicative_answer(i) {
 							$("#k_value_" + i).hide("fast", function () {
 								update_k_list(0);
 								show_list();
+								
 							});
 
 						}
@@ -719,13 +733,19 @@ function ki_calculated() {
 	}
 	$("#button_generate_list").show();
 	GK_calculated();
+	
+	
 
 }
 
 $(function(){
 	$("#button_calculate_k").click(function() {
 		if (get_Active_Method() == 0){
+			
+			
 			K_Calculate_Multiplicative();
+			
+
 		}
 	});
 });
@@ -796,22 +816,20 @@ function K_Calculate_Multiplicative() {
 //###########   Choose utility function corresponding to attribute     ##################
 //#######################################################################################
 
-var k_utility_multilinear=[],
-	k_utility_multiplicative=[];
+
 
 $(function(){
-	$("#button_generate_list").click(function() {
-			list();
-			$("#button_generate_list").hide();
-	});
+	var k_utility_multiplicative=[];
+	var k_utility_multilinear=[];
+	list();
+	
+	
 });
-
-
 function list(){
-	var assess_session = JSON.parse(localStorage.getItem("assess_session"));
+var assess_session = JSON.parse(localStorage.getItem("assess_session"));
 
-	k_utility_multilinear=[];
-	k_utility_multiplicative=[];
+	 k_utility_multilinear=[];
+	 k_utility_multiplicative=[];
 
 	//list of K with corresponding attribute:
 
@@ -823,25 +841,18 @@ function list(){
 	}
 
 	
-	$('#table_attributes').html("");
-	// We fill the table
+	
 	for (var i=0; i < maList.length; i++){
 
-		var monAttribut=assess_session.attributes[maList[i].ID_attribute],
-			text_table = '<tr>'+
-						'<td>K' + maList[i].ID + '</td>'+
-						'<td>'+ monAttribut.name + '</td>'+
-						'<td id="charts_'+i+'"></td>'+
-						'<td id="functions_'+i+'"></td>'+
-						'</tr>';
-
-		$('#table_attributes').append(text_table);
-		
+		var monAttribut=assess_session.attributes[maList[i].ID_attribute];
+			
 		
 		(function(_i) {
-			
+		
+		
+				
 				var name = monAttribut.name;
-			
+				
 				if (monAttribut.type == "Qualitative"){
 					
 					var val_min = monAttribut.val_min,
@@ -850,7 +861,7 @@ function list(){
 						list_names = [].concat(val_min, val_med, val_max),
 						points = monAttribut.questionnaire.points,
 						list_points = [];
-					$('#functions_' + _i).append('<table class="table"><thead><tr><th>choix</th><th>value</th><th>utility</th></tr></thead><tbody id="table_info'+_i+'"></tbody></table>');
+					
 					if (monAttribut.checked){
 						points[val_min] = 0; 
 						points[val_max] = 1; 
@@ -863,27 +874,25 @@ function list(){
 				
 				
 													
-							$('#table_info'+_i).append('<tr><td id="choix'+_i+'numero'+k+'"></td><td id="value'+_i+'numero'+k+'"></td><td id="utility'+_i+'numero'+k+'"></td></tr>');
-							$('#choix'+_i+'numero'+k).append('<input type="radio" name="radio_'+_i+'" id="checkbox_'+_i+'numero'+k+'">');
-							$('#value'+_i+'numero'+k).append(list_names[k]);
-							$('#utility'+_i+'numero'+k).append(list_points[k]);
+							
 				
-							nvxdico = { "type" :'quali', "a": list_points[k], "name" : name };
+							var nvxdico = { "type" :'quali', "a": list_points[k], "name" : name };
 				
-							(function(_data){$('#checkbox_'+_i+'numero'+k).click(function(){update_utility(_i, _data)});})(nvxdico);
+							update_utility(_i, nvxdico);
 						};
 					};
 				};
 			
 			if (monAttribut.type == "Quantitative"){
-			var json_2_send = {"type": "calc_util", "points":[]},
+			var json_2_send = {"type": "calc_util_multi", "points":[]},
 				val_max=monAttribut.val_max,
 				val_min=monAttribut.val_min,
 				mode = monAttribut.mode,
 				points_dict = monAttribut.questionnaire.points,
 				points=[],
-			    	choice= monAttribut.fonction;
-			
+			    	choice= monAttribut.fonction,
+				num=monAttribut.numero;
+				
 			for (key in points_dict) {
 				points.push([parseFloat(key), parseFloat(points_dict[key])]);
 			};
@@ -892,94 +901,95 @@ function list(){
 				points.push([val_min, (mode == "Normal" ? 0 : 1)]);
 				points.push([val_max, (mode == "Normal" ? 1 : 0)]);
 				
+				
+				if (val_min<0) {
+					for (j in points) {
+						points[j][0]-=val_min;
+						
+					};
+				}
+				
 				json_2_send["points"] = points;
+				
 				$.post('ajax', JSON.stringify(json_2_send), function (data) {
 					$.post('ajax', JSON.stringify({
 						"type": "svgg",
-						"data": data,
+						"data": data['data'][num],
 						"min": val_min,
 						"max": val_max,
-						"liste_cord": points,
+						"liste_cord": data['data'][num]['coord'],
 						"width": 3,
 						"choice":choice
 					}), function (data2) {
 						
-						$('#charts_' + _i).append('<div>' + data2 + '</div>');
 						
-						for (var key in data) {
+						
+						for (var key in data['data'][num]) {
 							
-							var functions = "";
+							
 							if (key == 'exp') {
 								if (choice == 'exponential') {
-								functions= '<label style="color:#401539"><input type="radio" name="radio_'+_i+'" id="checkbox_'+_i+'_exp"> Exponential (' + Math.round(data[key]['r2'] * 100) / 100 + ')</label><br/>';
-								$('#functions_' + _i).append(functions);
-								data[key]['type']='exp';
-								data[key]['name']= name ;
-								(function(_data){$('#checkbox_'+_i+'_exp').click(function(){update_utility(_i, _data)});})(data[key]);
+								
+								data['data'][num][key]['type']='exp';
+								data['data'][num][key]['name']= name ;
+								update_utility(_i,data['data'][num][key]);
 
 							}}
 							else if (key == 'log'){
 								if (choice == 'logarithmic') {
-								functions='<label style="color:#D9585A"><input type="radio" name="radio_'+_i+'" id="checkbox_'+_i+'_log"> Logarithmic (' + Math.round(data[key]['r2'] * 100) / 100 + ')</label><br/>';
-								$('#functions_' + _i).append(functions);
-								data[key]['type']='log';
-								data[key]['name']= name ;
-								(function(_data){$('#checkbox_'+_i+'_log').click(function(){update_utility(_i, _data)});})(data[key]);
+							
+								data['data'][num][key]['type']='log';
+								data['data'][num][key]['name']= name ;
+								update_utility(_i,data['data'][num][key]);
+								
 							}}
 							else if (key == 'pow'){
 								if (choice == 'power') {
-								functions='<label style="color:#6DA63C"><input type="radio" name="radio_'+_i+'" id="checkbox_'+_i+'_pow"> Power (' + Math.round(data[key]['r2'] * 100) / 100 + ')</label><br/>';
-								$('#functions_' + _i).append(functions);
-								data[key]['type']='pow';
-								data[key]['name']= name ;
-								(function(_data){$('#checkbox_'+_i+'_pow').click(function(){update_utility(_i, _data)});})(data[key]);
+								
+								data['data'][num][key]['type']='pow';
+								data['data'][num][key]['name']= name ;
+								update_utility(_i,data['data'][num][key]);
 							}}
 							else if (key == 'quad'){
 								if (choice == 'quadratic') {
-								functions='<label style="color:#458C8C"><input type="radio" name="radio_'+_i+'" id="checkbox_'+_i+'_quad"> Quadratic (' + Math.round(data[key]['r2'] * 100) / 100 + ')</label><br/>';
-								$('#functions_' + _i).append(functions);
-								data[key]['type']='quad';
-								data[key]['name']= name ;
-								(function(_data){$('#checkbox_'+_i+'_quad').click(function(){update_utility(_i, _data)});})(data[key]);
+								
+								data['data'][num][key]['type']='quad';
+								data['data'][num][key]['name']= name ;
+								update_utility(_i,data['data'][num][key]);
 							}}
 							else if (key == 'lin'){
 								if (choice == 'linear') {
-								functions='<label style="color:#D9B504"><input type="radio" name="radio_'+_i+'" id="checkbox_'+_i+'_lin"> Linear (' + Math.round(data[key]['r2'] * 100) / 100 + ')</label><br/>';
-								$('#functions_' + _i).append(functions);
-								data[key]['type']='lin';
-								data[key]['name']= name ;
-								(function(_data){$('#checkbox_'+_i+'_lin').click(function(){update_utility(_i, _data)});})(data[key]);
+								
+								data['data'][num][key]['type']='lin';
+								data['data'][num][key]['name']= name ;
+								update_utility(_i,data['data'][num][key]);
 							}}
 							else if (key == 'expo-power'){
 								if (choice == 'exponential-power') {
-								functions='<label style="color:#26C4EC"><input type="radio" name="radio_'+_i+'" id="checkbox_'+_i+'_expo-power"> Expo-Power (' + Math.round(data[key]['r2'] * 100) / 100 + ')</label><br/>';
-								$('#functions_' + _i).append(functions);
-								data[key]['type']='expo-power';
-								data[key]['name']= name ;
-								(function(_data){$('#checkbox_'+_i+'_expo-power').click(function(){update_utility(_i, _data)});})(data[key]);
+								
+								data['data'][num][key]['type']='expo-power';
+								data['data'][num][key]['name']= name ;
+								update_utility(_i,data['data'][num][key]);
 							}}
-						}
-					})
+						};
+					});
 				});
-			} else {
-				if(points.length == 0 && monAttribut.checked)
-					$('#charts_' + _i).append("Please assess a utility function for this attribute");
-				else if(!monAttribut.checked)
-					$('#charts_' + _i).append("The attribute is inactive");
-			}
+			
+			 };
 		};
 		})(i);
-	}
-}
-
+	};
+		
+};	
+		
 
 
 function update_utility(i, data){
-	if(get_Active_Method()==0){  //multiplicative
+	
 		k_utility_multiplicative[i]=data;
-	} else {
+	
 		k_utility_multilinear[i]=data;
-	}
+	
 }
 
 function addTextForm(div, copie, excel, latex) {
@@ -1030,8 +1040,12 @@ function addTextForm(div, copie, excel, latex) {
 }
 
 $(function(){
-
+	
 	$("#button_calculate_utility").click(function() {
+		
+		
+		
+		$('#utility_function').empty().show();
 		var assess_session = JSON.parse(localStorage.getItem("assess_session"));
 		if(get_Active_Method()==0)//multiplicative
 		{
@@ -1049,7 +1063,7 @@ $(function(){
 			{
 				if(k_utility_multiplicative[i]==null)
 				{
-					alert("You need to choose a utility function for all your attributes in the list above");
+					alert("You must reset your relative attributes");
 					return;
 				}
 			}
@@ -1087,7 +1101,7 @@ $(function(){
 			{
 				if(k_utility_multilinear[i]==null)
 				{
-					alert("You need to choose a utility function for all your attributes in the list above");
+					alert("You must reset your relative attributes");
 					return;
 				}
 			}
@@ -1105,8 +1119,11 @@ $(function(){
 				}, 1000);
 			});
 		}
+		
 
 	});
+	
+	
 });
 
 

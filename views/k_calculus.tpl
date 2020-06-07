@@ -9,13 +9,13 @@
 
 	<div class="alert alert-info" role="alert" id="update_box" >
 	  <button type="button" class="btn btn-info" id="update"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button>
-	  <span id="update_attributes_number"></span> <span id="update_attributes_plurial">attributes are activated</span> but <span id="update_k_number"></span> <span id="update_k_number_plurial">are</span> used for the computation of the K<sub>i</sub>. You need to refresh the list of the K<sub>i</sub>. All the scaling constants’ values will be reset.
+	  <span id="message_box"></span> <span id="update_attributes_plurial">attributes are activated</span> for the computation of the K<sub>i</sub>. If you changed an attribute or its range or the number of attributes, you need to perform a refresh using the following button. All the scaling constants' values will be reset
 	</div>
 
 	<div id="error_message"></div>
 	<div id="message"></div>
-
-	<div id="test></div>
+	<div id="test2"></div>
+	
 	<div id="button_method" style="text-align:center;">
 		<button type="button" class="btn btn-default btn-lg" id="button_multiplicative">Multiplicative</button>
 		<button type="button" class="btn btn-default btn-lg" id="button_multilinear">Multilinear</button>
@@ -53,31 +53,6 @@
 		</div>
 		<br/>
 	</div>
-	<!---------------------- Choose utility function for each attributes ---------------------->
-	<div class="page-header">
-	  <h3>Utility function for each attributes</h3>
-	</div>
-
-	<div id="attribute" >
-		<table class="table">
-			<thead>
-				<tr>
-					<th>K</th>
-					<th>Attribute</th>
-					<th>Graph</th>
-					<th>Utility function</th>
-				</tr>
-			</thead>
-			<tbody id="table_attributes"></tbody>
-		</table>
-	</div>
-
-	<div style="text-align:center;" >
-		<button type="button" class="btn btn-default btn-lg" id="button_generate_list" style="text-align:center">Generate graph</button>
-		<br/>
-	</div>
-
-	
 	<!---------------------- Determine the multi-attribute utility function ---------------------->
 	<div class="page-header">
 	  <h3>Determine the multi-attribute utility function</h3>

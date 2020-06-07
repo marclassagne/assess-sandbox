@@ -165,7 +165,8 @@ def ajax():
         max_ = float(query['max'])
         liste_cord = query['liste_cord']
         width = query['width']
-        return plot.generate_svg_plot(dictionary, min_, max_, liste_cord, width)
+	    liste = query['liste']
+        return plot.generate_svg_plot(dictionary, min_, max_, liste_cord, width,liste)
 
     elif query['type'] == "svgg":
         dictionary = query['data']
