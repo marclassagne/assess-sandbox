@@ -322,3 +322,4 @@ def generate_svg_plot_QUALI(dictionary, list_names, width):
 	plt.close()
 
 	return imgdata.getvalue()
+        
