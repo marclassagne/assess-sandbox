@@ -45,7 +45,7 @@ def generate_svg_plot(dictionary, min_, max_, liste_cord, width,liste):
                                 label="Exp Fitted Curve")
 
             elif func == 'quad':
-                if plot_all or 'quadratic' in liste::
+                if plot_all or 'quadratic' in liste:
                         a = dictionary[func]['a']
                         b = dictionary[func]['b']
                         c = dictionary[func]['c']
@@ -95,7 +95,7 @@ def generate_svg_plot(dictionary, min_, max_, liste_cord, width,liste):
                                 label="Exp Fitted Curve")
 
             elif func == 'quad':
-                if plot_all or 'quadratic' in liste::
+                if plot_all or 'quadratic' in liste:
                         a = dictionary[func]['a']
                         b = dictionary[func]['b']
                         c = dictionary[func]['c']
