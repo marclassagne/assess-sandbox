@@ -1014,8 +1014,8 @@
 					"width": 2.5,
 					"choice":choice,
 				}), function(data2) {
-					$('#graph_choisi' + indice).append('<div>You chose ' +choice+ '</div>');
-					$('#graph_choisi' + indice).append('<div>' + data2 + '</div>');
+					$('#graph_choisi' + i).append('<div>You chose ' +choice+ '</div>');
+					$('#graph_choisi' + i).append('<div>' + data2 + '</div>');
 				});
 			}
 			
