@@ -1445,6 +1445,8 @@
 					if (choice == 'quadratic'){
 						
 						if (data['data'][num]['quad'] == undefined) {
+							assess_session.attributes[indice].numero = 10000;
+							assess_session.attributes[indice].fonction = '';
 							$('#fonction_choisie').empty();
 							$('#graph_choisi'+ indice).empty();
 							$('#graph_choisi'+ indice).hide();
@@ -1462,8 +1464,7 @@
 					
 								$('#graph_choisi'+indice).show().empty();
 						
-								var h =data['data'];
-								assess_session.attributes[indice].pts = h[num];
+							
 								addGraph(num, data['data'], val_min, val_max, choice);
 						
 								addGraph3(num, data['data'], val_min, val_max, choice);
@@ -1482,8 +1483,7 @@
 					
 						$('#graph_choisi'+indice).show().empty();
 						
-						var h =data['data'];
-						assess_session.attributes[indice].pts = h[num];
+						
 						addGraph(num, data['data'], val_min, val_max, choice);
 						
 						addGraph3(num, data['data'], val_min, val_max, choice);
@@ -1522,6 +1522,8 @@
 						if (choice == 'quadratic'){
 						
 							if (data['data'][Number(this.value)]['quad'] == undefined) {
+								assess_session.attributes[indice].numero = 10000;
+								assess_session.attributes[indice].fonction = '';
 								$('#fonction_choisie').empty();
 								$('#graph_choisi'+ indice).empty();
 								$('#graph_choisi'+ indice).hide();
@@ -1537,9 +1539,6 @@
 						
 								$('#graph_choisi'+indice).show().empty();
 						
-								var h =data['data'];
-								assess_session.attributes[indice].pts = h[Number(this.value)];
-						
 								addGraph(Number(this.value), data['data'], val_min, val_max, choice);
 						
 								addGraph3(Number(this.value), data['data'], val_min, val_max, choice);
@@ -1554,8 +1553,7 @@
 						
 							$('#graph_choisi'+indice).show().empty();
 						
-							var h =data['data'];
-							assess_session.attributes[indice].pts = h[Number(this.value)];
+							
 						
 							addGraph(Number(this.value), data['data'], val_min, val_max, choice);
 						
