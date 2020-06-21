@@ -21,12 +21,9 @@
 <div id="charts">
 	<h2>Select the utility function you want to use</h2>
 </div>
-<div id="charts_quali">
-	<h2>Select your choice </h2>
-</div>
 
-<div id= "retour_quali" > <button type="button" class="btn btn-default comeback_quali" id = "update"> Go to main page </button> 
-</div>
+
+
 <div id= "attribute_name"></div>
 <div id ="nouveaubloc"></div>
 
@@ -69,8 +66,7 @@
 		$('#nouveaubloc').hide();
 		$('#choix_fonction').hide();
 		$('#attribute_name').hide();
-		$('#charts_quali').hide();
-		$('#retour_quali').hide();
+		
 		
 		
 		var assess_session = JSON.parse(localStorage.getItem("assess_session")),
@@ -1512,81 +1508,7 @@
 			});
 		});
 		
-		/// When you click on a QUALITATIVE utility function button
-		$('.calc_util_quali').click(function() {
-			// we store the name of the attribute
-			var utility_name = $(this).attr('id').slice(2);
-			
-			// we delete the select div
-			$('#select').hide();
-			//$('#attribute_name').show().html(question_name.toUpperCase());
-			// which index is it ?
-			var indice;
-			for (var j = 0; j < assess_session.attributes.length; j++) {
-				if (assess_session.attributes[j].name == utility_name) {
-					indice = j;
-				}
-			}
-			var val_min = assess_session.attributes[indice].val_min,
-				val_max = assess_session.attributes[indice].val_max,
-				val_med = assess_session.attributes[indice].val_med,
-				list_names = [].concat(val_min, val_med, val_max),
-				points = assess_session.attributes[indice].questionnaire.points,
-				list_points = [];
-			points[val_min] = 0; //On force l'utilité de la pire à 0
-			points[val_max] = 1; //On force l'utilité de la meilleure à 1
-			
-			for (var ii=0, len=list_names.length; ii<len; ii++) {
-				list_points.push(points[list_names[ii]]);
-			};
-			
-			
-			console.log(list_points)
-			console.log(list_names)
-			$('#charts_quali').show();
-			$('#charts_quali').append('<table id="curves_choice_quali" class="table"><thead><tr><th>Choices</th></tr></thead>');
-			$('#curves_choice_quali').append('<tbody><tr><td style="text-align:center"><input class="Table_choice" type="radio" name="choice"  value="table">Table</td>')
-			$('#charts_quali').append("</table><div id='data_show'></div>")
-			$('#retour_quali').show();
-			
-			function table_choice() {
-				
-				$('#main_graph').hide().empty();
-				$('#functions').hide().empty();
-				$('#data_show').show().empty();
-				$('#data_show').append('<table   style="  width:100%;"> <thead><tr><th>value</th><th>utility</th></tr></thead><tbody id="table_info"></tbody>');
-				for (var i = 0; i < list_points.length; i++) 
-				{
-				$('#table_info').append('<tr><td>'+list_names[i]+'</td><td>'+list_points[i]+'</td></tr>');
-				};
-			}
-			$('.Table_choice').on('click',table_choice);
-					
-		});
 		
-		$('.comeback_quali').click(function() {
-					
-					
-					$('#attribute_name').hide();
-					$('#charts').hide();
-					$('#main_graph').hide();
-					$('#functions').hide();
-					$('#nouveaubloc').hide();
-					$('#tableau_fonctions').hide();
-					$('#choix_fonction').hide();
-					$('#retour_quali').hide();
-					$('#select').show();
-					
-					$('#charts_quali').empty();
-					$('#charts_quali').hide();
-					$('#fonction_choisie').empty();
-					$('#fonctions_choisies').empty();
-					
-					
-					
-					
-					});
-				
 		
 	
 	});
