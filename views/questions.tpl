@@ -1432,18 +1432,23 @@
 					var choice = this.value;
 					var assess_session = JSON.parse(localStorage.getItem("assess_session"));
 					var num = assess_session.attributes[indice].numero;
+					$('#ton_choix').append("You chose " + choice);
+					
+					
+					assess_session.attributes[indice].fonction = choice;
+					
+					if (num!=10000){
 					if choice == 'quadratic'{
 						
 						if (data['data'][num]['quad'] == undefined) {
-							if (num!=10000){
-							};
+							
 						}else{
 							$('#ton_choix').append("You chose " + choice);
 					
 					
 							assess_session.attributes[indice].fonction = choice;
 					
-							if (num!=10000){
+							
 								$('#main_graph').show().empty();
 								$('#functions').show().empty();
 								$('#fonction_choisie').show().empty();
@@ -1456,17 +1461,12 @@
 						
 								addGraph3(num, data['data'], val_min, val_max, choice);
 								addFunctions(num, data['data'],val_min,choice);
-							};
+							
 						
 						};
 					}else{
 							
-					$('#ton_choix').append("You chose " + choice);
 					
-					
-					assess_session.attributes[indice].fonction = choice;
-					
-					if (num!=10000){
 						$('#main_graph').show().empty();
 						$('#functions').show().empty();
 						$('#fonction_choisie').show().empty();
