@@ -1452,6 +1452,7 @@
 							$('#ton_choix').append("Choose another function or other points");
 							$('#update').hide();
 							
+							
 						};
 						if (data['data'][num]['quad'] != undefined) {
 								$('#main_graph').show().empty();
