@@ -116,13 +116,13 @@
 				if (attribute.questionnaire.number > 0) {
 					text_table += '<td><button type="button" class="btn btn-default btn-xs calc_util_quanti" id="u_' + attribute.name + '">Utility function</button>';
 				} else {
-					text_table += '<td>No assessment yet';
+					text_table += '<td>No assessment yet ';
 				};
 			} else {
 				if (attribute.questionnaire.number === attribute.val_med.length) {
 					text_table += '<td>';
 				} else {
-					text_table += '<td>Please assess all the medium values';
+					text_table += '<td>Please assess all the medium values ';
 				};
 			};
 			text_table += '<button type="button" class="btn btn-default btn-xs" id="excel_' + i + '">export to Excel</button></td>';
