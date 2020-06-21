@@ -1433,8 +1433,9 @@
 					var assess_session = JSON.parse(localStorage.getItem("assess_session"));
 					var num = assess_session.attributes[indice].numero;
 					if choice == 'quadratic'{
-						if (num!=10000){
-							if (data['data'][num]['quad'] == undefined) {
+						
+						if (data['data'][num]['quad'] == undefined) {
+							if (num!=10000){
 							};
 						}else{
 							$('#ton_choix').append("You chose " + choice);
