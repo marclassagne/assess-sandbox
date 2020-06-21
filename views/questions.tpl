@@ -1438,12 +1438,13 @@
 					assess_session.attributes[indice].fonction = choice;
 					
 					if (num!=10000){
-					if choice == 'quadratic'{
+					if (choice == 'quadratic'){
 						
 						if (data['data'][num]['quad'] == undefined) {
 							$('#ton_choix').empty();
 							$('#ton_choix').append("Quadratic can't be calculated for the points you chose");
-						}else{
+						}
+						else{
 							$('#ton_choix').append("You chose " + choice);
 					
 					
@@ -1465,7 +1466,8 @@
 							
 						
 						};
-					}else{
+					};
+					else{
 							
 					
 						$('#main_graph').show().empty();
