@@ -204,7 +204,7 @@
 								"width": 2.5,
 								"choice":choice
 							}), function (data2) {
-								$('#graph_choisi' + indice).append('<div>You chose ' +choice+ '</div>');
+								$('#graph_choisi' + _i).append('<div>You chose ' +choice+ '</div>');
 								$('#graph_choisi'+ _i).append(data2);
 								
 							
