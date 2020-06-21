@@ -1446,7 +1446,8 @@
 						
 						if (data['data'][num]['quad'] == undefined) {
 							$('#fonction_choisie').empty();
-							$('#graph_choisi'+ indice).show().empty();
+							$('#graph_choisi'+ indice).empty();
+							$('#graph_choisi'+ indice).hide();
 							$('#ton_choix').empty();
 							$('#fonction_choisie').append("Quadratic can't be calculated for the points you chose");
 							$('#ton_choix').append("Choose another function or other points");
@@ -1522,7 +1523,8 @@
 						
 							if (data['data'][Number(this.value)]['quad'] == undefined) {
 								$('#fonction_choisie').empty();
-								$('#graph_choisi'+ indice).show().empty();
+								$('#graph_choisi'+ indice).empty();
+								$('#graph_choisi'+ indice).hide();
 								$('#ton_choix').empty();
 								$('#fonction_choisie').append("Quadratic can't be calculated for the points you chose");
 								$('#ton_choix').append("Choose another function or other points");
