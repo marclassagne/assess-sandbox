@@ -1443,14 +1443,8 @@
 						if (data['data'][num]['quad'] == undefined) {
 							$('#ton_choix').empty();
 							$('#ton_choix').append("Quadratic can't be calculated for the points you chose");
-						}
-						else{
-							$('#ton_choix').append("You chose " + choice);
-					
-					
-							assess_session.attributes[indice].fonction = choice;
-					
-							
+						};
+						if (data['data'][num]['quad'] != undefined) {
 								$('#main_graph').show().empty();
 								$('#functions').show().empty();
 								$('#fonction_choisie').show().empty();
@@ -1467,7 +1461,7 @@
 						
 						};
 					};
-					else{
+					if (choice != 'quadratic'){
 							
 					
 						$('#main_graph').show().empty();
