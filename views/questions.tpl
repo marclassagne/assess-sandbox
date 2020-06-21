@@ -120,7 +120,7 @@
 				};
 			} else {
 				if (attribute.questionnaire.number === attribute.val_med.length) {
-					text_table += '<td><button type="button" class="btn btn-default btn-xs calc_util_quali" id="u_' + attribute.name + '">result</button>';
+					
 				} else {
 					text_table += '<td>Please assess all the medium values';
 				};
