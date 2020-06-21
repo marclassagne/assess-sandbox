@@ -1454,11 +1454,12 @@
 							$('#fonction_choisie').append("Quadratic can't be calculated for the points you chose");
 							$('#ton_choix').append("Choose another function or other points");
 							$('#update').hide();
+							$('#functions').hide();
 							
 							
 						};
 						if (data['data'][num]['quad'] != undefined) {
-								$('#main_graph').show().empty();
+								
 								$('#functions').show().empty();
 								$('#fonction_choisie').show().empty();
 					
@@ -1477,7 +1478,7 @@
 					if (choice != 'quadratic'){
 							
 					
-						$('#main_graph').show().empty();
+						
 						$('#functions').show().empty();
 						$('#fonction_choisie').show().empty();
 					
@@ -1531,9 +1532,10 @@
 								$('#fonction_choisie').append("Quadratic can't be calculated for the points you chose");
 								$('#ton_choix').append("Choose another function or other points");
 								$('#update').hide();
+								$('#functions').hide();
 							};
 							if (data['data'][Number(this.value)]['quad'] != undefined) {
-								$('#main_graph').show().empty();
+								
 								$('#functions').show().empty();
 								$('#fonction_choisie').show().empty();
 						
@@ -1547,7 +1549,7 @@
 							};
 						};
 						if (choice != 'quadratic'){
-							$('#main_graph').show().empty();
+							
 							$('#functions').show().empty();
 							$('#fonction_choisie').show().empty();
 						
@@ -1571,7 +1573,7 @@
 					
 					$('#attribute_name').hide();
 					$('#charts').hide();
-					$('#main_graph').hide();
+					
 					$('#functions').hide();
 					$('#nouveaubloc').hide();
 					$('#tableau_fonctions').hide();
