@@ -1441,6 +1441,7 @@
 					if (choice == 'quadratic'){
 						
 						if (data['data'][num]['quad'] == undefined) {
+							$('#fonction_choisie').empty();
 							$('#ton_choix').empty();
 							$('#ton_choix').append("Quadratic can't be calculated for the points you chose");
 						};
