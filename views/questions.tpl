@@ -1502,19 +1502,44 @@
 					L=[1,1,1,1,1];
 					addGraph2(Number(this.value), data['data'], val_min, val_max,LISTE);
 					if (choice != ''){
-						$('#main_graph').show().empty();
-						$('#functions').show().empty();
-						$('#fonction_choisie').show().empty();
+						if (choice == 'quadratic'){
 						
-						$('#graph_choisi'+indice).show().empty();
+							if (data['data'][Number(this.value)]['quad'] == undefined) {
+								$('#fonction_choisie').empty();
+								$('#ton_choix').empty();
+								$('#ton_choix').append("Quadratic can't be calculated for the points you chose");
+							};
+							if (data['data'][Number(this.value)]['quad'] != undefined) {
+								$('#main_graph').show().empty();
+								$('#functions').show().empty();
+								$('#fonction_choisie').show().empty();
 						
-						var h =data['data'];
-						assess_session.attributes[indice].pts = h[Number(this.value)];
+								$('#graph_choisi'+indice).show().empty();
 						
-						addGraph(Number(this.value), data['data'], val_min, val_max, choice);
+								var h =data['data'];
+								assess_session.attributes[indice].pts = h[Number(this.value)];
 						
-						addGraph3(Number(this.value), data['data'], val_min, val_max, choice);
-						addFunctions(Number(this.value), data['data'],val_min,choice);
+								addGraph(Number(this.value), data['data'], val_min, val_max, choice);
+						
+								addGraph3(Number(this.value), data['data'], val_min, val_max, choice);
+								addFunctions(Number(this.value), data['data'],val_min,choice);
+							};
+						};
+						if (choice != 'quadratic'){
+							$('#main_graph').show().empty();
+							$('#functions').show().empty();
+							$('#fonction_choisie').show().empty();
+						
+							$('#graph_choisi'+indice).show().empty();
+						
+							var h =data['data'];
+							assess_session.attributes[indice].pts = h[Number(this.value)];
+						
+							addGraph(Number(this.value), data['data'], val_min, val_max, choice);
+						
+							addGraph3(Number(this.value), data['data'], val_min, val_max, choice);
+							addFunctions(Number(this.value), data['data'],val_min,choice);
+						};
 						};
 					localStorage.setItem("assess_session", JSON.stringify(assess_session));
 						
