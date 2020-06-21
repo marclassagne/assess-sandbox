@@ -1429,13 +1429,10 @@
 			
 					$('#choix_fonction').show();
 					$('#ton_choix').empty();
-					$('#update').show();
-					if (assess_session.attributes[indice].numero == 10000){
-						$('#update').hide();
-					};
-					if (assess_session.attributes[indice].fonction == '')
-						$('#update').hide();
-					};
+					
+				
+					$('#update').hide();
+					
 					var choice = this.value;
 					var assess_session = JSON.parse(localStorage.getItem("assess_session"));
 					var num = assess_session.attributes[indice].numero;
@@ -1469,6 +1466,7 @@
 						
 								addGraph3(num, data['data'], val_min, val_max, choice);
 								addFunctions(num, data['data'],val_min,choice);
+								$('#update').show();
 							
 						
 						};
@@ -1488,6 +1486,7 @@
 						
 						addGraph3(num, data['data'], val_min, val_max, choice);
 						addFunctions(num, data['data'],val_min,choice);
+						$('#update').show();
 					};
 					};
 					localStorage.setItem("assess_session", JSON.stringify(assess_session));
@@ -1502,14 +1501,11 @@
 					
 					var choice = assess_session.attributes[indice].fonction;
 					assess_session.attributes[indice].numero = Number(this.value);
-					$('#update').show();
 					
-					if (assess_session.attributes[indice].numero == 10000){
-						$('#update').hide();
-					};
-					if (assess_session.attributes[indice].fonction == '')
-						$('#update').hide();
-					};
+					
+					
+					$('#update').hide();
+					
 					$('#fonctions_choisies').show().empty();
 					document.getElementById('check_log').checked = true;
 					document.getElementById('check_exp').checked = true;
@@ -1545,6 +1541,7 @@
 						
 								addGraph3(Number(this.value), data['data'], val_min, val_max, choice);
 								addFunctions(Number(this.value), data['data'],val_min,choice);
+								$('#update').show();
 							};
 						};
 						if (choice != 'quadratic'){
@@ -1561,6 +1558,7 @@
 						
 							addGraph3(Number(this.value), data['data'], val_min, val_max, choice);
 							addFunctions(Number(this.value), data['data'],val_min,choice);
+							$('#update').show();
 						};
 						};
 					localStorage.setItem("assess_session", JSON.stringify(assess_session));
