@@ -194,7 +194,7 @@
 				
 					json_2_send["points"] = points;
 					
-					
+					if (num != 10000){
 					$.post('ajax', JSON.stringify(json_2_send), function (data) {
 						$.post('ajax', JSON.stringify({
 								"type": "svgg",
@@ -213,6 +213,7 @@
 					
 							});
 						});
+						};
 					}; };
 				};
 			};
