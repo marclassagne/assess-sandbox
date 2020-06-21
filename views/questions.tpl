@@ -134,7 +134,7 @@
 					if (confirm("Are you sure you want to delete all the assessments for "+assess_session.attributes[_i].name+"?") == false) {
 							return
 					};
-					$('#graph_choisi' + _i).empty()
+					$('#graph_choisi' + _i).hide()
 					assess_session.attributes[_i].questionnaire = {
 							'number': 0,
 							'points': {},
