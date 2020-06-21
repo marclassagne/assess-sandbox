@@ -1445,7 +1445,7 @@
 					if (choice == 'quadratic'){
 						
 						if (data['data'][num]['quad'] == undefined) {
-							assess_session.attributes[indice].numero = 10000;
+							
 							assess_session.attributes[indice].fonction = '';
 							$('#fonction_choisie').empty();
 							$('#graph_choisi'+ indice).empty();
@@ -1522,7 +1522,7 @@
 						if (choice == 'quadratic'){
 						
 							if (data['data'][Number(this.value)]['quad'] == undefined) {
-								assess_session.attributes[indice].numero = 10000;
+								
 								assess_session.attributes[indice].fonction = '';
 								$('#fonction_choisie').empty();
 								$('#graph_choisi'+ indice).empty();
