@@ -1430,11 +1430,41 @@
 					$('#choix_fonction').show();
 					$('#ton_choix').empty();
 					var choice = this.value;
-					$('#ton_choix').append("You chose " + choice);
 					var assess_session = JSON.parse(localStorage.getItem("assess_session"));
+					var num = assess_session.attributes[indice].numero;
+					if choice == 'quadratic'{
+						if (num!=10000){
+							if (data['data'][num]['quad'] == undefined) {
+							};
+						}else{
+							$('#ton_choix').append("You chose " + choice);
+					
+					
+							assess_session.attributes[indice].fonction = choice;
+					
+							if (num!=10000){
+								$('#main_graph').show().empty();
+								$('#functions').show().empty();
+								$('#fonction_choisie').show().empty();
+					
+								$('#graph_choisi'+indice).show().empty();
+						
+								var h =data['data'];
+								assess_session.attributes[indice].pts = h[num];
+								addGraph(num, data['data'], val_min, val_max, choice);
+						
+								addGraph3(num, data['data'], val_min, val_max, choice);
+								addFunctions(num, data['data'],val_min,choice);
+							};
+						
+						};
+					}else{
+							
+					$('#ton_choix').append("You chose " + choice);
+					
 					
 					assess_session.attributes[indice].fonction = choice;
-					var num = assess_session.attributes[indice].numero;
+					
 					if (num!=10000){
 						$('#main_graph').show().empty();
 						$('#functions').show().empty();
@@ -1448,9 +1478,10 @@
 						
 						addGraph3(num, data['data'], val_min, val_max, choice);
 						addFunctions(num, data['data'],val_min,choice);
-						};
+					};
+					};
 					localStorage.setItem("assess_session", JSON.stringify(assess_session));
-						
+					
 					});
 					
 			
@@ -1480,6 +1511,7 @@
 						
 						var h =data['data'];
 						assess_session.attributes[indice].pts = h[Number(this.value)];
+						
 						addGraph(Number(this.value), data['data'], val_min, val_max, choice);
 						
 						addGraph3(Number(this.value), data['data'], val_min, val_max, choice);
