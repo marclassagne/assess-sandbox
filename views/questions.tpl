@@ -113,8 +113,14 @@
 			
 			text_table += '<tr><td>' + attribute.val_max + '</td><td> : </td><td>'+(attribute.mode=="Normal"?1:0)+'</td></tr></table></td>';
 			if (attribute.type=="Quantitative") {
-				if (attribute.questionnaire.number > 0) {
-					text_table += '<td><button type="button" class="btn btn-default btn-xs calc_util_quanti" id="u_' + attribute.name + '">Utility function</button>';
+				if ( attribute.questionnaire.number > 0) {
+					if (attribute.val_med.length == attribute.questionnaire.number){
+						text_table += '<td><button type="button" class="btn btn-default btn-xs calc_util_quanti" id="u_' + attribute.name + '">Utility function</button>';
+						text_table += '<button type="button" class="btn btn-default btn-xs" id="excel_' + i + '">export to Excel</button></td>';
+					}
+					else {
+						text_table += '<td><button type="button" class="btn btn-default btn-xs calc_util_quanti" id="u_' + attribute.name + '">Utility function</button>';
+					};
 				} else {
 					text_table += '<td>No assessment yet ';
 				};
@@ -125,7 +131,7 @@
 					text_table += '<td>Please assess all the medium values ';
 				};
 			};
-			text_table += '<button type="button" class="btn btn-default btn-xs" id="excel_' + i + '">export to Excel</button></td>';
+			
 			
 			text_table += '<td><button type="button" id="deleteK' + i + '" class="btn btn-default btn-xs">Reset</button></td>';
 			$('#table_attributes').append(text_table);
