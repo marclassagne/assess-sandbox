@@ -17,6 +17,14 @@ $(function() {
 	});
 
 	$('#export_xls').click(function() {
+
+		var data_2_export = localStorage['assess_session'];
+		$.post('ajax', '{"type":"export_xlsx", "data":'+data_2_export+'}', function(data) {
+			document.location = "export_download/"+data;
+		});
+	});
+
+	$("#excel0").click(function() {
 		var data_2_export = localStorage['assess_session'];
 		$.post('ajax', '{"type":"export_xlsx", "data":'+data_2_export+'}', function(data) {
 			document.location = "export_download/"+data;
@@ -62,18 +70,19 @@ function list()
 
 		(function(_i) {
 			var json_2_send = {"type": "calc_util", "points":[]};
-			var points = assess_session.attributes[_i].questionnaire.points.slice();
+			var obj = assess_session.attributes[_i].questionnaire.points;
+			var points = Object.keys(obj).map(function(key) {return [key, obj[key]];});
 			var mode = assess_session.attributes[_i].mode;
 			var val_max=assess_session.attributes[_i].val_max;
 			var val_min=assess_session.attributes[_i].val_min;
 			if (points.length > 0 && assess_session.attributes[i].checked) {
-			if (mode=="normal") {
-				points.push([val_max, 1]);
-				points.push([val_min, 0]);
+			if (mode=="Normal") {
+				points.push([String(val_max), 1]);
+				points.push([String(val_min), 0]);
 			}
 			else {
-				points.push([val_max, 0]);
-				points.push([val_min, 1]);
+				points.push([String(val_max), 0]);
+				points.push([String(val_min), 1]);
 			}
 			json_2_send["points"] = points;
 				$.post('ajax', JSON.stringify(json_2_send), function (data) {
@@ -83,7 +92,8 @@ function list()
 						"min": val_min,
 						"max": val_max,
 						"liste_cord": points,
-						"width": 3
+                                                "width": 3,
+                                                "liste": []
 					}), function (data2) {
 
 						$('#charts_' + _i).append('<div>' + data2 + '</div>');

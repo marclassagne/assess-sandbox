@@ -18,7 +18,7 @@
   <div class="form-group">
     <input type="text" class="form-control" id="password" placeholder="Password">
   </div>
-  <button id="connect" class="btn btn-default">Connect</button>
+  <button id="connect" class="btn btn-outline-dark">Connect</button>
 
 
 </div>
@@ -33,9 +33,9 @@
 
     </div>
     <br/>
-    <button id="add" class="btn btn-default"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add password</button>
+    <button id="add" class="btn btn-outline-dark"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add password</button>
     <br/><br/>
-    <button id="save" class="btn btn-default">Save</button>
+    <button id="save" class="btn btn-outline-dark">Save</button>
     <br/><br/>
     <div class="alert alert-success" role="alert" id="success_save" >
           Passwords have been saved !
@@ -126,7 +126,7 @@ $("#save").click(function(){
            if(data.success)
            {
                 $("#success_save").show(300);
-                $.post('auth', JSON.stringify({"type":"authentification","mdp":$("#password").val()}), function (data) {
+                $.post('auth', JSON.stringify({"type":"words","mdp":$("#password").val()}), function (data) {
                         retour(data);
                     });
            }

@@ -2,46 +2,57 @@
 
 <h2>Former students:</h2>
 <ul>
-    <li>Maillefert Paul</li>
-    <li>Sordo Zineb</li>
-    <li>Charaf Chaimaà</li>
-    <li>Bouimezgane Karim</li>
-    <li>Housni Mariem</li>
-    <li>Heger Pierre</li>
-    <li>Nasroune Moussa</li>
-    <li>Liu Yuli</li>
-    <li>Fekhi Nawres</li>
-    <li>Khelifa Mohammed Ahmeur</li>
+    <li>Adnane Tebaa</li>
+    <li>Alexandre Cochennec</li>
+    <li>Antoine Normand</li>
+    <li>Arnaud Maranges</li>
+    <li>Assatou Diallo</li>
+    <li>Assila Ismail</li>
+    <li>Baptiste Mathae</li>
+    <li>Blaise Petit</li>
     <li>Bouattour Amine</li>
+    <li>Bouimezgane Karim</li>
+    <li>Chagar Mohamed Anis</li>
+    <li>Charaf Chaimaà</li>
+    <li>Charles Chastel</li>
+    <li>Chen Jianqiang</li>
+    <li>Clara Fulchignoni</li>
+    <li>Etienne Verbrugghe</li>
+    <li>Facchini Vítor</li>
+    <li>Fekhi Nawres</li>
+    <li>François Bracchi</li>
+    <li>Guedj Yossef</li>
+    <li>Guillaume Clotault</li>
+    <li>Hanen Fehli</li>
+    <li>Heger Pierre</li>
+    <li>Housni Mariem</li>
     <li>Jean Auclair</li>
     <li>Julien Blanchard</li>
-    <li>Melek Ben Kedher</li>
-    <li>François Bracchi</li>
-    <li>Romain Casabianca</li>
-    <li>Thibaut Charraire</li>
-    <li>Charles Chastel</li>
-    <li>Alexandre Cochennec</li>
-    <li>Mohamed Anis Chagar</li>
-    <li>Guillaume Clotault</li>
-    <li>Thomas Denost</li>
-    <li>Nathanaël Dieu</li>
-    <li>Assatou Diallo</li>
-    <li>Hanen Fehli</li>
-    <li>Clara Fulchignoni</li>
+    <li>Khelifa Mohammed Ahmeur</li>
+    <li>Léopold Sayous</li>
+    <li>Lima Mota Da Silva João Paulo</li>
+    <li>Liu Yuli</li>
+    <li>Maillefert Paul</li>
+    <li>Makrouf Oussama</li>
     <li>Martin Gouy</li>
     <li>Mateusz Jasinski</li>
-    <li>Chen Jianqiang</li>
-    <li>Nicolas Mardrus</li>
-    <li>Baptiste Mathae</li>
-    <li>Ramana Mozhichelvan</li>
     <li>Matthias Nezondet</li>
-    <li>Antoine Normand</li>
-    <li>Léopold Sayous</li>
-    <li>Victor Sève</li>
-    <li>Pierre-Louis Talon</li>
-    <li>Adnane Tebaa</li>
-    <li>Etienne Verbrugghe</li>
+    <li>Matthieu Moulonguet</li>
+    <li>Melek Ben Kedher</li>
     <li>Mohammed Zouini</li>
+    <li>Nasroune Moussa</li>
+    <li>Nathanaël Dieu</li>
+    <li>Nicolas Mardrus</li>
+    <li>Pavitra Patel</li>
+    <li>Pierre-Louis Talon</li>
+    <li>Ramana Mozhichelvan</li>
+    <li>Romain Casabianca</li>
+    <li>Sordo Zineb</li>
+    <li>Thibaut Charraire</li>
+    <li>Thomas Denost</li>
+    <li>Victor Sève</li>
+    <li>Vidal De Araujo Leticia</li>
+    <li>Weining Ben</li>
 </ul>
 
 <h2>Supervising faculty:</h2>
@@ -53,12 +64,17 @@ var d="";for(var i=0;i<505;i++)d+=String.fromCharCode(("*t&3(P5IZW}XEF[$T={dGH.+
 //-->
 </script></li>
 </ul>
+
+
 %include('header_end.tpl')
 %include('js.tpl')
+
 <script type="text/javascript">
 $('li.credits').addClass("active");
 </script>
+
 <!-- Library to copy into clipboard -->
 <script src="{{ get_url('static', path='js/clipboard.min.js') }}"></script>
 </body>
+
 </html>

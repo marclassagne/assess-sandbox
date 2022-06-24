@@ -3,3 +3,5 @@
 
 <!-- Bootstrap Core JavaScript -->
 <script src="{{ get_url('static', path='js/bootstrap.min.js') }}"></script>
+
+

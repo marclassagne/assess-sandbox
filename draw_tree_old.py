@@ -121,14 +121,15 @@ def draw(gain, upper_label, bottom_label, upper_proba, bottom_proba, assess_type
     y = height + offsety - text_y_bottom_label - 10
     draw.text((x, y), bottom_label, font=font, fill=(0,0,0,255))
     #draw.text((x, y), bottom_label.decode("utf-8"), font=font, fill=(0,0,0,255))
-    tree.save(imgdata, format="png")
-    imgdata = base64.b64encode(imgdata.getvalue())
+    #tree.save(imgdata, format="png")
+    #Image.open(imgdata)
+    #imgdata = base64.b64encode(imgdata.getvalue())
     return imgdata
 
-#query = {'type': 'tree', 'gain': '5100 EURO', 'upper_label': '10000 EURO', 'bottom_label': '200 EURO', 'upper_proba': '0.80', 'bottom_proba': '0.20', 'assess_type': 'PE'}
-#photo=draw(query['gain'], query['upper_label'], query['bottom_label'], query['upper_proba'], query['bottom_proba'], query['assess_type'])
+# query = {'type': 'tree', 'gain': '5100 EURO', 'upper_label': '10000 EURO', 'bottom_label': '200 EURO', 'upper_proba': '0.80', 'bottom_proba': '0.20', 'assess_type': 'PE'}
+# photo=draw(query['gain'], query['upper_label'], query['bottom_label'], query['upper_proba'], query['bottom_proba'], query['assess_type'])
 
-#Image.open(photo)
+# Image.open(photo)
 
-#im=Image.open(photo)
-#im.show()
+# im=Image.open(photo)
+# im.show()

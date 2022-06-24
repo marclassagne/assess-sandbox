@@ -8,17 +8,19 @@
 	</div>
 
 	<div class="alert alert-info" role="alert" id="update_box" >
-	  <button type="button" class="btn btn-info" id="update"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button>
 	  <span id="message_box"></span> <span id="update_attributes_plurial">attributes are activated</span> for the computation of the K<sub>i</sub>. If you changed an attribute or its range or the number of attributes, you need to perform a refresh using the following button. All the scaling constants' values will be reset
+	
+	  <button type="button" class="btn btn-info" id="update"><i class="fa fa-refresh" aria-hidden="true"></i></button>
 	</div>
 
 	<div id="error_message"></div>
 	<div id="message"></div>
 	<div id="test2"></div>
 	
+	
 	<div id="button_method" style="text-align:center;">
-		<button type="button" class="btn btn-default btn-lg" id="button_multiplicative">Multiplicative</button>
-		<button type="button" class="btn btn-default btn-lg" id="button_multilinear">Multilinear</button>
+		<button type="button" class="btn btn-outline-dark btn-lg" id="button_multiplicative">Multiplicative</button>
+		<button type="button" class="btn btn-outline-dark btn-lg" id="button_multilinear">Multilinear</button>
 	</div>
 	<div id="k_list" style="display:none">
 		<table class="table">
@@ -48,7 +50,7 @@
 		  There is no need to calculate K in multilinear.
 		</div>
 		<div style="text-align:center;" id="GK">
-			<span class="h4">K = <span id="GK_value"></span> </span><button type="button" class="btn btn-default btn-lg" id="button_calculate_k" style="text-align:center">Compute</button>
+			<span class="h4">K = <span id="GK_value"></span> </span><button type="button" class="btn btn-outline-dark btn-lg" id="button_calculate_k" style="text-align:center">Compute</button>
 			<br/>
 		</div>
 		<br/>
@@ -58,7 +60,7 @@
 	  <h3>Determine the multi-attribute utility function</h3>
 	</div>
 	<div style="text-align:center;" id="button_generate_list">
-		<button type="button" class="btn btn-default btn-lg" id="button_calculate_utility" style="text-align:center">Compute multi-attribute utility function</button>
+		<button type="button" class="btn btn-outline-dark btn-lg" id="button_calculate_utility" style="text-align:center">Compute multi-attribute utility function</button>
 		<br/><br/>
 		<span id="utility_function"></span>
 	</div>

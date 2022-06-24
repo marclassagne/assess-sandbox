@@ -63,18 +63,18 @@
 				if(attribute.questionnaire.points[attribute.val_med[ii]]){
 					text_table += '<td>' + attribute.questionnaire.points[attribute.val_med[ii]] + '</td>';
 				} else {
-					text_table += '<td><button type="button" class="btn btn-default btn-xs answer_quest" id="q_' + attribute.name + '_' + attribute.val_med[ii] + '_' + ii + '">Assess</button>' + '</td></tr>';
+					text_table += '<td><button type="button" class="btn btn-outline-dark btn-xs answer_quest" id="q_' + attribute.name + '_' + attribute.val_med[ii] + '_' + ii + '">Assess</button>' + '</td></tr>';
 				};
 			}; 
 			text_table += '<tr><td>' + attribute.val_max + '</td><td> : </td><td>1</td></tr></table></td>';
 
 			if (attribute.questionnaire.number === attribute.val_med.length) {
-				text_table += '<td><button type="button" class="btn btn-default btn-xs calc_util" id="u_' + attribute.name + '">Utility function</button></td>';
+				text_table += '<td><button type="button" class="btn btn-outline-dark btn-xs calc_util" id="u_' + attribute.name + '">Utility function</button></td>';
 			} else {
 				text_table += '<td>Please assess all the medium values</td>';
 			}
 			
-			text_table += '<td><button type="button" id="deleteK' + i + '" class="btn btn-default btn-xs">Reset</button></td>';
+			text_table += '<td><button type="button" id="deleteK' + i + '" class="btn btn-outline-dark btn-xs">Reset</button></td>';
 
 			$('#table_attributes').append(text_table);
 
@@ -155,8 +155,8 @@
 
 					$('#trees').append('</div><div class=choice style="text-align: center;">'+
 										'<p>Which option do you prefer?</p>'+
-										'<button type="button" class="btn btn-default" id="gain"> Certain gain </button>'+
-										'<button type="button" class="btn btn-default" id="lottery"> Lottery </button></div>');
+										'<button type="button" class="btn btn-outline-dark" id="gain"> Certain gain </button>'+
+										'<button type="button" class="btn btn-outline-dark" id="lottery"> Lottery </button></div>');
 
 					// FUNCTIONS
 					function sync_values() {
@@ -185,7 +185,7 @@
 							'<p>We are almost done. Please enter the probability that makes you indifferent between the two situations above. Your previous choices indicate that it should be between ' + min_interval + ' and ' + max_interval + ' but you are not constrained to that range <br /> ' + min_interval +
 							'\
 							<= <input type="text" class="form-control" id="final_proba" placeholder="Probability" value="' + val + '" style="width: 100px; display: inline-block"> <= ' + max_interval +
-							'</p><button type="button" class="btn btn-default final_validation">Validate</button></div>'
+							'</p><button type="button" class="btn btn-outline-dark final_validation">Validate</button></div>'
 						);
 
 
@@ -266,8 +266,8 @@
 				points = assess_session.attributes[indice].questionnaire.points,
 				list_points = [];
 
-			points[val_min] = 0; //On force l'utilité de la pire à 0
-			points[val_max] = 1; //On force l'utilité de la meilleure à 1
+			points[val_min] = 0; //On force l utilité de la pire à 0
+			points[val_max] = 1; //On force l utilité de la meilleure à 1
 			
 			for (var ii=0, len=list_names.length; ii<len; ii++) {
 				list_points.push(points[list_names[ii]]);

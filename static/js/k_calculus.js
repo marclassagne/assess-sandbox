@@ -236,9 +236,9 @@ function update_k_list(number){
 		text += '<td> '+ JSON.stringify(ma_list[i].attribute).replace(/"/g, ' ').replace("[", '').replace("]", '').replace(/,/g, '|'); + '</td>';
 		if(ma_list[i].value==null){
 			if(number==1 && i==ma_list.length-1){ //In the multilinear case and the last k
-				text += '<td id="k_value_' + i + '"><button type="button" class="btn btn-default btn-xs" id="k_answer_' + i + '">Calculate</button></td>';
+				text += '<td id="k_value_' + i + '"><button type="button" class="btn btn-outline-dark btn-xs" id="k_answer_' + i + '">Calculate</button></td>';
 			} else {
-				text += '<td id="k_value_' + i + '"><button type="button" class="btn btn-default btn-xs" id="k_answer_' + i + '">Answer</button></td>';
+				text += '<td id="k_value_' + i + '"><button type="button" class="btn btn-outline-dark btn-xs" id="k_answer_' + i + '">Answer</button></td>';
 			};
 		} else {
 			text += '<td>'+ ma_list[i].value +'</td>';
@@ -401,7 +401,7 @@ function k_multilinear_answer(i){
 			arbre_gauche.update();
 			
 			
-			$("#k_value_"+i).append('<br/><br/><br/><br/><div class=choice style="text-align: center;"><p>Which option do you prefer?</p><button type="button" class="btn btn-default gain">Certain gain</button><button type="button" class="btn btn-default lottery">Lottery</button></div><br/><br/><div ></div>');
+			$("#k_value_"+i).append('<br/><br/><br/><br/><div class=choice style="text-align: center;"><p>Which option do you prefer?</p><button type="button" class="btn btn-outline-dark gain">Certain gain</button><button type="button" class="btn btn-outline-dark lottery">Lottery</button></div><br/><br/><div ></div>');
 			//on affiche l'arbre avec un petit effet !
 
 			$("#k_value_"+i).show("fast");
@@ -426,7 +426,7 @@ function k_multilinear_answer(i){
 				$('.choice').hide();
 				$("#k_value_"+i).append(
 					'<br/><br/><br/><br/><div id= "final_value" style="text-align: center;margin-top:90px;"><br /><br /><p>We are almost done. Please enter the value that makes you indifferent between the two situations above. Your previous choices indicate that it should be between ' + min_interval + ' and ' + max_interval + ' but you are not constrained to that range <br /> '+ min_interval +'\
-					 <= <input type="text" class="form-control" id="final_proba" placeholder="Probability" value="'+val+'" style="width: 100px; display: inline-block"> <= '+ max_interval +'</p><button type="button" class="btn btn-default final_validation">Validate</button></div>'
+					 <= <input type="text" class="form-control" id="final_proba" placeholder="Probability" value="'+val+'" style="width: 100px; display: inline-block"> <= '+ max_interval +'</p><button type="button" class="btn btn-outline-dark final_validation">Validate</button></div>'
 				);
 
 				// when the user validates
@@ -606,7 +606,7 @@ function k_multiplicative_answer(i) {
 				arbre_gauche.display();
 				arbre_gauche.update();
 
-				$("#k_value_"+i).append('<br/><br/><br/><br/><div class=choice style="text-align: center;"><p>Which option do you prefer?</p><button type="button" class="btn btn-default gain">Certain gain</button><button type="button" class="btn btn-default lottery">Lottery</button></div><br/><br/><div ></div>');
+				$("#k_value_"+i).append('<br/><br/><br/><br/><div class=choice style="text-align: center;"><p>Which option do you prefer?</p><button type="button" class="btn btn-outline-dark gain">Certain gain</button><button type="button" class="btn btn-outline-dark lottery">Lottery</button></div><br/><br/><div ></div>');
 				//on affiche l'arbre avec un petit effet !
 
 				$("#k_value_"+i).show("fast");
@@ -632,7 +632,7 @@ function k_multiplicative_answer(i) {
 					$('.choice').hide();
 					$("#k_value_"+i).append(
 						'<br/><br/><br/><br/><div id= "final_value" style="text-align: center;margin-top:90px;"><br /><br /><p>We are almost done. Please enter the value that makes you indifferent between the two situations above. Your previous choices indicate that it should be between ' + min_interval + ' and ' + max_interval + ' but you are not constrained to that range <br /> '+ min_interval +'\
-						 <= <input type="text" class="form-control" id="final_proba" placeholder="Probability" value="'+val+'" style="width: 100px; display: inline-block"> <= '+ max_interval +'</p><button type="button" class="btn btn-default final_validation">Validate</button></div>'
+						 <= <input type="text" class="form-control" id="final_proba" placeholder="Probability" value="'+val+'" style="width: 100px; display: inline-block"> <= '+ max_interval +'</p><button type="button" class="btn btn-outline-dark final_validation">Validate</button></div>'
 					);
 
 					// when the user validates
@@ -1071,7 +1071,7 @@ $(function(){
 			//then we go here so we can send the ajax request
 			var mesK=assess_session.k_calculus[get_Active_Method()].k.slice();
 			mesK.push({value:assess_session.k_calculus[get_Active_Method()].GK});
-			var requete={"type": "utility_calculus_multiplicative", "k":mesK, "utility":k_utility_multiplicative};
+			var requete={"type": "utility_calculus_multiplicative", "k":mesK, "utility":k_utility_multiplicative, "virgule": assess_session.settings.decimals_dpl};
 			console.log(requete);
 
 			$.post('ajax', JSON.stringify(requete), function (data) {
@@ -1106,7 +1106,7 @@ $(function(){
 				}
 			}
 
-			var requete={"type": "utility_calculus_multilinear", "k":assess_session.k_calculus[get_Active_Method()].k, "utility":k_utility_multilinear};
+			var requete={"type": "utility_calculus_multilinear", "k":assess_session.k_calculus[get_Active_Method()].k, "utility":k_utility_multilinear, "virgule": assess_session.settings.decimals_dpl};
 			$.post('ajax', JSON.stringify(requete), function (data) {
 				console.log(data);
 				

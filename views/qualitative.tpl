@@ -39,8 +39,8 @@
 	
 	<div class="form-group">
         <label for="att_value_med">Intermediary value(s):</label>
-			<input type="button" class="btn btn-default" id="add_value_med" value="Add an item"/>   
-			<input type="button" class="btn btn-default" id="del_value_med" value="Delete last item"/>
+			<input type="button" class="btn btn-outline-dark" id="add_value_med" value="Add an item"/>   
+			<input type="button" class="btn btn-outline-dark" id="del_value_med" value="Delete last item"/>
 			<ol id="list_med_values_quali">
 				<li class="col-auto"><input type="text" class="form-control col-auto" id="att_value_med_1" placeholder='Intermediary Value 1'/></li>
 			</ol>
@@ -51,7 +51,7 @@
         <input type="text" class="form-control" id="att_value_best" placeholder="Best value">
     </div>
 		
-    <button type="submit" class="btn btn-default" id="submit">Submit</button>
+    <button type="submit" class="btn btn-outline-dark" id="submit">Submit</button>
 
 </div>
 
@@ -202,8 +202,8 @@ $(function() {
 							  '<td>' + attribute.method + '</td>' +
 							  '<td>' + attribute.mode + '</td>';
 							  
-				text_table += '<td><button type="button" id="edit_' + i + '" class="btn btn-default btn-xs">Edit</button></td>'+
-							  '<td><button type="button" class="btn btn-default" id="deleteK'+i+'" ><img src="/static/img/delete.ico" style="width:16px"/></button></td></tr>';
+				text_table += '<td><button type="button" id="edit_' + i + '" class="btn btn-outline-dark btn-xs">Edit</button></td>'+
+							  '<td><button type="button" class="btn btn-outline-dark" id="deleteK'+i+'" ><img src="/static/img/delete.ico" style="width:16px"/></button></td></tr>';
 
 				$('#table_attributes').append(text_table);
 

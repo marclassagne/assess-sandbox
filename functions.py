@@ -39,7 +39,7 @@ def funcpuis2(x, b, min, max):
 
 
 def funclog2(x, b, c, min, max):
-    return (1. / (np.log(b * max + c) - np.log(b * min + c))) * np.log(b * x + c) + 1. / (1 - np.log(b * max + c) / np.log(b * min + c))
+    return (1. / (np.log(np.abs(b * max + c)) - np.log(np.abs(b * min + c)))) * np.log(np.abs(b * x + c)) + 1. / (1 - np.log(np.abs(b * max + c)) / np.log(np.abs(b * min + c)))
 
 
 def funcexpopower2(x, a, min, max):

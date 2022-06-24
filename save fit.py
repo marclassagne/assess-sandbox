@@ -1,3 +1,10 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Oct 11 15:07:30 2021
+
+@author: Guedj Yossef
+"""
+
 # libraries import
 # from pylab import *
 import numpy as np
@@ -18,20 +25,17 @@ def regressions(liste_cord, dictionnaire={}):
     # creation des listes des abscisses et ordonnees
     lx = []
     ly = []
-    
-    # print("------------------",liste_cord)
-    # print("------------------",list(liste_cord))
-    for coord in list(liste_cord):
-        couple=list(coord)
-        # print(couple)
-        lx.append(couple[0])
-        ly.append(couple[1])
+
+    for coord in liste_cord:
+        lx.append(coord[0])
+        ly.append(coord[1])
 
     # creation des valeurs en abscisses et en ordonnee avec les listes lx et ly
     x = np.array(lx)
     y = np.array(ly)
-    x = list(map(float, x))
-    y = list(map(float, y))
+    x=list(map(float,x))
+    y=list(map(float,y))
+    print("yyyyyyyyyyyyyyyyyyyy", y)
     x_test = np.linspace(x[-1], x[-2])
 
     if y[-1] == 1:
@@ -44,8 +48,9 @@ def regressions(liste_cord, dictionnaire={}):
     # creation of the fitted curves
 
     try:
-       # exponential function
-        def funcexpParam(x, b): return funcexp2(x, b, min, max)
+        # exponential function
+        funcexpParam = lambda x, b: funcexp2(x, b, min, max)
+        print("-0-0-0-0-0-0-0-0-0-0-0-0-0 : ",x)
         # fonction regression utilisant la funcexp du fichier functions.py
         popt1, pcov1 = curve_fit(funcexpParam, x, y, [0.1])
         # popt1 = matrice ligne contenant les coefficients de la regression exponentielle optimisee apres calcul / popcov1 = matrice de covariances pour cette regression exp
@@ -70,9 +75,9 @@ def regressions(liste_cord, dictionnaire={}):
             # calcul et affichage du mean squared error et du r2
             # print "Mean Squared Error exp : ", np.mean((y-funcexp(x,
             # *popt1))**2)
-            h = 0
+            h=0
             for k in range(len(y)-1):
-                h += (y[k] - funcexp(x[k], a1, b1, c1))**2
+                h+= (y[k] - funcexp(x[k], a1, b1, c1))**2
             ss_res = h
             ymean = np.mean(y)
             ss_tot = np.dot((y - ymean), (y - ymean))
@@ -83,7 +88,7 @@ def regressions(liste_cord, dictionnaire={}):
 
     try:
         # Meme principe pour la quadratic function
-        def funcquadParam(x, b): return funcquad2(x, b, min, max)
+        funcquadParam = lambda x, b: funcquad2(x, b, min, max)
         popt2, pcov2 = curve_fit(funcquadParam, x, y, [0.1])
         b2 = popt2[0]
         a2 = b2 * min**2 - min * ((1 + b2 * (max**2 - min**2)) / (max - min))
@@ -102,22 +107,21 @@ def regressions(liste_cord, dictionnaire={}):
             dictionnaire['quad']['c'] = c2
             # print "Mean Squared Error quad : ", np.mean((y-funcquad(x,
             # *popt2))**2)
-            h = 0
+            h=0
             for k in range(len(y)-1):
-                h += (y[k] - funcquad(x[k], a2, b2, c2))**2
+                h+= (y[k] - funcquad(x[k], a2, b2, c2))**2
             ss_res = h
             ymean = np.mean(y)
             ss_tot = np.dot((y - ymean), (y - ymean))
             ymean = np.mean(y)
             ss_tot = np.dot((y - ymean), (y - ymean))
             dictionnaire['quad']['r2'] = 1 - ss_res / ss_tot
-
     except:
         pass
 
     try:
         # Meme principe pour la puissance function
-        def funcpuisParam(x, b): return funcpuis2(x, b, min, max)
+        funcpuisParam = lambda x, b: funcpuis2(x, b, min, max)
         popt3, pcov3 = curve_fit(funcpuisParam, x, y, [0.1])
         b3 = popt3[0]
         a3 = (1 - b3) / (max**(1 - b3) - min**(1 - b3))
@@ -136,9 +140,9 @@ def regressions(liste_cord, dictionnaire={}):
             dictionnaire['pow']['c'] = c3
             # print "Mean Squared Error puis : ", np.mean((y-funcpuis(x,
             # *popt3))**2)
-            h = 0
+            h=0
             for k in range(len(y)-1):
-                h += (y[k] - funcpuis(x[k], a3, b3, c3))**2
+                h+= (y[k] - funcpuis(x[k], a3, b3, c3))**2
             ss_res = h
             ymean = np.mean(y)
             ss_tot = np.dot((y - ymean), (y - ymean))
@@ -149,7 +153,7 @@ def regressions(liste_cord, dictionnaire={}):
 
     try:
         # Meme principe pour la logarithmic function
-        def funclogParam(x, b, c): return funclog2(x, b, c, min, max)
+        funclogParam = lambda x, b, c: funclog2(x, b, c, min, max)
         popt4, pcov4 = curve_fit(funclogParam, x, y, [0.1, 0.1])
         b4 = popt4[0]
         c4 = popt4[1]
@@ -170,9 +174,9 @@ def regressions(liste_cord, dictionnaire={}):
             dictionnaire['log']['d'] = d4
             # print "Mean Squared Error log : ", np.mean((y-funclog(x,
             # *popt4))**2)
-            h = 0
+            h=0
             for k in range(len(y)-1):
-                h += (y[k] - funclog(x[k], a4, b4, c4, d4))**2
+                h+= (y[k] - funclog(x[k], a4, b4, c4, d4))**2
             ss_res = h
             ymean = np.mean(y)
             ss_tot = np.dot((y - ymean), (y - ymean))
@@ -188,9 +192,9 @@ def regressions(liste_cord, dictionnaire={}):
         dictionnaire['lin']['a'] = a5
         dictionnaire['lin']['b'] = b5
         # print "Mean Squared Error lin: ", np.mean((y-funclin(x, *popt5))**2)
-        h = 0
+        h=0
         for k in range(len(y)-1):
-            h += (y[k] - funclin(x[k], a5, b5))**2
+            h+= (y[k] - funclin(x[k], a5, b5))**2
         ss_res = h
         ymean = np.mean(y)
         ss_tot = np.dot((y - ymean), (y - ymean))
@@ -200,7 +204,7 @@ def regressions(liste_cord, dictionnaire={}):
 
     try:
         # Meme principe pour la expo-power function
-        def funcexpopowerParam(x, a): return funcexpopower2(x, a, min, max)
+        funcexpopowerParam = lambda x, a: funcexpopower2(x, a, min, max)
         popt6, pcov6 = curve_fit(
             funcexpopowerParam, x, y, [-30])
         a6 = popt6[0]
@@ -218,9 +222,9 @@ def regressions(liste_cord, dictionnaire={}):
             dictionnaire['expo-power']['a'] = a6
             dictionnaire['expo-power']['b'] = b6
             dictionnaire['expo-power']['c'] = c6
-            h = 0
+            h=0
             for k in range(len(y)-1):
-                h += (y[k] - funcexpopower(x[k], a6, b6, c6))**2
+                h+= (y[k] - funcexpopower(x[k], a6, b6, c6))**2
             ss_res = h
             ymean = np.mean(y)
             ss_tot = np.dot((y - ymean), (y - ymean))
@@ -283,13 +287,5 @@ def multipoints(liste_cord):
             liste_dictionnaires[6]['coord'], dictionnaire=liste_dictionnaires[6])
     return {"data": liste_dictionnaires}
 
-"""
-dicotest=multipoints([[40, 0.84], [60, 0.53], [80, 0.53], [20, 0], [100, 1]])
-for elt in dicotest.keys():
-    # print(dicotest[elt][0])
-    for elti in dicotest[elt][0].keys():
-        
-        print()
-        print(elti,dicotest[elt][0][elti])
-"""
-# print( regressions([[70, 0.7], [80, 0.8], [90, 0.9], [50, 0.0], [100, 1.0]], False))
+
+print(regressions([[70,0.7],[80,0.8],[90,0.9],[50,0.0],[100,1.0]]))
