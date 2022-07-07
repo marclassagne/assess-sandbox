@@ -2,6 +2,7 @@ numpy
 scipy
 bottle
 matplotlib
+matplotlib-label-lines
 XlsxWriter
 openpyxl
 sympy
